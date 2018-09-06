@@ -1,0 +1,39 @@
+{
+  "version": "0.0.1",
+  "name": "Blog",
+  "marketplaceName" : {"de": "Blog","en": "Blog"},
+  "description": "This is the official blog developed by plentymarkets.",
+  "namespace": "Blog",
+  "author": "plentymarkets GmbH",
+  "type": "general",
+  "isClosedSource": true,
+  "serviceProvider": "Blog\\Providers\\BlogServiceProvider",
+  "runOnBuild": [
+  ],
+  "license": "Copyright by plentymarkets",
+  "price": 0.00,
+  "shortDescription": {
+    "de": "Das offizielle, von plentymarkets entwickelte Blog-Plugin. Zeigen Sie Blog-Eintrag im Webshop an.",
+    "en": "The official blog plugin developed by plentymarkets. Display blog posts in your online store."
+  },
+  "authorIcon": "",
+  "pluginIcon": "",
+  "email": "sales@plentymarkets.com",
+  "phone": "+49 561 98 681 100",
+  "categories": [
+    "3527"
+  ],
+  "keywords": [
+    "blog", "blog post", "blogpost"
+  ],
+  "require": {
+    "Ceres":"~2.0"
+  },
+  "containers": [],
+  "dataProviders": [
+    { "key":"Blog\\DataProviders\\Scripts", "name":"Blog Javascript", "description": "Javascript code for blog plugin" },
+    { "key":"Blog\\DataProviders\\Styles", "name":"Blog Styling", "description": "CSS styles for blog plugin" }
+  ],
+  "dependencies":{},
+  "javaScriptFiles": []
+}
