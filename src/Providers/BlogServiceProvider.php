@@ -15,6 +15,7 @@ class BlogServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
+     * @throws \ErrorException
      */
     public function register()
     {
@@ -34,7 +35,7 @@ class BlogServiceProvider extends ServiceProvider
             }
         );
 
-        // Category ITEM page
+        // Category Blog page
         // 90 priority, 100 is Ceres, themes typically use "0" because that's how theme creators are instructed in the theme creation guide
         $eventDispatcher->listen('IO.tpl.category.blog', function(TemplateContainer $container)
         {
@@ -42,6 +43,14 @@ class BlogServiceProvider extends ServiceProvider
             $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogPosts, 'blogPosts');
             return false;
         }, 90);
+
+        // Context for Category Blog page
+        $eventDispatcher->listen('IO.ctx.category.blog', function (TemplateContainer $container) {
+            $container->setContext(CategoryContext::class);
+            return false;
+        }, 90);
+
+
 
     }
 }
