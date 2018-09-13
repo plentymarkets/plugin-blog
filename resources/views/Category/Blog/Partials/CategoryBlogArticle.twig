@@ -1,0 +1,24 @@
+<article class="blog-post">
+    <div class="blog-post-header">
+        <h5 class="blog-category-name">{{ blogPost.data.categoryName }}</h5>
+        <h1 class="blog-post-name">{{ blogPost.data.title }}</h1>
+
+        <p class="blog-details">
+            <span class="blog-detail blog-detail-date">{{ blogPost.data.publishedAt | date("F j, Y")}}</span>
+            <span class="blog-detail blog-detail-author">by {{ blogPost.data.user.realName }}</span>
+            <span class="blog-detail blog-detail-comments">15 comments</span>
+        </p>
+    </div>
+
+    {% for blogPreviewImage in blogPost.data.images %}
+        {% if 'preview' in blogPreviewImage.type %}
+            <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPreviewImage.path }}">
+        {% endif %}
+    {% endfor %}
+
+    <p>{{ blogPost.data.shortDescription }}</p>
+
+    <div class="blog-actions">
+        <a href="/blog/article/{{ blogPost.id }}" class="btn btn-primary">Continue reading</a>
+    </div>
+</article>

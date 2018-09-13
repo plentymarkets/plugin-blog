@@ -1,0 +1,117 @@
+/* line 6, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-container {
+  padding: 0;
+}
+
+/* line 9, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-container .blog-row-small-gutters {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+/* line 13, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-container .blog-row-small-gutters .blog-col-small-gutters {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* line 21, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-header .blog-category-name {
+  text-align: center;
+  margin-bottom: 45px;
+  padding-top: 10px;
+}
+
+/* line 28, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post {
+  background: white;
+  margin-bottom: 40px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07);
+  -o-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07);
+}
+
+/* line 34, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-header {
+  text-align: center;
+}
+
+/* line 37, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-header .blog-category-name, .blog-post .blog-post-header .blog-details .blog-detail {
+  color: #aaa;
+}
+
+/* line 41, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-header .blog-category-name {
+  font-weight: bold;
+}
+
+/* line 45, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-header .blog-post-name {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+/* line 52, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-header .blog-details .blog-detail {
+  font-size: 13px;
+  padding: 0 10px;
+  border-right: #eee solid 2px;
+}
+
+/* line 57, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-header .blog-details .blog-detail.blog-detail-author {
+  color: #de846b;
+}
+
+/* line 61, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-header .blog-details .blog-detail:last-of-type {
+  border-right: none;
+}
+
+/* line 68, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-image {
+  margin-bottom: 20px;
+}
+
+/* line 71, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-post-image.blog-post-image-fullwidth {
+  width: 100%;
+}
+
+/* line 76, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-actions {
+  text-align: center;
+}
+
+/* line 81, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-body p {
+  margin-bottom: 1.5em;
+}
+
+/* line 85, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-post .blog-body h1, .blog-post .blog-body h2, .blog-post .blog-body h3, .blog-post .blog-body h4, .blog-post .blog-body h5, .blog-post .blog-body h6 {
+  line-height: 1.46em;
+}
+
+/* line 92, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-sidebar-example-block {
+  background: white;
+  margin-bottom: 20px;
+}
+
+/* line 96, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-sidebar-example-block p {
+  padding: 100px 0;
+  margin: 0;
+  text-align: center;
+}
+
+/* line 102, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-sidebar-example-block p.blog-example-larger-block {
+  padding: 200px 0;
+}
+
+/*# sourceMappingURL=../css/main.map */
