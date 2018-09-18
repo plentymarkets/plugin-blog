@@ -1,3 +1,5 @@
+{% set categoryBreadcrumbs = services.category.getHierarchy() %}
+
 {% extends getPartial('page-design') %}
 
 {% block PartialHead %}
@@ -7,9 +9,11 @@
     <meta name="keywords" content="{{ category.details[0].metaKeywords }}">
 
     <meta name="robots" content="{{ metaRobots }}">
+
 {% endblock %}
 
 {% block PageBody %}
+
     <div class="blog-wrapper">
         <div class="container-max blog-container">
             <section class="blog-header">
