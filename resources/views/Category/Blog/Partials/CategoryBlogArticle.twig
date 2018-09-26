@@ -10,11 +10,9 @@
         </p>
     </div>
 
-    {% for blogPreviewImage in blogPost.data.images %}
-        {% if 'preview' in blogPreviewImage.type %}
-            <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPreviewImage.path }}">
-        {% endif %}
-    {% endfor %}
+    {% if blogPost.data.images.preview is not empty %}
+        <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.preview.path }}">
+    {% endif %}
 
     <p>{{ blogPost.data.shortDescription }}</p>
 

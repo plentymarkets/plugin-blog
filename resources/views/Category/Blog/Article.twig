@@ -28,11 +28,16 @@
                             </p>
                         </div>
 
-                        {% for blogPreviewImage in blogPost.data.images %}
-                            {% if 'title' in blogPreviewImage.type %}
-                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPreviewImage.path }}">
-                            {% endif %}
-                        {% endfor %}
+                        {# Keeping this here as example of why we have keys for images now #}
+                        {#{% for blogPreviewImage in blogPost.data.images %}#}
+                            {#{% if 'title' in blogPreviewImage.type %}#}
+                                {#<img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPreviewImage.path }}">#}
+                            {#{% endif %}#}
+                        {#{% endfor %}#}
+
+                        {% if blogPost.data.images.title is not empty %}
+                            <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
+                        {% endif %}
 
                         <div class="blog-body">
                             {{ blogPost.data.body | raw }}

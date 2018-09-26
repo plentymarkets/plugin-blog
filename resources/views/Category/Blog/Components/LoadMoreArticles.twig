@@ -1,0 +1,80 @@
+<script type="x/template" id="vue-blog-load-more-articles">
+
+    <div>
+        <button v-if="page < lastPageNumber" class="btn btn-primary btn-block m-b-3" @click="loadMore()" :disabled="isLoading" > Load more items!</button>
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-load-more-articles', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+            currentPage: String,
+            lastPageNumber: String
+        },
+
+        created: function() {
+            this.$options.template = '#vue-blog-load-more-articles';
+            this.page = this.currentPage
+        },
+
+        data: function () {
+            return {
+                page: 0,
+                isLoading: false
+            };
+        },
+
+        methods: {
+            loadMore: function() {
+                var _this = this;
+
+                this.isLoading = true;
+
+                $.ajax({
+                    type: "GET",
+                    url: '/blog/articles/555?page=' + (Number(this.page) + 1) + '&itemsPerPage=5',
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data)
+                    {
+                        _this.page ++;
+                        $('#blog-posts').append('<div id="blog-page-' + _this.page + '">'+ data +'</div>');
+                    },
+                    error: function (){
+                    },
+                    complete: function(){
+                        _this.isLoading = false;
+                    }
+                })
+
+                //
+                // fetch('/blog/articles/5555555?page=1&itemsPerPage=50', {
+                //     method: 'GET',
+                //     credentials: 'include',
+                //     headers: {
+                //         "Content-Type": "application/json; charset=utf-8",
+                //     }
+                // }).then(function(response) {
+                //
+                //     console.log(response);
+                //
+                //     $('#blog-posts').append('<div class="WAHWAHWA">'+ response +'</div>');
+                //
+                // }).then(function(data) {
+                //
+                //     console.log(data);
+                //
+                //     $('#blog-posts').append('<div class="WAHWAHWA">'+ data +'</div>');
+                //
+                // }).then(function(){
+                //     _this.isLoading = false
+                // }).catch(function(error){
+                //     console.log(error);
+                // });
+
+            }
+        }
+    });
+</script>

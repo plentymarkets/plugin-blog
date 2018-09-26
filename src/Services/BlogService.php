@@ -9,7 +9,6 @@
 namespace Blog\Services;
 
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
-use Plenty\Modules\Blog\Repositories\BlogPostRepository;
 
 /**
  * Class BlogService
@@ -21,10 +20,15 @@ class BlogService
     /**
      * @return mixed
      */
-    public function listBlogPosts()
+    public function listBlogPosts($categoryId, $page, $articlesPerPage)
     {
+        $defaultArticlesPerPage = 5;
+
+        $page = empty($page) ? 1 : $page;
+        $articlesPerPage = empty($articlesPerPage) ? $defaultArticlesPerPage : $articlesPerPage;
+
         // TODO handle some filters here, when the time comes
-        $blogPosts = pluginApp(BlogPostRepositoryContract::class)->listPosts();
+        $blogPosts = pluginApp(BlogPostRepositoryContract::class)->listPosts($page,$articlesPerPage);
         return $blogPosts;
     }
 

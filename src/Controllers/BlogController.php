@@ -19,6 +19,9 @@ class BlogController extends Controller
 {
     use Loggable;
 
+    /**
+     * @var Twig
+     */
     private $twig;
 
     /**
@@ -46,6 +49,32 @@ class BlogController extends Controller
         ];
 
         return $this->twig->render('Blog::Category.Blog.Article', $data);
+    }
+
+    /**
+     * @param $categoryId
+     * @param Request $request
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function listArticles($categoryId, Request $request)
+    {
+        $defaultItemsPerPage = 5;
+
+        $page = empty($request->get('page')) ? 1 : $request->get('page');
+        $articlesPerPage = empty($request->get('itemsPerPage')) ? $defaultItemsPerPage : $request->get('itemsPerPage');
+
+        $blogPosts = pluginApp(BlogService::class)->listBlogPosts($categoryId,$page,$articlesPerPage);
+
+        $data = [
+            'categoryId' => $categoryId,
+            'blogPosts' => $blogPosts
+        ];
+
+        return $this->twig->render('Blog::Category.Blog.Partials.CategoryBlogList', $data);
+
     }
 
 
