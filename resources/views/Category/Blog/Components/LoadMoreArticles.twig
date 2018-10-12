@@ -12,7 +12,8 @@
 
         props: {
             currentPage: String,
-            lastPageNumber: String
+            lastPageNumber: String,
+            categoryId: String
         },
 
         created: function() {
@@ -35,7 +36,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: '/blog/articles/555?page=' + (Number(this.page) + 1) + '&itemsPerPage=5',
+                    url: '/blog/articles/' + Number(this.categoryId) + '?page=' + (Number(this.page) + 1) + '&itemsPerPage=5',
                     contentType: "application/json; charset=utf-8",
                     success: function(data)
                     {

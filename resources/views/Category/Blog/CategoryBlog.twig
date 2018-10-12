@@ -29,7 +29,7 @@
                         {% include "Blog::Category.Blog.Partials.CategoryBlogList" %}
                     </div>
 
-                    <blog-load-more-articles current-page="{{ blogPosts.page }}" last-page-number="{{ blogPosts.lastPageNumber }}" ></blog-load-more-articles>
+                    <blog-load-more-articles category-id="{{ category.id }}" current-page="{{ blogPosts.page }}" last-page-number="{{ blogPosts.lastPageNumber }}" ></blog-load-more-articles>
 
                 </div>
 
