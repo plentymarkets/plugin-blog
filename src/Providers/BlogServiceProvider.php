@@ -6,6 +6,7 @@ use Blog\Services\BlogService;
 use Ceres\Contexts\CategoryContext;
 use IO\Helper\ResourceContainer;
 use IO\Helper\TemplateContainer;
+use IO\Services\CategoryService;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
@@ -41,7 +42,9 @@ class BlogServiceProvider extends ServiceProvider
         // 90 priority, 100 is Ceres, themes typically use "0" because that's how theme creators are instructed in the theme creation guide
         $eventDispatcher->listen('IO.tpl.category.blog', function(TemplateContainer $container) use ($request)
         {
-            $blogPosts = pluginApp(BlogService::class)->listBlogPosts(null, $request->get('page'), $request->get('itemsPerPage'));
+            $currentCategory = pluginApp(CategoryService::class)->getCurrentCategory();
+
+            $blogPosts = pluginApp(BlogService::class)->listBlogPosts($currentCategory->id, $request->get('page'), $request->get('itemsPerPage'));
             $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogPosts, 'blogPosts');
             return false;
         }, 90);

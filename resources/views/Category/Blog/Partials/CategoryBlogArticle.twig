@@ -3,10 +3,10 @@
 <article class="blog-post">
     <div class="blog-post-header">
         <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
-        <h1 class="blog-post-name">{{ blogPost.data.blog.title }}</h1>
+        <h1 class="blog-post-name">{{ blogPost.data.post.title }}</h1>
 
         <p class="blog-details">
-            <span class="blog-detail blog-detail-date">{{ blogPost.data.blog.publishedAt | date("F j, Y")}}</span>
+            <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("F j, Y")}}</span>
             <span class="blog-detail blog-detail-author">by {{ blogPost.data.user.realName }}</span>
             {#<span class="blog- detail blog-detail-comments">15 comments</span>#}
         </p>
@@ -16,7 +16,7 @@
         <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.preview.path }}">
     {% endif %}
 
-    <p>{{ blogPost.data.blog.shortDescription }}</p>
+    <p>{{ blogPost.data.post.shortDescription }}</p>
 
     <div class="blog-actions">
         <a href="/blog/article/{{ blogPost.id }}" class="btn btn-primary">Continue reading</a>

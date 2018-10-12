@@ -28,7 +28,11 @@ class BlogService
         $articlesPerPage = empty($articlesPerPage) ? $defaultArticlesPerPage : $articlesPerPage;
 
         // TODO handle some filters here, when the time comes
-        $blogPosts = pluginApp(BlogPostRepositoryContract::class)->listPosts($page,$articlesPerPage);
+        $filters = [
+            'categoryId' => $categoryId
+        ];
+
+        $blogPosts = pluginApp(BlogPostRepositoryContract::class)->listPosts($page, $articlesPerPage, $filters);
         return $blogPosts;
     }
 

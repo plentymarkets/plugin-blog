@@ -18,13 +18,13 @@
 
                     <article class="blog-post">
                         <div class="blog-post-header">
-                            <h5 class="blog-category-name">{{ blogPost.data.categoryName }}</h5>
-                            <h1 class="blog-post-name">{{ blogPost.data.title }}</h1>
+                            <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
+                            <h1 class="blog-post-name">{{ blogPost.data.post.title }}</h1>
 
                             <p class="blog-details">
-                                <span class="blog-detail blog-detail-date">{{ blogPost.data.publishedAt | date("F j, Y")}}</span>
+                                <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("F j, Y")}}</span>
                                 <span class="blog-detail blog-detail-author">by {{ blogPost.data.user.realName }}</span>
-                                <span class="blog-detail blog-detail-comments">15 comments</span>
+                                {#<span class="blog-detail blog-detail-comments">15 comments</span>#}
                             </p>
                         </div>
 
