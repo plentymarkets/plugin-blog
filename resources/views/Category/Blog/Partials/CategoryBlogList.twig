@@ -1,3 +1,5 @@
+{# This twig is needed on the initial load --AND-- it builds the results for pagination #}
+
 {% for blogPost in blogPosts.entries %}
     {% include "Blog::Category.Blog.Partials.CategoryBlogArticle" %}
 {% endfor %}
