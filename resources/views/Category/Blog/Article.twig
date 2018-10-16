@@ -1,10 +1,10 @@
 {% extends getPartial('page-design') %}
 
 {% block PartialHead %}
-    <title>{{ blogPost.data.title }} | {{ ceresConfig.header.companyName }}</title>
+    <title>{{ blogPost.data.post.title }} | {{ ceresConfig.header.companyName }}</title>
 
-    <meta name="description" content="{{ blogPost.data.metaDescription }}">
-    <meta name="keywords" content="{{ blogPost.data.metaKeywords }}">
+    <meta name="description" content="{{ blogPost.data.meta.description }}">
+    <meta name="keywords" content="{{ blogPost.data.meta.keywords }}">
 
     <meta name="robots" content="{{ metaRobots }}">
 {% endblock %}
@@ -14,7 +14,7 @@
         <div class="container-max blog-container">
 
             <div class="row blog-row-small-gutters">
-                <div class="col-md-9 blog-posts blog-col-small-gutters">
+                <div class="col-md-8 blog-posts blog-col-small-gutters">
 
                     <article class="blog-post">
                         <div class="blog-post-header">
@@ -28,13 +28,6 @@
                             </p>
                         </div>
 
-                        {# Keeping this here as example of why we have keys for images now #}
-                        {#{% for blogPreviewImage in blogPost.data.images %}#}
-                            {#{% if 'title' in blogPreviewImage.type %}#}
-                                {#<img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPreviewImage.path }}">#}
-                            {#{% endif %}#}
-                        {#{% endfor %}#}
-
                         {% if blogPost.data.images.title is not empty %}
                             <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
                         {% endif %}
@@ -47,7 +40,7 @@
 
                 </div>
 
-                <div class="col-md-3 blog-sidebar blog-col-small-gutters">
+                <div class="col-md-4 blog-sidebar blog-col-small-gutters">
                     {% include "Blog::Category.Blog.Partials.Sidebar" %}
                 </div>
             </div>

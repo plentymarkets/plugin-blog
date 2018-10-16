@@ -1,7 +1,7 @@
 <script type="x/template" id="vue-blog-load-more-articles">
 
     <div>
-        <button v-if="page < lastPageNumber" class="btn btn-primary btn-block m-b-3" @click="loadMore()" :disabled="isLoading" > Load more items!</button>
+        <button v-if="page < lastPageNumber" class="btn btn-primary btn-block m-b-3" @click="loadMore()" :disabled="isLoading" > Load more</button>
     </div>
 
 </script>
@@ -13,17 +13,25 @@
         props: {
             currentPage: String,
             lastPageNumber: String,
-            categoryId: String
+            categoryId: String,
+            itemsPerPage: String,
+            filters: String
         },
 
         created: function() {
+            var _this = this;
             this.$options.template = '#vue-blog-load-more-articles';
-            this.page = this.currentPage
+            this.page = this.currentPage;
+
+            $.each( JSON.parse(this.filters), function( key, value ) {
+                _this.filtersString += '&' + key + '=' + value;
+            });
         },
 
         data: function () {
             return {
                 page: 0,
+                filtersString: '',
                 isLoading: false
             };
         },
@@ -31,12 +39,11 @@
         methods: {
             loadMore: function() {
                 var _this = this;
-
                 this.isLoading = true;
 
                 $.ajax({
                     type: "GET",
-                    url: '/blog/articles/' + Number(this.categoryId) + '?page=' + (Number(this.page) + 1) + '&itemsPerPage=5',
+                    url: '/blog/articles/' + Number(this.categoryId) + '?page=' + (Number(this.page) + 1) + '&itemsPerPage=' + this.itemsPerPage + this.filtersString,
                     contentType: "application/json; charset=utf-8",
                     success: function(data)
                     {

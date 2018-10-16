@@ -1,5 +1,5 @@
 {# Article from a Category Blog page #}
-{# COVFEFE #}
+
 <article class="blog-post">
     <div class="blog-post-header">
         <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
@@ -7,7 +7,7 @@
 
         <p class="blog-details">
             <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("F j, Y")}}</span>
-            <span class="blog-detail blog-detail-author">by {{ blogPost.data.user.realName }}</span>
+            <span class="blog-detail blog-detail-author">by <a href="?userRealName={{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a></span>
             {#<span class="blog- detail blog-detail-comments">15 comments</span>#}
         </p>
     </div>
@@ -19,6 +19,6 @@
     <p>{{ blogPost.data.post.shortDescription }}</p>
 
     <div class="blog-actions">
-        <a href="/blog/article/{{ blogPost.id }}" class="btn btn-primary">Continue reading</a>
+        <a href="/blog/article/{{ blogPost.data.post.urlName }}" class="btn btn-primary">Continue reading</a>
     </div>
 </article>

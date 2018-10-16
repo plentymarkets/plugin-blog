@@ -43,9 +43,17 @@ class BlogServiceProvider extends ServiceProvider
         $eventDispatcher->listen('IO.tpl.category.blog', function(TemplateContainer $container) use ($request)
         {
             $currentCategory = pluginApp(CategoryService::class)->getCurrentCategory();
+            $filters = pluginApp(BlogService::class)->extractFilters($request);
 
-            $blogPosts = pluginApp(BlogService::class)->listBlogPosts($currentCategory->id, $request->get('page'), $request->get('itemsPerPage'));
-            $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogPosts, 'blogPosts');
+            $blogPosts = pluginApp(BlogService::class)->listBlogPosts($currentCategory->id, $request->get('page'), $request->get('itemsPerPage'), $filters);
+
+            $blogData = [
+                'blogPosts' => $blogPosts,
+                'filters' => $filters
+            ];
+
+            $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogData, 'blog');
+
             return false;
         }, 90);
 

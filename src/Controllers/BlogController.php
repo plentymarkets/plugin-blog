@@ -34,17 +34,19 @@ class BlogController extends Controller
 
 
     /**
+     * @param $urlName
      * @return string
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function showArticle($postId)
+    public function showArticle($urlName)
     {
-        $blogPost = pluginApp(BlogService::class)->getBlogPost($postId);
+
+        $blogPost = pluginApp(BlogService::class)->getBlogPost($urlName);
 
         $data = [
-            'postId' => $postId,
+            'urlName' => $urlName,
             'blogPost' => $blogPost
         ];
 
@@ -63,14 +65,18 @@ class BlogController extends Controller
     {
         $defaultItemsPerPage = 5;
 
+        $filters = $request->except(['page', 'itemsPerPage', 'plentyMarkets']);
         $page = empty($request->get('page')) ? 1 : $request->get('page');
         $articlesPerPage = empty($request->get('itemsPerPage')) ? $defaultItemsPerPage : $request->get('itemsPerPage');
 
-        $blogPosts = pluginApp(BlogService::class)->listBlogPosts($categoryId,$page,$articlesPerPage);
+        $blogPosts = pluginApp(BlogService::class)->listBlogPosts($categoryId, $page, $articlesPerPage, $filters);
 
         $data = [
             'categoryId' => $categoryId,
-            'blogPosts' => $blogPosts
+            'blog' => [
+                'blogPosts' => $blogPosts,
+                'filters' => $filters
+            ]
         ];
 
         return $this->twig->render('Blog::Category.Blog.Partials.CategoryBlogList', $data);
