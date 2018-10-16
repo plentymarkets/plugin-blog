@@ -61,7 +61,7 @@ class BlogController extends Controller
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function listArticles($categoryId, Request $request)
+    public function listArticlesForPagination($categoryId, Request $request)
     {
         $defaultItemsPerPage = 5;
 
@@ -82,7 +82,4 @@ class BlogController extends Controller
         return $this->twig->render('Blog::Category.Blog.Partials.CategoryBlogList', $data);
 
     }
-
-
-
 }
