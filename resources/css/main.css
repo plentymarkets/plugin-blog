@@ -62,7 +62,7 @@
 }
 
 /* line 57, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
-.blog-post .blog-post-header .blog-details .blog-detail.blog-detail-author {
+.blog-post .blog-post-header .blog-details .blog-detail.blog-detail-author, .blog-post .blog-post-header .blog-details .blog-detail a {
   color: #de846b;
 }
 
@@ -74,44 +74,85 @@
 /* line 68, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-post .blog-post-image {
   margin-bottom: 20px;
+  border-radius: 3px;
 }
 
-/* line 71, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 72, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-post .blog-post-image.blog-post-image-fullwidth {
   width: 100%;
 }
 
-/* line 76, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 77, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-post .blog-actions {
   text-align: center;
 }
 
-/* line 81, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 82, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-post .blog-body p {
   margin-bottom: 1.5em;
 }
 
-/* line 85, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 86, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-post .blog-body h1, .blog-post .blog-body h2, .blog-post .blog-body h3, .blog-post .blog-body h4, .blog-post .blog-body h5, .blog-post .blog-body h6 {
   line-height: 1.46em;
 }
 
-/* line 92, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 95, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-recent-posts .blog-sidebar-title {
+  border-bottom: #eee solid 2px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+/* line 101, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-recent-posts .blog-sidebar-loading {
+  text-align: center;
+}
+
+/* line 105, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-recent-posts .blog-recent-post {
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* line 109, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-recent-posts .blog-recent-post .blog-recent-post-title {
+  padding: 10px 0;
+}
+
+/* line 113, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-recent-posts .blog-recent-post .blog-recent-post-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  float: left;
+  margin-right: 20px;
+  border-radius: 3px;
+}
+
+/* line 124, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-sidebar .blog-sidebar-example-block {
   background: white;
   margin-bottom: 20px;
 }
 
-/* line 96, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 128, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-sidebar .blog-sidebar-example-block p {
   padding: 100px 0;
   margin: 0;
   text-align: center;
 }
 
-/* line 102, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 134, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-sidebar .blog-sidebar-example-block p.blog-example-larger-block {
   padding: 200px 0;
+}
+
+/* line 143, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.clear {
+  clear: both;
+  display: block;
+  width: 100%;
 }
 
 /*# sourceMappingURL=../css/main.map */

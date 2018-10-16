@@ -35,6 +35,7 @@ class BlogServiceProvider extends ServiceProvider
         $eventDispatcher->listen('IO.Resources.Import',
             function (ResourceContainer $container) {
                 $container->addScriptTemplate('Blog::Category.Blog.Components.LoadMoreArticles');
+                $container->addScriptTemplate('Blog::Components.LatestPosts');
             }
         );
 

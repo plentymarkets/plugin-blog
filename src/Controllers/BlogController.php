@@ -61,7 +61,7 @@ class BlogController extends Controller
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function listArticlesForPagination($categoryId, Request $request)
+    public function listArticlesOnCategory($categoryId, Request $request)
     {
         $defaultItemsPerPage = 5;
 
@@ -82,4 +82,22 @@ class BlogController extends Controller
         return $this->twig->render('Blog::Category.Blog.Partials.CategoryBlogList', $data);
 
     }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function listArticles(Request $request)
+    {
+        $defaultItemsPerPage = 5;
+
+        $filters = $request->except(['page', 'itemsPerPage', 'plentyMarkets']);
+        $page = empty($request->get('page')) ? 1 : $request->get('page');
+        $articlesPerPage = empty($request->get('itemsPerPage')) ? $defaultItemsPerPage : $request->get('itemsPerPage');
+
+        $blogPosts = pluginApp(BlogService::class)->listBlogPosts(null, $page, $articlesPerPage, $filters);
+
+        return json_encode($blogPosts);
+    }
+
 }

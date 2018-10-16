@@ -1,0 +1,58 @@
+<script type="x/template" id="vue-blog-latest-posts">
+
+    <div class="blog-recent-posts">
+        <h3 class="blog-sidebar-title">Latest posts</h3>
+        <p v-if="isLoading" class="blog-sidebar-loading"><i class="fa fa-spinner fa-spin"></i> Loading</p>
+
+        <a v-for="article in articles.entries" class="blog-recent-post" :href="article.data.post.urlName">
+            <img class="blog-recent-post-image" :src="article.data.images.preview.path" alt="">
+            <h4 class="blog-recent-post-title">${ article.data.post.title }</h4>
+            <div class="clear"></div>
+        </a>
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-latest-posts', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+        },
+
+        created: function() {
+            this.$options.template = '#vue-blog-latest-posts';
+            this.loadArticles();
+        },
+
+        data: function () {
+            return {
+                articles: {},
+                isLoading: false
+            };
+        },
+
+        methods: {
+            loadArticles: function() {
+                var _this = this;
+                this.isLoading = true;
+
+                $.ajax({
+                    type: "GET",
+                    url: '/blog/list?page=1&itemsPerPage=3',
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data)
+                    {
+                        _this.articles = JSON.parse(data);
+                    },
+                    error: function (){
+                    },
+                    complete: function(){
+                        _this.isLoading = false;
+                    }
+                })
+
+            }
+        }
+    });
+</script>
