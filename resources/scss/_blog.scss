@@ -25,10 +25,18 @@
     }
 }
 
+#blog-posts {
+    .blog-post-image-fullwidth {
+        height:300px;
+        object-fit:cover;
+    }
+}
+
 .blog-post {
     background:white;
     margin-bottom:40px;
     padding:20px;
+    border-radius:3px;
     @include blog-box-shadow(0px 2px 6px rgba(0, 0, 0, 0.07));
 
     .blog-post-header {
@@ -94,7 +102,7 @@
     .blog-recent-posts {
         .blog-sidebar-title {
             border-bottom:#eee solid 2px;
-            padding-bottom:15px;
+            padding-bottom:12px;
             margin-bottom:15px;
         }
 
@@ -107,15 +115,15 @@
             display:block;
 
             .blog-recent-post-title {
-                padding: 10px 0;
+                padding:10px 0;
             }
 
             .blog-recent-post-image {
-                width: 90px;
-                height: 90px;
-                object-fit: cover;
-                float: left;
-                margin-right: 20px;
+                width:90px;
+                height:90px;
+                object-fit:cover;
+                float:left;
+                margin-right:15px;
                 border-radius:3px;
             }
         }

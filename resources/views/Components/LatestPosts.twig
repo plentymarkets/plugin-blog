@@ -4,7 +4,7 @@
         <h3 class="blog-sidebar-title">Latest posts</h3>
         <p v-if="isLoading" class="blog-sidebar-loading"><i class="fa fa-spinner fa-spin"></i> Loading</p>
 
-        <a v-for="article in articles.entries" class="blog-recent-post" :href="article.data.post.urlName">
+        <a v-for="article in articles.entries" class="blog-recent-post" :href="'/blog/article/' + article.data.post.urlName">
             <img class="blog-recent-post-image" :src="article.data.images.preview.path" alt="">
             <h4 class="blog-recent-post-title">${ article.data.post.title }</h4>
             <div class="clear"></div>
