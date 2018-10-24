@@ -7,6 +7,8 @@
         <a v-for="article in articles.entries" class="blog-recent-post" :href="'/blog/article/' + article.data.post.urlName">
             <img class="blog-recent-post-image" :src="article.data.images.preview.path" alt="">
             <h4 class="blog-recent-post-title">${ article.data.post.title }</h4>
+
+            <p class="blog-recent-post-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</p>
             <div class="clear"></div>
         </a>
     </div>

@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700');
+
+$font-roboto:'Roboto', sans-serif;
+
+$color-primary: #1976d2;
+$color-muted: #7e93a9;
+
 
 // Mixins
 @mixin blog-breakpoint($point) {
@@ -38,7 +45,7 @@ $blog-animated-default:all .15s ease-out;
     transition:$transition;
 }
 
-@mixin blog-border-radius($radius:4px) {
+@mixin blog-border-radius($radius:3px) {
     -webkit-border-radius:$radius;
     -moz-border-radius:$radius;
     border-radius:$radius;

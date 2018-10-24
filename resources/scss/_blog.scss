@@ -1,10 +1,20 @@
 
 .blog-wrapper {
     // This is here if theme creators need to change the background of the blog page
+    background:white;
+    font-family:$font-roboto;
+
+    a {
+        color:$color-primary;
+
+        &:hover {
+            color:darken($color-primary,5%);
+        }
+    }
 }
 
 .blog-container {
-    padding:30px 0 0 0;
+    padding:40px 0 0 0;
 
     .blog-row-small-gutters {
         margin-left:-10px;
@@ -18,10 +28,13 @@
 }
 
 .blog-header {
+    background:#f7f7f9;
+    border-bottom:#efefef solid 1px;
+    padding:30px 0;
+
     .blog-category-name {
         text-align:center;
-        margin-bottom:45px;
-        padding-top:10px;
+        margin:0;
     }
 }
 
@@ -33,48 +46,41 @@
 }
 
 .blog-post {
-    background:white;
-    margin-bottom:40px;
-    padding:20px;
-    border-radius:3px;
-    @include blog-box-shadow(0px 2px 6px rgba(0, 0, 0, 0.07));
+    margin-bottom:70px;
+    padding-right:20px;
+
+    .blog-post-content {
+        padding:30px;
+    }
 
     .blog-post-header {
-        text-align:center;
 
         .blog-category-name, .blog-details .blog-detail {
-            color:#aaa;
+            color:$color-muted;
         }
 
         .blog-category-name {
-            font-weight:bold;
+            color:$color-primary;
+            font-size:13px;
         }
 
-        .blog-post-name {
+        .blog-post-title {
             font-weight:bold;
-            font-size:30px;
+            font-size:27px;
+            margin-bottom:17px;
         }
+
 
         .blog-details {
 
             .blog-detail {
                 font-size:13px;
-                padding:0 10px;
-                border-right:#eee solid 2px;
-
-                &.blog-detail-author, a {
-                    color:#de846b;
-                }
-
-                &:last-of-type {
-                    border-right:none;
-                }
             }
         }
     }
 
+
     .blog-post-image {
-        margin-bottom:20px;
         border-radius:3px;
 
         &.blog-post-image-fullwidth {
@@ -82,8 +88,26 @@
         }
     }
 
+    .blog-post-shortdescription {
+        margin-bottom:20px;
+        font-size:15px;
+    }
+
     .blog-actions {
-        text-align:center;
+        font-size:15px;
+
+        .blog-action-readmore {
+            color:#333;
+            border-bottom:$color-primary solid 1px;
+            padding:7px 0;
+            @include blog-animated;
+
+            &:hover {
+                color:$color-primary;
+                padding:7px;
+            }
+        }
+
     }
 
     .blog-body {
@@ -93,6 +117,26 @@
 
         h1,h2,h3,h4,h5,h6 {
             line-height:1.46em;
+        }
+    }
+}
+
+.blog-load-more {
+    text-align:center;
+
+    .blog-btn-load-more {
+        display:inline-block;
+        width:auto;
+        padding:15px 50px;
+        margin-bottom:70px;
+        background:#efefef;
+        @include blog-border-radius;
+        @include blog-animated;
+
+        &:hover {
+            background:$color-primary;
+            color:white;
+            padding:15px 60px;
         }
     }
 }
@@ -115,12 +159,26 @@
             display:block;
 
             .blog-recent-post-title {
-                padding:10px 0;
+                margin-bottom:5px;
+                color:#333;
+                font-size:15px;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                display:-webkit-box;
+                -webkit-box-orient:vertical;
+                -webkit-line-clamp:2;
+                line-height:18px;
+                max-height:36px;
+            }
+
+            .blog-recent-post-date {
+                color:$color-muted;
+                font-size:12px;
             }
 
             .blog-recent-post-image {
                 width:90px;
-                height:90px;
+                height:65px;
                 object-fit:cover;
                 float:left;
                 margin-right:15px;
@@ -129,21 +187,6 @@
         }
     }
 
-    .blog-sidebar-example-block {
-        background:white;
-        margin-bottom:20px;
-
-        p {
-            padding:100px 0;
-            margin:0;
-            text-align:center;
-        }
-
-        p.blog-example-larger-block {
-            padding:200px 0;
-        }
-
-    }
 }
 
 

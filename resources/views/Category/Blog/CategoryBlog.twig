@@ -15,12 +15,13 @@
 {% block PageBody %}
 
     <div class="blog-wrapper">
+        <section class="blog-header">
+            <h1 class="blog-category-name">
+                {{ category.details[0].name }}
+            </h1>
+        </section>
+
         <div class="container-max blog-container">
-            <section class="blog-header">
-                <h1 class="blog-category-name">
-                    {{ category.details[0].name }}
-                </h1>
-            </section>
 
             <div class="row blog-row-small-gutters">
                 <div class="col-md-9 blog-col-small-gutters">

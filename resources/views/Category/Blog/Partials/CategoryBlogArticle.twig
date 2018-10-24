@@ -1,24 +1,36 @@
 {# Article from a Category Blog page #}
 
 <article class="blog-post">
-    <div class="blog-post-header">
-        <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
-        <h1 class="blog-post-name">{{ blogPost.data.post.title }}</h1>
-
-        <p class="blog-details">
-            <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("F j, Y")}}</span>
-            <span class="blog-detail blog-detail-author">by <a href="?userRealName={{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a></span>
-            {#<span class="blog- detail blog-detail-comments">15 comments</span>#}
-        </p>
-    </div>
-
     {% if blogPost.data.images.preview is not empty %}
-        <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.preview.path }}">
+        <a href="/blog/article/{{ blogPost.data.post.urlName }}">
+            <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.preview.path }}">
+        </a>
     {% endif %}
 
-    <p>{{ blogPost.data.post.shortDescription }}</p>
+    <div class="blog-post-content">
+        <div class="blog-post-header">
+            <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
+            <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
 
-    <div class="blog-actions">
-        <a href="/blog/article/{{ blogPost.data.post.urlName }}" class="btn btn-primary">Continue reading</a>
+            <p class="blog-details">
+                <span class="blog-detail blog-detail-author">
+                    {% if blogPost.data.user.image is not empty %}
+                        <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">
+                    {% else %}
+                        by
+                    {% endif %}
+                    <a href="?author={{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
+                </span>
+                <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("F j, Y")}}</span>
+                {#<span class="blog- detail blog-detail-comments">15 comments</span>#}
+            </p>
+        </div>
+
+        <p class="blog-post-shortdescription">{{ blogPost.data.post.shortDescription }}</p>
+
+        <div class="blog-actions">
+            <a href="/blog/article/{{ blogPost.data.post.urlName }}" class="blog-action-readmore">Read more</a>
+        </div>
     </div>
+
 </article>

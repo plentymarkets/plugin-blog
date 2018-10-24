@@ -2,3 +2,15 @@
 // Globals
 // --------------------------
 
+.blog-avatar {
+    width:200px;
+    height:200px;
+    @include blog-border-radius(50%);
+
+    &.blog-avatar-md {
+        width:38px;
+        height:38px;
+        margin-right:3px;
+    }
+}
+

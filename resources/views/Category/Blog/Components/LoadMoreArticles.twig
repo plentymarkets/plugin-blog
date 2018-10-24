@@ -1,7 +1,7 @@
 <script type="x/template" id="vue-blog-load-more-articles">
 
-    <div>
-        <button v-if="page < lastPageNumber" class="btn btn-primary btn-block m-b-3" @click="loadMore()" :disabled="isLoading" > Load more</button>
+    <div class="blog-load-more">
+        <button v-if="page < lastPageNumber" class="btn blog-btn-load-more" @click="loadMore()" :disabled="isLoading" > Load more</button>
     </div>
 
 </script>

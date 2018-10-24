@@ -17,23 +17,25 @@
                 <div class="col-md-9 blog-posts blog-col-small-gutters">
 
                     <article class="blog-post">
-                        <div class="blog-post-header">
-                            <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
-                            <h1 class="blog-post-name">{{ blogPost.data.post.title }}</h1>
-
-                            <p class="blog-details">
-                                <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("F j, Y")}}</span>
-                                <span class="blog-detail blog-detail-author">by {{ blogPost.data.user.realName }}</span>
-                                {#<span class="blog-detail blog-detail-comments">15 comments</span>#}
-                            </p>
-                        </div>
-
                         {% if blogPost.data.images.title is not empty %}
-                            <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
+                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
                         {% endif %}
 
-                        <div class="blog-body">
-                            {{ blogPost.data.post.body | raw }}
+                        <div class="blog-post-content">
+                            <div class="blog-post-header">
+                                <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
+                                <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
+
+                                <p class="blog-details">
+                                    <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("F j, Y")}} - </span>
+                                    <span class="blog-detail blog-detail-author"> by {{ blogPost.data.user.realName }}</span>
+                                    {#<span class="blog- detail blog-detail-comments">15 comments</span>#}
+                                </p>
+                            </div>
+
+                            <div class="blog-body">
+                                {{ blogPost.data.post.body | raw }}
+                            </div>
                         </div>
 
                     </article>
