@@ -26,17 +26,9 @@
             <div class="row blog-row-small-gutters">
                 <div class="col-md-9 blog-col-small-gutters">
 
-                    <div id="blog-posts" class="blog-posts">
-                        {% include "Blog::Category.Blog.Partials.CategoryBlogList" %}
-                    </div>
-
-                    <blog-load-more-articles
-                            category-id="{{ category.id }}"
-                            current-page="{{ blog.blogPosts.page }}"
-                            items-per-page="{{ blog.blogPosts.itemsPerPage }}"
-                            filters="{{ blog.filters | json_encode }}"
-                            last-page-number="{{ blog.blogPosts.lastPageNumber }}" >
-                    </blog-load-more-articles>
+                    <blog-list category-id="{{ category.id }}"
+                               filters="{{ blogData.filters | json_encode }}">
+                    </blog-list>
 
                 </div>
 

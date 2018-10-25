@@ -34,8 +34,9 @@ class BlogServiceProvider extends ServiceProvider
         // Custom components
         $eventDispatcher->listen('IO.Resources.Import',
             function (ResourceContainer $container) {
-                $container->addScriptTemplate('Blog::Category.Blog.Components.LoadMoreArticles');
-                $container->addScriptTemplate('Blog::Components.LatestPosts');
+                $container->addScriptTemplate('Blog::Category.Blog.Components.BlogList');
+                $container->addScriptTemplate('Blog::Category.Blog.Components.Search');
+                $container->addScriptTemplate('Blog::Category.Blog.Components.LatestPosts');
             }
         );
 
@@ -43,17 +44,11 @@ class BlogServiceProvider extends ServiceProvider
         // 90 priority, 100 is Ceres, themes typically use "0" because that's how theme creators are instructed in the theme creation guide
         $eventDispatcher->listen('IO.tpl.category.blog', function(TemplateContainer $container) use ($request)
         {
-            $currentCategory = pluginApp(CategoryService::class)->getCurrentCategory();
-            $filters = pluginApp(BlogService::class)->extractFilters($request);
-
-            $blogPosts = pluginApp(BlogService::class)->listBlogPosts($currentCategory->id, $request->get('page'), $request->get('itemsPerPage'), $filters);
-
             $blogData = [
-                'blogPosts' => $blogPosts,
-                'filters' => $filters
+                'filters' => $request->except(['plentyMarkets'])
             ];
 
-            $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogData, 'blog');
+            $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogData, 'blogData');
 
             return false;
         }, 90);

@@ -19,29 +19,6 @@ class BlogService
 {
 
     /**
-     * Gets a paginated list of blog posts
-     *
-     * @param $categoryId
-     * @param int $page
-     * @param int $articlesPerPage
-     * @param array $filters
-     * @return mixed
-     */
-    public function listBlogPosts($categoryId, $page, $articlesPerPage, array $filters = [])
-    {
-        $defaultArticlesPerPage = 5;
-
-        // page and articlesPerPage can be int or null
-        $page = empty($page) ? 1 : $page;
-        $articlesPerPage = empty($articlesPerPage) ? $defaultArticlesPerPage : $articlesPerPage;
-
-        if(!empty($categoryId)){ $filters['categoryId'] = $categoryId; }
-
-        $blogPosts = pluginApp(BlogPostRepositoryContract::class)->listPosts($page, $articlesPerPage, $filters);
-        return $blogPosts;
-    }
-
-    /**
      * Gets a single blog post
      *
      * @param string $url

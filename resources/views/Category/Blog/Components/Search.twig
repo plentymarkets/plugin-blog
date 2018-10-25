@@ -1,0 +1,40 @@
+<script type="x/template" id="vue-blog-search">
+
+    <div class="blog-search">
+        <h3 class="blog-sidebar-title"><span>Search</span></h3>
+
+        <div class="blog-search-wrap">
+            <input type="text" class="blog-search-input" placeholder="Search..." v-model="searchString" @keyup.enter="search()">
+            <button class="blog-search-submit" @click="search()"><i class="fa fa-search"></i></button>
+        </div>
+
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-search', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+        },
+
+        created: function() {
+            this.$options.template = '#vue-blog-search';
+        },
+
+        data: function () {
+            return {
+                searchString: ''
+            };
+        },
+
+        methods: {
+            search: function() {
+                vueEventHub.$emit('blog-search', {
+                    'searchString': this.searchString
+                });
+            }
+        }
+    });
+</script>

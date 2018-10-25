@@ -15,6 +15,62 @@
   margin-right: 3px;
 }
 
+/* line 17, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/general/_global.scss */
+.blog-dot-loading {
+  margin: 0 auto;
+  width: 70px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* line 23, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/general/_global.scss */
+.blog-dot-loading i {
+  margin-right: 10px;
+}
+
+/* line 27, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/general/_global.scss */
+.blog-dot-loading > div {
+  width: 14px;
+  height: 14px;
+  background-color: #7e93a9;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+/* line 38, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/general/_global.scss */
+.blog-dot-loading .blog-dot-1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+/* line 42, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/general/_global.scss */
+.blog-dot-loading .blog-dot-2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
 /* line 2, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-wrapper {
   background: white;
@@ -177,28 +233,58 @@
   padding: 15px 60px;
 }
 
-/* line 147, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
-.blog-sidebar .blog-recent-posts .blog-sidebar-title {
-  border-bottom: #eee solid 2px;
-  padding-bottom: 12px;
-  margin-bottom: 15px;
+/* line 146, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-sidebar-section {
+  margin-bottom: 50px;
 }
 
-/* line 153, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 149, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-sidebar-section .blog-sidebar-title {
+  margin-bottom: 15px;
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+}
+
+/* line 156, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-sidebar-section .blog-sidebar-title span {
+  background: white;
+  position: relative;
+  padding: 0 20px;
+  z-index: 2;
+}
+
+/* line 163, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-sidebar-section .blog-sidebar-title:before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #efefef;
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+}
+
+/* line 179, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-sidebar .blog-recent-posts .blog-sidebar-loading {
   text-align: center;
 }
 
-/* line 157, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 183, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-sidebar .blog-recent-posts .blog-recent-post {
   margin-bottom: 20px;
   display: block;
 }
 
-/* line 161, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 187, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-sidebar .blog-recent-posts .blog-recent-post .blog-recent-post-title {
   margin-bottom: 5px;
+  padding-top: 4px;
   color: #333;
+  font-weight: 600;
   font-size: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -206,16 +292,17 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-height: 18px;
-  max-height: 36px;
+  max-height: 40px;
 }
 
-/* line 174, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 202, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-sidebar .blog-recent-posts .blog-recent-post .blog-recent-post-date {
   color: #7e93a9;
   font-size: 12px;
+  margin-bottom: 0;
 }
 
-/* line 179, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 208, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .blog-sidebar .blog-recent-posts .blog-recent-post .blog-recent-post-image {
   width: 90px;
   height: 65px;
@@ -225,7 +312,49 @@
   border-radius: 3px;
 }
 
-/* line 194, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+/* line 220, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-search .blog-search-wrap {
+  position: relative;
+}
+
+/* line 223, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-search .blog-search-wrap .blog-search-input {
+  height: 34px;
+  width: 100%;
+  line-height: 34px;
+  padding: 0 45px 0 7px;
+  border: #eee solid 1px;
+  outline: none;
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  -o-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 233, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-search .blog-search-wrap .blog-search-input:focus, .blog-sidebar .blog-search .blog-search-wrap .blog-search-input:active, .blog-sidebar .blog-search .blog-search-wrap .blog-search-input:hover {
+  border-color: #1976d2;
+}
+
+/* line 238, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
+.blog-sidebar .blog-search .blog-search-wrap .blog-search-submit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 34px;
+  width: 34px;
+  background: none;
+  border: none;
+  font-size: 17px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 256, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
 .clear {
   clear: both;
   display: block;
