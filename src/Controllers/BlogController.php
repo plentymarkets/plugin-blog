@@ -52,4 +52,23 @@ class BlogController extends Controller
         return $this->twig->render('Blog::Category.Blog.Article', $data);
     }
 
+
+    /**
+     * @param Request $request
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function searchArticles(Request $request)
+    {
+        $searchString = $request->get('search', '');
+
+        $data = [
+            'searchString' => $searchString
+        ];
+
+        return $this->twig->render('Blog::Category.Blog.Search', $data);
+    }
+
 }

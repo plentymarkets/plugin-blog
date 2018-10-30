@@ -24,5 +24,6 @@ class BlogRouteServiceProvider extends RouteServiceProvider
     public function map(Router $router)
     {
         $router->get('blog/article/{urlName}', 'Blog\Controllers\BlogController@showArticle');
+        $router->get('blog/search', 'Blog\Controllers\BlogController@searchArticles');
     }
 }

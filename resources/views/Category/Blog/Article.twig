@@ -14,32 +14,38 @@
         <div class="container-max blog-container">
 
             <div class="row blog-row-small-gutters">
-                <div class="col-md-9 blog-posts blog-col-small-gutters">
-
-                    <article class="blog-post">
-                        {% if blogPost.data.images.title is not empty %}
+                <div class="col-md-9 blog-col-small-gutters">
+                    <div class="blog-single">
+                        <article class="blog-post">
+                            {% if blogPost.data.images.title is not empty %}
                                 <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
-                        {% endif %}
+                            {% endif %}
 
-                        <div class="blog-post-content">
-                            <div class="blog-post-header">
-                                <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
-                                <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
+                            <div class="blog-post-content">
+                                <div class="blog-post-header">
+                                    <h5 class="blog-category-name">{{ blogPost.data.category.name }}</h5>
+                                    <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
 
-                                <p class="blog-details">
-                                    <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("F j, Y")}} - </span>
-                                    <span class="blog-detail blog-detail-author"> by {{ blogPost.data.user.realName }}</span>
-                                    {#<span class="blog- detail blog-detail-comments">15 comments</span>#}
-                                </p>
+                                    <p class="blog-details">
+                                    <span class="blog-detail blog-detail-author">
+                                        {% if blogPost.data.user.image is not empty %}
+                                            <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">
+                                        {% else %}
+                                            by
+                                        {% endif %}
+                                        <a href="?author={{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
+                                    </span>
+                                        <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("j M, Y")}}</span>
+                                    </p>
+                                </div>
+
+                                <div class="blog-body">
+                                    {{ blogPost.data.post.body | raw }}
+                                </div>
                             </div>
 
-                            <div class="blog-body">
-                                {{ blogPost.data.post.body | raw }}
-                            </div>
-                        </div>
-
-                    </article>
-
+                        </article>
+                    </div>
                 </div>
 
                 <div class="col-md-3 blog-sidebar blog-col-small-gutters">

@@ -11,20 +11,22 @@
                 <div class="blog-post-content">
                     <div class="blog-post-header">
                         <h5 class="blog-category-name">${ article.data.category.name }</h5>
-                        <h1 class="blog-post-title">${ article.data.post.title }</h1>
+
+                        <a class="blog-post-title" :href="'/blog/article/' + article.data.post.urlName">${ article.data.post.title }</a>
 
                         <p class="blog-details">
-                            <span class="blog-detail blog-detail-author">
-                                <img v-if="article.data.user.image"
-                                     :src="article.data.user.image"
-                                     :alt="article.data.user.realName"
-                                     class="blog-avatar blog-avatar-md">
-                                <span v-else > by </span>
+                            <a :href="'/blog/search?search=' + article.data.user.realName">
+                                <span class="blog-detail blog-detail-author">
+                                    <img v-if="article.data.user.image"
+                                         :src="article.data.user.image"
+                                         :alt="article.data.user.realName"
+                                         class="blog-avatar blog-avatar-md">
+                                    <span v-else > by </span>
 
-                                <a :href="'?author=' + article.data.user.realName">${ article.data.user.realName }</a> -
-                            </span>
-
-                            <span class="blog-detail blog-detail-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</span>
+                                    <span class="blog-detail-author-name">${ article.data.user.realName }</span>
+                                </span>
+                            </a>
+                            - <span class="blog-detail blog-detail-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</span>
                         </p>
                     </div>
 
@@ -37,9 +39,12 @@
 
             </article>
 
-        </div>
+            <div v-if="listIsLoading">
+                {% include "Blog::Category.Blog.Partials.BlogListDummyPost" %}
+                {% include "Blog::Category.Blog.Partials.Loading" %}
+            </div>
 
-        <div v-if="listIsLoading"> {% include "Blog::Category.Blog.Partials.Loading" %} </div>
+        </div>
 
 
         <div class="blog-load-more">
@@ -54,8 +59,17 @@
         delimiters: ['${', '}'],
 
         props: {
-            categoryId: String,
-            filters: String
+            categoryId: {
+                type: Number,
+                required: false,
+                default: 0
+            },
+            filters: String,
+            isSearchPage: {
+                type: Boolean,
+                required: false,
+                default: false
+            }
         },
 
         created: function() {
@@ -88,21 +102,21 @@
             },
 
             loadFirstPage: function () {
-                this.getPosts(this.categoryId, this.page, this.itemsPerPage, this.filtersString)
+                this.getPosts(this.page)
             },
 
             loadMore: function() {
                 this.loadMoreIsLoading = true;
                 this.page++;
-                this.getPosts(this.categoryId, this.page, this.itemsPerPage, this.filtersString)
+                this.getPosts(this.page)
             },
 
-            getPosts: function(categoryId, page, itemsPerPage, filters) {
+            getPosts: function(page) {
                 var _this = this;
 
                 $.ajax({
                     type: "GET",
-                    url: '/rest/blog/posts?categoryId=' + Number(categoryId) + '&page=' + Number(page) + '&itemsPerPage=' + Number(itemsPerPage) + filters,
+                    url: '/rest/blog/posts?page=' + Number(page) + '&itemsPerPage=' + Number(this.itemsPerPage) + this.filtersString,
                     contentType: "application/json; charset=utf-8",
                     success: function(data)
                     {
@@ -123,7 +137,13 @@
 
             setFilters: function() {
                 var _this = this;
-                this.filtersString = '';
+                this.filtersString = '&active=true';
+
+                // Only filter by category if it's not a search
+                if(!this.isSearchPage) {
+                    this.filtersString += '&categoryId=' + this.categoryId;
+                }
+
                 $.each( JSON.parse(this.filters), function( key, value ) {
                     _this.filtersString += '&' + key + '=' + value;
                 });
@@ -140,7 +160,7 @@
                 var searchString = searchData.searchString;
                 this.filtersString += '&search=' + searchString;
 
-                this.getPosts(this.categoryId, this.page, this.itemsPerPage, this.filtersString)
+                this.getPosts(this.page)
 
             }
         }
