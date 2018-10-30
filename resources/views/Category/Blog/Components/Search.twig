@@ -42,14 +42,15 @@
 
         methods: {
             search: function() {
-                if(this.isSearchPage) {
-                    vueEventHub.$emit('blog-search', {
-                        'searchString': this.searchString
-                    });
-                }else{
-                    window.location.href = "/blog/search?search=" + this.searchString;
+                if(this.searchString) {
+                    if(this.isSearchPage) {
+                        vueEventHub.$emit('blog-search', {
+                            'searchString': this.searchString
+                        });
+                    }else{
+                        window.location.href = "/blog/search?search=" + this.searchString;
+                    }
                 }
-
             }
         }
     });

@@ -44,6 +44,10 @@
                 {% include "Blog::Category.Blog.Partials.Loading" %}
             </div>
 
+            <div v-if="!listIsLoading && articleList.length == 0">
+                <h1 class="text-center">No blog posts found</h1>
+            </div>
+
         </div>
 
 
