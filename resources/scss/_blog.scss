@@ -97,7 +97,9 @@
 
 .blog-posts, .blog-single {
     padding-right:20px;
+}
 
+.blog-posts {
     .blog-post-image-fullwidth {
         height:300px;
         object-fit:cover;
@@ -221,6 +223,14 @@
     }
 }
 
+.blog-single {
+    .blog-post {
+        .blog-post-content {
+            //border:none;
+        }
+    }
+}
+
 .blog-load-more {
     text-align:center;
 
@@ -326,7 +336,8 @@
 
 .blog-dummy-post {
     opacity:.15;
-    margin-bottom:35px;
+    margin-bottom:-150px;
+    position:relative;
 
     .blog-post-image {
         background: $color-muted;
@@ -403,6 +414,21 @@
             vertical-align: middle;
         }
     }
+
+    &:after {
+        content: '';
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: block;
+        background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+        position: absolute;
+    }
+
 }
 
 .clear {

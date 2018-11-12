@@ -6,6 +6,8 @@
 
 {% block PartialHead %}
     <title>Search | {{ ceresConfig.header.companyName }}</title>
+
+    <meta name="robots" content="NOINDEX,FOLLOW">
 {% endblock %}
 
 {% block PageBody %}
@@ -16,7 +18,7 @@
                 Search
             </h1>
 
-            <blog-search is-search-page initial-search-string= "{{ searchString }}"></blog-search>
+            <blog-search is-search-page initial-search-string="{{ searchString }}"></blog-search>
 
         </section>
 
@@ -26,6 +28,7 @@
                 <div class="col-md-9 blog-col-small-gutters">
 
                     <blog-list is-search-page
+                               :categories="{{ categories | json_encode }}"
                                filters ="{{ searchFilter | json_encode }}">
                     </blog-list>
 

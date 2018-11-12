@@ -43,12 +43,16 @@
         methods: {
             search: function() {
                 if(this.searchString) {
+                    let newUrl = '/blog/search?search=' + encodeURIComponent(this.searchString);
+
                     if(this.isSearchPage) {
                         vueEventHub.$emit('blog-search', {
                             'searchString': this.searchString
                         });
+
+                        history.pushState({}, null, newUrl);
                     }else{
-                        window.location.href = "/blog/search?search=" + this.searchString;
+                        window.location.href = newUrl;
                     }
                 }
             }

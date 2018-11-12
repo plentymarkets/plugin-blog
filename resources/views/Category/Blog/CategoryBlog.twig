@@ -26,7 +26,8 @@
             <div class="row blog-row-small-gutters">
                 <div class="col-md-9 blog-col-small-gutters">
 
-                    <blog-list :category-id={{ category.id }}
+                    <blog-list :category-id="{{ category.id }}"
+                               :categories="{{ categories | json_encode }}"
                                filters="{{ blogData.filters | json_encode }}">
                     </blog-list>
 
