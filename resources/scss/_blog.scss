@@ -9,12 +9,13 @@
             position:relative;
 
             .blog-search-input {
-                height:34px;
+                height:44px;
                 width:100%;
-                line-height:34px;
-                padding:0 45px 0 7px;
+                line-height:44px;
+                padding:0 45px 0 15px;
                 border:#eee solid 1px;
                 outline:none;
+                font-size:15px;
                 @include blog-animated;
                 @include blog-border-radius;
 
@@ -28,8 +29,8 @@
                 position:absolute;
                 right:0;
                 top:0;
-                height:34px;
-                width:34px;
+                height:44px;
+                width:44px;
                 background:none;
                 border:none;
                 font-size:17px;
@@ -87,9 +88,9 @@
 
 }
 
-.blog-posts, .blog-single {
-    padding-right:20px;
-}
+//.blog-posts, .blog-single {
+//    padding-right:20px;
+//}
 
 .blog-posts {
     .blog-post-image-fullwidth {
@@ -109,10 +110,10 @@
     //}
 
     .blog-post-content {
-        padding:30px 30px 20px;
-        border:$border-color solid 1px;
-        border-top:none;
-        @include blog-border-radius(0 0 3px 3px);
+        padding:30px 20px 20px;
+        //border:$border-color solid 1px;
+        //border-top:none;
+        //@include blog-border-radius(0 0 3px 3px);
     }
 
     .blog-post-header {
@@ -131,6 +132,7 @@
             font-weight:bold;
             font-size:27px;
             margin-bottom:17px;
+            display:inline-block;
         }
 
 
@@ -149,7 +151,7 @@
 
 
     .blog-post-image {
-        @include blog-border-radius(3px 3px 0 0);
+        @include blog-border-radius;
 
         &.blog-post-image-fullwidth {
             width:100%;
@@ -250,36 +252,43 @@
 }
 
 .blog-sidebar {
+    padding-left:35px;
 
     .blog-sidebar-section {
         margin-bottom:50px;
 
         .blog-sidebar-title {
-            margin-bottom:15px;
-            font-size:15px;
-            text-transform:uppercase;
-            text-align:center;
-            position:relative;
-
-            span {
-                background:white;
-                position:relative;
-                padding:0 20px;
-                z-index:2;
-            }
-
-            &:before {
-                content:'';
-                width:100%;
-                height:1px;
-                background:#efefef;
-                position:absolute;
-                display:block;
-                top:50%;
-                left:0;
-                z-index:1;
-            }
+            margin-bottom:20px;
+            font-size:22px;
+            font-weight:bold;
         }
+
+        //.blog-sidebar-title {
+        //    margin-bottom:15px;
+        //    font-size:15px;
+        //    text-transform:uppercase;
+        //    text-align:center;
+        //    position:relative;
+        //
+        //    span {
+        //        background:white;
+        //        position:relative;
+        //        padding:0 20px;
+        //        z-index:2;
+        //    }
+        //
+        //    &:before {
+        //        content:'';
+        //        width:100%;
+        //        height:1px;
+        //        background:#efefef;
+        //        position:absolute;
+        //        display:block;
+        //        top:50%;
+        //        left:0;
+        //        z-index:1;
+        //    }
+        //}
     }
 
     .blog-recent-posts {

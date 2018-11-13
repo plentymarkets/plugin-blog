@@ -17,14 +17,14 @@
             </h1>
 
             {% if page.type == 'search' %}
-                <blog-search is-search-page initial-search-string="{{ searchString }}"></blog-search>
+                <blog-search is-search-page initial-search-string="{{ filters.search }}"></blog-search>
             {% endif %}
         </section>
 
         <div class="container-max blog-container">
 
-            <div class="row blog-row-small-gutters">
-                <div class="col-md-9 blog-col-small-gutters">
+            <div class="row">
+                <div class="col-md-8">
 
                     <blog-list {{ page.type == 'search' ? 'is-search-page' : '' }}
                                :categories="{{ categories | json_encode }}"
@@ -33,7 +33,7 @@
 
                 </div>
 
-                <div class="col-md-3 blog-sidebar blog-col-small-gutters">
+                <div class="col-md-4 blog-sidebar">
                     {% if page.type == 'search' %}
                         {% include "Blog::Category.Blog.Partials.Sidebar" with { 'isSearchPage': true } %}
                     {% else %}

@@ -1,7 +1,7 @@
 <script type="x/template" id="vue-blog-search">
 
     <div class="blog-search">
-        <h3 v-if="!isSearchPage" class="blog-sidebar-title"><span>Search</span></h3>
+        {#<h3 v-if="!isSearchPage" class="blog-sidebar-title"><span>Search</span></h3>#}
 
         <div class="blog-search-wrap">
             <input type="text" class="blog-search-input" placeholder="Search..." v-model="searchString" @keyup.enter="search()" :autofocus="isSearchPage">
