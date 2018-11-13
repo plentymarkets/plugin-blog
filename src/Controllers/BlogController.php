@@ -49,7 +49,13 @@ class BlogController extends Controller
             'blogPost' => $blogPost
         ];
 
-        return $this->twig->render('Blog::Category.Blog.Article', $data);
+        if(!empty($blogPost))
+        {
+            return $this->twig->render('Blog::Category.Blog.Article', $data);
+        }else{
+            return $this->twig->render('Ceres::StaticPages.PageNotFound');
+        }
+
     }
 
 
