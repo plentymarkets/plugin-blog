@@ -45,6 +45,14 @@
                                 <div class="blog-body">
                                     {{ blogPost.data.post.body | raw }}
                                 </div>
+
+                                <p class="blog-tags">
+                                    Tags:
+                                    {% for tagId in blogPost.data.post.tags | split(',') %}
+                                        {% set tagDetails = services.tag.getTagById(tagId) %}
+                                        <a href="/blog/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagDetails is not empty ? tagDetails.tagName : tagId }}</a>
+                                    {% endfor %}
+                                </p>
                             </div>
 
                         </article>

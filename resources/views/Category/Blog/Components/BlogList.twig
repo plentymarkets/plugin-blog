@@ -152,8 +152,8 @@
                 var _this = this;
                 this.filtersString = '&active=true';
 
-                // Only filter by category if it's not a search
-                if(!this.isSearchPage) {
+                // Only filter by category if we give it one
+                if(this.categoryId) {
                     this.filtersString += '&categoryId=' + this.categoryId;
                 }
 

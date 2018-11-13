@@ -25,5 +25,6 @@ class BlogRouteServiceProvider extends RouteServiceProvider
     {
         $router->get('blog/article/{urlName}', 'Blog\Controllers\BlogController@showArticle');
         $router->get('blog/search', 'Blog\Controllers\BlogController@searchArticles');
+        $router->get('blog/tag/{tagId}', 'Blog\Controllers\BlogController@listArticlesByTag')->where('tagId', '\d+');;
     }
 }

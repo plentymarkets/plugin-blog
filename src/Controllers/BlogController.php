@@ -10,6 +10,7 @@ namespace Blog\Controllers;
 
 
 use Blog\Services\BlogService;
+use IO\Services\TagService;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Log\Loggable;
@@ -71,10 +72,39 @@ class BlogController extends Controller
         $searchString = $request->get('search', '');
 
         $data = [
-            'searchString' => $searchString
+            'filters' => json_encode(['search' => $searchString]),
+            'page' => [
+                'type' => 'search',
+                'title' => 'Search'
+            ]
         ];
 
         return $this->twig->render('Blog::Category.Blog.Search', $data);
+    }
+
+
+    /**
+     * @param int $tagId
+     * @param Request $request
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function listArticlesByTag(int $tagId, Request $request)
+    {
+        $tag = pluginApp(TagService::class)->getTagById($tagId);
+
+        $data = [
+            'filters' => json_encode(['tag' => (string)$tagId]),
+            'page' => [
+                'type' => 'tag',
+                'title' => 'Search by tag: ' . $tag['tagName']
+            ]
+        ];
+
+        return $this->twig->render('Blog::Category.Blog.Search', $data);
+
     }
 
 }

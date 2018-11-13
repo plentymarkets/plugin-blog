@@ -4,14 +4,6 @@
     background:white;
     font-family:$font-roboto;
 
-    a {
-        color:$color-primary;
-
-        &:hover {
-            color:darken($color-primary,5%);
-        }
-    }
-
     .blog-search {
         .blog-search-wrap {
             position:relative;
@@ -220,6 +212,12 @@
         h1,h2,h3,h4,h5,h6 {
             line-height:1.46em;
         }
+    }
+
+    .blog-tags {
+        margin-bottom:0;
+        padding-top:20px;
+        border-top:$border-color solid 1px;
     }
 }
 
