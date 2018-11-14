@@ -253,6 +253,31 @@
         h1,h2,h3,h4,h5,h6 {
             line-height:1.46em;
         }
+
+        blockquote {
+            position: relative;
+            font-size: 25px;
+            padding: 30px 40px 20px;
+            text-align: center;
+
+            p {
+                margin-bottom:0;
+            }
+
+            &:before {
+                content: "\201c";
+                position: absolute;
+                font-family: Georgia,Arial,sans-serif;
+                z-index: 0;
+                margin: 0;
+                left: 50%;
+                transform: translateX(-50%) rotate(1deg);
+                color: $color-muted;
+                line-height:40px;
+                opacity: .11;
+                font-size: 120px;
+            }
+        }
     }
 
     .blog-tags {
