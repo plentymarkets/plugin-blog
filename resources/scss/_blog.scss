@@ -92,7 +92,8 @@
         height:33px;
         display:block;
     }
-    #vue-rendered-breadcrumbs {
+
+    .blog-breadcrumbs > nav {
         font-size:13px;
         padding:0;
         display:block !important;
