@@ -11,7 +11,7 @@
                 <div class="blog-post-content">
                     <div class="blog-post-header">
                         <h5 class="blog-category-name">
-                            <a :href="blogCategories[article.data.category.id].url">${ blogCategories[article.data.category.id].name }</a>
+                            <a v-if="typeof blogCategories[article.data.category.id] !== 'undefined'" :href="blogCategories[article.data.category.id].url">${ blogCategories[article.data.category.id].name }</a>
                         </h5>
 
                         <a class="blog-post-title" :href="'/blog/article/' + article.data.post.urlName">${ article.data.post.title }</a>

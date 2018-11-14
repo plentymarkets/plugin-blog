@@ -72,10 +72,10 @@ class BlogController extends Controller
         $searchString = $request->get('search', '');
 
         $data = [
-            'filters' => json_encode(['search' => $searchString]),
+            'filters' => ['search' => $searchString],
             'page' => [
                 'type' => 'search',
-                'title' => 'Search'
+                'title' => '' // Search
             ]
         ];
 
@@ -96,7 +96,7 @@ class BlogController extends Controller
         $tag = pluginApp(TagService::class)->getTagById($tagId);
 
         $data = [
-            'filters' => json_encode(['tag' => (string)$tagId]),
+            'filters' => ['tag' => (string)$tagId],
             'page' => [
                 'type' => 'tag',
                 'title' => 'Search by tag: ' . $tag['tagName']

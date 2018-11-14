@@ -9,9 +9,9 @@
             position:relative;
 
             .blog-search-input {
-                height:44px;
+                height:40px;
                 width:100%;
-                line-height:44px;
+                line-height:40px;
                 padding:0 45px 0 15px;
                 border:#eee solid 1px;
                 outline:none;
@@ -29,8 +29,8 @@
                 position:absolute;
                 right:0;
                 top:0;
-                height:44px;
-                width:44px;
+                height:40px;
+                width:40px;
                 background:none;
                 border:none;
                 font-size:17px;
@@ -57,13 +57,14 @@
 }
 
 .blog-header {
-    background:$light-bg-color;
+    background-color:$light-bg-color;
+    background-size:cover;
     border-bottom:$border-color solid 1px;
-    padding:30px 0;
+    padding:35px 0;
 
     .blog-category-name {
-        text-align:center;
         margin:0;
+        line-height:40px;
     }
 
     .blog-search {
@@ -86,6 +87,36 @@
         }
     }
 
+    // The wrap reserves space for when the component is loaded
+    .blog-breadcrumbs {
+        height:33px;
+        display:block;
+    }
+    #vue-rendered-breadcrumbs {
+        font-size:13px;
+        padding:0;
+        display:block !important;
+
+        ul.breadcrumb {
+            padding:5px 0;
+            background:transparent !important;
+
+            li.breadcrumb-item {
+
+                a {
+                    color:$color-text;
+                }
+                span, &:before {
+                    color:$color-muted;
+                }
+                a, span {
+                    padding:0 5px;
+                    line-height:23px;
+                }
+            }
+        }
+    }
+
 }
 
 //.blog-posts, .blog-single {
@@ -97,10 +128,16 @@
         height:300px;
         object-fit:cover;
     }
+
+    .blog-post {
+        padding-bottom:20px;
+        border-bottom:$border-color solid 1px;
+    }
 }
 
 .blog-post {
-    margin-bottom:70px;
+    margin-bottom:50px;
+
     //@include blog-box-shadow(0px 2px 15px transparent);
     //@include blog-border-radius;
     //@include blog-animated;
@@ -131,7 +168,7 @@
             color:$color-text;
             font-weight:bold;
             font-size:27px;
-            margin-bottom:17px;
+            margin-bottom:10px;
             display:inline-block;
         }
 
@@ -207,6 +244,8 @@
     }
 
     .blog-body {
+        margin-bottom:20px;
+
         p {
             margin-bottom:1.5em;
         }
@@ -386,6 +425,8 @@
     }
 
     .blog-post-title {
+        display:block !important;
+
         span {
             @include blog-border-radius(0 0 3px 3px);
             width:50%;

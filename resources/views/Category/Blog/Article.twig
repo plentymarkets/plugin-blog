@@ -1,7 +1,10 @@
-{% extends getPartial('page-design') %}
-{% set blogCategory = services.category.get(blogPost.data.category.id) %}
-{% set blogCategoryUrl = services.category.getURL(blogCategory) %}
+{% set category = services.category.get(blogPost.data.category.id) %}
+{% set blogCategoryUrl = services.category.getURL(category) %}
+{% set blogCategoryName = category.details[0].name %}
+{% set blogCategoryBreadcrumbs = services.category.getHierarchy(category.id) %}
+{% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
 
+{% extends getPartial('page-design') %}
 
 {% block PartialHead %}
     <title>{{ blogPost.data.post.title }} | {{ ceresConfig.header.companyName }}</title>
@@ -9,11 +12,40 @@
     <meta name="description" content="{{ blogPost.data.meta.description }}">
     <meta name="keywords" content="{{ blogPost.data.meta.keywords }}">
 
-    <meta name="robots" content="{{ blogCategory.details[0].metaRobots }}">
+    <meta name="robots" content="{{ category.details[0].metaRobots }}">
 {% endblock %}
 
 {% block PageBody %}
     <div class="blog-wrapper">
+
+        {# Covfefe #}
+
+        <section class="blog-header"
+                {% if category.details[0].imagePath is not empty %}
+                    style="background-image: url(/documents/{{ category.details[0].imagePath }})"
+                {% elseif blogHeaderDefaultImage is not empty %}
+                    style="background-image: url({{ blogHeaderDefaultImage }})"
+                {% endif %}>
+
+            <div class="container-max">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="blog-category-name">
+                            {{ category.details[0].name }}
+                        </h1>
+
+                        {% if blogCategoryBreadcrumbs is not empty %}
+                            <div class="blog-breadcrumbs">
+                                <category-breadcrumbs template="#vue-category-breadcrumbs"></category-breadcrumbs>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
         <div class="container-max blog-container">
 
             <div class="row">
@@ -26,7 +58,7 @@
 
                             <div class="blog-post-content">
                                 <div class="blog-post-header">
-                                    <h5 class="blog-category-name"><a href="{{ blogCategoryUrl }}" title="{{ blogPost.data.category.name }}">{{ blogPost.data.category.name }}</a></h5>
+                                    <h5 class="blog-category-name"><a href="{{ blogCategoryUrl }}" title="{{ blogCategoryName }}">{{ blogCategoryName }}</a></h5>
                                     <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
 
                                     <p class="blog-details">

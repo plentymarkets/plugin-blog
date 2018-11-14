@@ -1,4 +1,6 @@
-{% set categoryBreadcrumbs = services.category.getHierarchy() %}
+{# Naming this following variable "categoryBreadcrumbs" activates the default Ceres breadcrumbs #}
+{% set blogCategoryBreadcrumbs = services.category.getHierarchy() %}
+{% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
 
 {% extends getPartial('page-design') %}
 
@@ -15,10 +17,31 @@
 {% block PageBody %}
 
     <div class="blog-wrapper">
-        <section class="blog-header">
-            <h1 class="blog-category-name">
-                {{ category.details[0].name }}
-            </h1>
+
+        <section class="blog-header"
+            {% if category.details[0].imagePath is not empty %}
+                style="background-image: url(/documents/{{ category.details[0].imagePath }})"
+            {% elseif blogHeaderDefaultImage is not empty %}
+                style="background-image: url({{ blogHeaderDefaultImage }})"
+            {% endif %}>
+
+            <div class="container-max">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="blog-category-name">
+                            {{ category.details[0].name }}
+                        </h1>
+
+                        {% if blogCategoryBreadcrumbs is not empty %}
+                            <div class="blog-breadcrumbs">
+                                <category-breadcrumbs template="#vue-category-breadcrumbs"></category-breadcrumbs>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
         </section>
 
         <div class="container-max blog-container">

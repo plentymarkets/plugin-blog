@@ -1,4 +1,5 @@
 {% set categoryBreadcrumbs = services.category.getHierarchy() %}
+{% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
 
 {% extends getPartial('page-design') %}
 
@@ -11,14 +12,29 @@
 {% block PageBody %}
 
     <div class="blog-wrapper">
-        <section class="blog-header">
-            <h1 class="blog-category-name">
-                {{ page.title }}
-            </h1>
 
-            {% if page.type == 'search' %}
-                <blog-search is-search-page initial-search-string="{{ filters.search }}"></blog-search>
-            {% endif %}
+        <section class="blog-header"
+            {% if blogHeaderDefaultImage is not empty %}
+                style="background-image: url({{ blogHeaderDefaultImage }})"
+            {% endif %}>
+
+            <div class="container-max">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {% if page.title is not empty %}
+                            <h1 class="blog-category-name">
+                                {{ page.title }}
+                            </h1>
+                        {% endif %}
+
+                        {% if page.type == 'search' %}
+                            <blog-search is-search-page initial-search-string="{{ filters.search }}"></blog-search>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
         </section>
 
         <div class="container-max blog-container">
@@ -28,7 +44,7 @@
 
                     <blog-list {{ page.type == 'search' ? 'is-search-page' : '' }}
                                :categories="{{ categories | json_encode }}"
-                               filters ="{{ filters }}">
+                               filters ="{{ filters | json_encode }}">
                     </blog-list>
 
                 </div>

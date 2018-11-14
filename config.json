@@ -1,0 +1,14 @@
+{
+    "formatVersion": 1,
+    "menu": {
+        "Config.tabGeneral": {
+            "label": "Config.tabGeneral",
+            "formFields": {
+                "general.header.default_image": {
+                    "type": "inputFile",
+                    "label": "Config.blogHeaderDefaultImage"
+                }
+            }
+        }
+    }
+}
