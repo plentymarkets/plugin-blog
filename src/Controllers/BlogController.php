@@ -75,6 +75,7 @@ class BlogController extends Controller
             'filters' => ['search' => $searchString],
             'page' => [
                 'type' => 'search',
+                'metaTitle' => 'Search',
                 'title' => '' // Search
             ]
         ];
@@ -99,6 +100,7 @@ class BlogController extends Controller
             'filters' => ['tag' => (string)$tagId],
             'page' => [
                 'type' => 'tag',
+                'metaTitle' => 'Search tag: ' . $tag['tagName'],
                 'title' => 'Search by tag: ' . $tag['tagName']
             ]
         ];
