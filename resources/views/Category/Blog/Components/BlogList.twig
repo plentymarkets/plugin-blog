@@ -150,7 +150,8 @@
 
             setFilters: function() {
                 var _this = this;
-                this.filtersString = '&active=true';
+                let date = moment().format('Y-M-D HH:mm:ss');
+                this.filtersString = '&active=true&publishedAtTo=' + date;
 
                 // Only filter by category if we give it one
                 if(this.categoryId) {

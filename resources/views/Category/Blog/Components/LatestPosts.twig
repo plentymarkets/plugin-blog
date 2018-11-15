@@ -39,10 +39,11 @@
             loadArticles: function() {
                 var _this = this;
                 this.isLoading = true;
+                let date = moment().format('Y-M-D HH:mm:ss');
 
                 $.ajax({
                     type: "GET",
-                    url: '/rest/blog/posts?page=1&itemsPerPage=5&active=true',
+                    url: '/rest/blog/posts?page=1&itemsPerPage=5&active=true&publishedAtTo=' + date,
                     contentType: "application/json; charset=utf-8",
                     success: function(data)
                     {
