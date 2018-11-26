@@ -3,6 +3,9 @@
     <div>
         <div id="blog-posts" class="blog-posts">
 
+            <h3 v-if="isSearchPage" class="blog-heading"><span>Search results for: ${ searchString }</span></h3>
+
+
             <article v-for="article in articleList" class="blog-post">
                 <a v-if="article.data.images.preview" :href="'/blog/article/' + article.data.post.urlName">
                     <img class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
@@ -18,14 +21,14 @@
 
                         <p class="blog-details">
                             <a :href="'/blog/search?search=' + article.data.user.realName">
-                                <span class="blog-detail blog-detail-author">
+                                <span class="blog-detail blog-detail-author covfefe">
                                     <img v-if="article.data.user.image"
                                          :src="article.data.user.image"
                                          :alt="article.data.user.realName"
-                                         class="blog-avatar blog-avatar-md">
-                                    <span v-else > by </span>
+                                         class="blog-avatar blog-avatar-md">{#
+                                    #}<span v-else > by </span>{#
 
-                                    <span class="blog-detail-author-name">${ article.data.user.realName }</span>
+                                    #}<span class="blog-detail-author-name">${ article.data.user.realName }</span>
                                 </span>
                             </a>
                             - <span class="blog-detail blog-detail-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</span>
@@ -34,9 +37,11 @@
 
                     <p class="blog-post-shortdescription">${ article.data.post.shortDescription }</p>
 
-                    <div class="blog-actions">
-                        <a :href="'/blog/article/' + article.data.post.urlName" class="blog-action-readmore">Read more</a>
-                    </div>
+                    {% if config('Blog.general.list.showReadMore') == 'true' %}
+                        <div class="blog-actions">
+                            <a :href="'/blog/article/' + article.data.post.urlName" class="blog-action-readmore">Read more</a>
+                        </div>
+                    {% endif %}
                 </div>
 
             </article>
@@ -107,6 +112,7 @@
                     lastPageNumber: 1,
                     itemsPerPage: 5,
                     filtersString: '',
+                    searchString: '',
                     loadMoreIsLoading: false,
                     listIsLoading: true,
                     articleList: [],
@@ -158,6 +164,10 @@
                     this.filtersString += '&categoryId=' + this.categoryId;
                 }
 
+                if(this.isSearchPage) {
+                    this.searchString = JSON.parse(this.filters).search;
+                }
+
                 $.each( JSON.parse(this.filters), function( key, value ) {
                     _this.filtersString += '&' + key + '=' + value;
                 });
@@ -183,7 +193,7 @@
             },
 
             resetState: function() {
-                Object.assign(this.$data, this.init())
+                Object.assign(this.$data, this.init());
                 this.setFilters();
                 this.setCategories(this.categories);
             },
@@ -191,8 +201,8 @@
             handleSearch: function(searchData) {
                 this.resetState();
 
-                var searchString = searchData.searchString;
-                this.filtersString += '&search=' + searchString;
+                this.searchString = searchData.searchString;
+                this.filtersString += '&search=' + this.searchString;
 
                 this.getPosts(this.page)
 

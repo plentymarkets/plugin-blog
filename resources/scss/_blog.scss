@@ -4,6 +4,11 @@
     background:white;
     font-family:$font-roboto;
 
+    .blog-recent-post:hover .blog-recent-post-title, a:not(.blog-recent-post):not(.blog-action-readmore):not(.btn):hover
+    {
+        text-decoration:underline;
+    }
+
     .blog-search {
         .blog-search-wrap {
             position:relative;
@@ -61,6 +66,12 @@
     background-size:cover;
     border-bottom:$border-color solid 1px;
     padding:35px 0;
+
+    .container-max {
+        @include blog-breakpoint(laptop) {
+            padding-left:0;
+        }
+    }
 
     .blog-category-name {
         margin:0;
@@ -139,19 +150,8 @@
 .blog-post {
     margin-bottom:50px;
 
-    //@include blog-box-shadow(0px 2px 15px transparent);
-    //@include blog-border-radius;
-    //@include blog-animated;
-
-    //&:hover {
-    //    @include blog-box-shadow(0px 2px 10px rgba(0,0,0,.07));
-    //}
-
     .blog-post-content {
-        padding:30px 20px 20px;
-        //border:$border-color solid 1px;
-        //border-top:none;
-        //@include blog-border-radius(0 0 3px 3px);
+        padding:30px 0 20px;
     }
 
     .blog-post-header {
@@ -169,16 +169,20 @@
             color:$color-text;
             font-weight:bold;
             font-size:27px;
+            line-height: 1.2;
             margin-bottom:10px;
             display:inline-block;
         }
-
 
         .blog-details {
             .blog-detail {
                 font-size:13px;
 
                 &.blog-detail-author {
+                    .blog-avatar {
+                        margin-right:10px;
+                    }
+
                     .blog-detail-author-name {
                         color:$color-primary;
                     }
@@ -283,15 +287,21 @@
 
     .blog-tags {
         margin-bottom:0;
-        padding-top:20px;
+        padding:15px 0;
         border-top:$border-color solid 1px;
+        border-bottom:$border-color solid 1px;
     }
 }
 
 .blog-single {
+    .blog-post-header {
+        padding-bottom:10px;
+    }
+
     .blog-post {
-        .blog-post-content {
-            //border:none;
+        .blog-post-title {
+            font-size:30px;
+            margin-bottom:20px;
         }
     }
 }
@@ -385,6 +395,7 @@
                 color:$color-muted;
                 font-size:12px;
                 margin-bottom:0;
+                text-decoration: none !important;
             }
 
             .blog-recent-post-image {

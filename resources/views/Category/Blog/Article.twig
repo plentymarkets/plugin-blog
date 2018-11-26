@@ -1,7 +1,6 @@
 {% set category = services.category.get(blogPost.data.category.id) %}
 {% set blogCategoryUrl = services.category.getURL(category) %}
 {% set blogCategoryName = category.details[0].name %}
-{% set blogCategoryBreadcrumbs = services.category.getHierarchy(category.id) %}
 {% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
 
 {% extends getPartial('page-design') %}
@@ -18,8 +17,6 @@
 {% block PageBody %}
     <div class="blog-wrapper">
 
-        {# Covfefe #}
-
         <section class="blog-header"
                 {% if category.details[0].imagePath is not empty %}
                     style="background-image: url(/documents/{{ category.details[0].imagePath }})"
@@ -28,19 +25,12 @@
                 {% endif %}>
 
             <div class="container-max">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h1 class="blog-category-name">
-                            {{ category.details[0].name }}
-                        </h1>
+                <h1 class="blog-category-name">
+                    {{ category.details[0].name }}
+                </h1>
 
-                        {% if blogCategoryBreadcrumbs is not empty %}
-                            <div class="blog-breadcrumbs">
-                                <category-breadcrumbs template="#vue-category-breadcrumbs"></category-breadcrumbs>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
+                {% set truncatedBlogTitle = blogPost.data.post.title|length > 50 ? blogPost.data.post.title|slice(0, 50) ~ '...' : blogPost.data.post.title %}
+                {% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': category.id, 'extra': truncatedBlogTitle } %}
 
             </div>
 
@@ -52,27 +42,31 @@
                 <div class="col-md-8">
                     <div class="blog-single">
                         <article class="blog-post">
+
+                            <div class="blog-post-header">
+                                {#<h5 class="blog-category-name"><a href="{{ blogCategoryUrl }}" title="{{ blogCategoryName }}">{{ blogCategoryName }}</a></h5>#}
+                                <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
+
+                                <p class="blog-details">
+                                        <span class="blog-detail blog-detail-author">
+                                            {% if blogPost.data.user.image is not empty %}
+                                                <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">{#
+                                            #}{% else %}{#
+                                                #}by{#
+                                            #}{% endif %}{#
+                                            #}<a href="/blog/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
+                                        </span>
+                                    <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("j M, Y")}}</span>
+                                </p>
+
+                                <p class="blog-post-shortdescription">{{ blogPost.data.post.shortDescription }}</p>
+                            </div>
+
                             {% if blogPost.data.images.title is not empty %}
                                 <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
                             {% endif %}
 
                             <div class="blog-post-content">
-                                <div class="blog-post-header">
-                                    <h5 class="blog-category-name"><a href="{{ blogCategoryUrl }}" title="{{ blogCategoryName }}">{{ blogCategoryName }}</a></h5>
-                                    <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
-
-                                    <p class="blog-details">
-                                        <span class="blog-detail blog-detail-author">
-                                            {% if blogPost.data.user.image is not empty %}
-                                                <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">
-                                            {% else %}
-                                                by
-                                            {% endif %}
-                                            <a href="/blog/search?search={{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
-                                        </span>
-                                        <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("j M, Y")}}</span>
-                                    </p>
-                                </div>
 
                                 <div class="blog-body">
                                     {{ blogPost.data.post.body | raw }}
@@ -80,10 +74,14 @@
 
                                 {% if blogPost.data.post.tags is not empty %}
                                     <p class="blog-tags">
-                                        Tags:
                                         {% for tagId in blogPost.data.post.tags | split(',') %}
                                             {% set tagDetails = services.tag.getTagById(tagId) %}
-                                            <a href="/blog/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagDetails is not empty ? tagDetails.tagName : tagId }}</a>
+
+                                            {% if tagDetails is not empty %}
+                                                <a href="/blog/tag/{{ tagId }}/{{ tagDetails.tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagDetails.tagName }}</a>
+                                            {% else %}
+                                                <a href="/blog/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagId }}</a>
+                                            {% endif %}
                                         {% endfor %}
                                     </p>
                                 {% endif %}

@@ -1,7 +1,7 @@
 <script type="x/template" id="vue-blog-latest-posts">
 
     <div class="blog-recent-posts">
-        <h3 class="blog-sidebar-title"><span>Latest posts</span></h3>
+        <h3 class="blog-heading"><span>Latest posts</span></h3>
 
         <a v-for="article in articleList" class="blog-recent-post" :href="'/blog/article/' + article.data.post.urlName">
             <img class="blog-recent-post-image" :src="article.data.images.preview.path" alt="">

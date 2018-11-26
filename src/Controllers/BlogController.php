@@ -10,6 +10,8 @@ namespace Blog\Controllers;
 
 
 use Blog\Services\BlogService;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Redirect;
 use IO\Services\TagService;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
@@ -39,6 +41,7 @@ class BlogController extends Controller
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
+     * @throws \ErrorException
      */
     public function showArticle($urlName)
     {
@@ -67,10 +70,8 @@ class BlogController extends Controller
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function searchArticles(Request $request)
+    public function searchArticles($searchString, Request $request)
     {
-        $searchString = $request->get('search', '');
-
         $data = [
             'filters' => ['search' => $searchString],
             'page' => [
@@ -86,13 +87,15 @@ class BlogController extends Controller
 
     /**
      * @param int $tagId
+     * @param string $tagName
      * @param Request $request
      * @return string
+     * @throws \ErrorException
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function listArticlesByTag(int $tagId, Request $request)
+    public function listArticlesByTag(int $tagId, Request $request, string $tagName = '')
     {
         $tag = pluginApp(TagService::class)->getTagById($tagId);
 

@@ -7,6 +7,14 @@
                 "general.header.default_image": {
                     "type": "inputFile",
                     "label": "Config.blogHeaderDefaultImage"
+                },
+                "general.list.showReadMore": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.blogListShowReadMore",
+                    "options": {
+                        "defaultValue": "false"
+                    }
                 }
             }
         }

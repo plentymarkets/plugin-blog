@@ -20,9 +20,11 @@
             <span class="blog-dummy-fullwidth"></span>
         </p>
 
-        <div class="blog-actions">
-            <span class="blog-action-readmore"></span>
-        </div>
+        {% if config('Blog.general.list.showReadMore') == 'true' %}
+            <div class="blog-actions">
+                <span class="blog-action-readmore"></span>
+            </div>
+        {% endif %}
     </div>
 
 </article>

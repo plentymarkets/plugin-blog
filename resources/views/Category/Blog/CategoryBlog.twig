@@ -1,5 +1,4 @@
 {# Naming this following variable "categoryBreadcrumbs" activates the default Ceres breadcrumbs #}
-{% set blogCategoryBreadcrumbs = services.category.getHierarchy() %}
 {% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
 
 {% extends getPartial('page-design') %}
@@ -32,11 +31,8 @@
                             {{ category.details[0].name }}
                         </h1>
 
-                        {% if blogCategoryBreadcrumbs is not empty %}
-                            <div class="blog-breadcrumbs">
-                                <category-breadcrumbs template="#vue-category-breadcrumbs"></category-breadcrumbs>
-                            </div>
-                        {% endif %}
+                        {% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': category.id } %}
+
                     </div>
                 </div>
 
