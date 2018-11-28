@@ -2,15 +2,16 @@
 
 namespace Blog\Providers;
 
-use Blog\Services\BlogService;
+use Blog\Contexts\BlogCategoryContext;
+use Blog\Contexts\BlogContext;
 use Ceres\Contexts\CategoryContext;
 use IO\Helper\ResourceContainer;
 use IO\Helper\TemplateContainer;
-use IO\Services\CategoryService;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Http\Request;
+
 
 
 class BlogServiceProvider extends ServiceProvider
@@ -40,6 +41,8 @@ class BlogServiceProvider extends ServiceProvider
             }
         );
 
+
+
         // Category Blog page
         // 90 priority, 100 is Ceres, themes typically use "0" because that's how theme creators are instructed in the theme creation guide
         $eventDispatcher->listen('IO.tpl.category.blog', function(TemplateContainer $container) use ($request)
@@ -53,13 +56,37 @@ class BlogServiceProvider extends ServiceProvider
             return false;
         }, 90);
 
-        // Context for Category Blog page
-        $eventDispatcher->listen('IO.ctx.category.blog', function (TemplateContainer $container) {
-            $container->setContext(CategoryContext::class);
+
+
+        $eventDispatcher->listen('IO.tpl.blog.article', function(TemplateContainer $container, $data)
+        {
+            $container->setTemplate('Blog::Category.Blog.Article')->setTemplateData($data);
+
             return false;
         }, 90);
 
 
+
+        $eventDispatcher->listen('IO.tpl.blog.search', function(TemplateContainer $container, $data)
+        {
+            $container->setTemplate('Blog::Category.Blog.Search')->setTemplateData($data);
+
+            return false;
+        }, 90);
+
+
+
+        // Context for Category Blog page
+        $eventDispatcher->listen('IO.ctx.category.blog', function (TemplateContainer $container) {
+            $container->setContext(BlogCategoryContext::class);
+            return false;
+        }, 90);
+
+        // Context for single article
+        $eventDispatcher->listen('IO.ctx.blog.*', function (TemplateContainer $container) {
+            $container->setContext(BlogContext::class);
+            return false;
+        }, 90);
 
     }
 }

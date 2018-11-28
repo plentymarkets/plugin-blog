@@ -15,6 +15,12 @@
                     "options": {
                         "defaultValue": "false"
                     }
+                },
+                "general.entrypoint.category": {
+                    "type": "categoryPicker",
+                    "required": false,
+                    "label": "Config.blogEntrypointCategory",
+                    "options": {}
                 }
             }
         }

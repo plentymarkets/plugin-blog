@@ -1,3 +1,12 @@
+.top-bar .controls-list.blog-entrypoint {
+    float:left;
+    margin-left:-12px;
+
+    i.fa {
+        margin-right: 3px;
+        font-size: 13px !important;
+    }
+}
 
 .blog-wrapper {
     // This is here if theme creators need to change the background of the blog page
@@ -414,7 +423,6 @@
             }
         }
     }
-
 }
 
 .blog-dummy-post {

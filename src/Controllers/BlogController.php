@@ -10,30 +10,19 @@ namespace Blog\Controllers;
 
 
 use Blog\Services\BlogService;
+use Ceres\Contexts\GlobalContext;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Redirect;
+use IO\Controllers\LayoutController;
 use IO\Services\TagService;
+use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Plugin\Templates\Twig;
 
-class BlogController extends Controller
+class BlogController extends LayoutController
 {
-
-    /**
-     * @var Twig
-     */
-    private $twig;
-
-    /**
-     * ItemController constructor.
-     */
-    public function __construct(Twig $twig)
-    {
-        $this->twig = $twig;
-    }
-
 
     /**
      * @param $urlName
@@ -49,15 +38,19 @@ class BlogController extends Controller
         $blogPost = pluginApp(BlogService::class)->getBlogPost($urlName);
 
         $data = [
+            'page' => [
+                'template' => 'blog'
+            ],
             'urlName' => $urlName,
             'blogPost' => $blogPost
         ];
 
+
         if(!empty($blogPost))
         {
-            return $this->twig->render('Blog::Category.Blog.Article', $data);
+            return $this->renderTemplate('tpl.blog.article', $data);
         }else{
-            return $this->twig->render('Ceres::StaticPages.PageNotFound');
+            return $this->renderTemplate('tpl.page-not-found');
         }
 
     }
@@ -66,22 +59,22 @@ class BlogController extends Controller
     /**
      * @param Request $request
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws \ErrorException
      */
     public function searchArticles($searchString, Request $request)
     {
         $data = [
             'filters' => ['search' => $searchString],
             'page' => [
+                'template' => 'blog',
                 'type' => 'search',
                 'metaTitle' => 'Search',
                 'title' => '' // Search
             ]
         ];
 
-        return $this->twig->render('Blog::Category.Blog.Search', $data);
+        return $this->renderTemplate('tpl.blog.search', $data);
+
     }
 
 
@@ -91,9 +84,6 @@ class BlogController extends Controller
      * @param Request $request
      * @return string
      * @throws \ErrorException
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
      */
     public function listArticlesByTag(int $tagId, Request $request, string $tagName = '')
     {
@@ -102,14 +92,38 @@ class BlogController extends Controller
         $data = [
             'filters' => ['tag' => (string)$tagId],
             'page' => [
+                'template' => 'blog',
                 'type' => 'tag',
                 'metaTitle' => 'Search tag: ' . $tag['tagName'],
                 'title' => 'Search by tag: ' . $tag['tagName']
             ]
         ];
 
-        return $this->twig->render('Blog::Category.Blog.Search', $data);
+        return $this->renderTemplate('tpl.blog.search', $data);
 
     }
+
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function listArticles(Request $request)
+    {
+        $defaultFilters = [
+            'active' => 'true',
+            'publishedAtTo' => date('Y-m-d H:i:s')
+        ];
+
+        $page = $request->get('page', 1);
+        $articlesPerPage = $request->get('itemsPerPage', 5);
+
+        $filters = pluginApp(BlogService::class)->extractFilters($request);
+        $filters = array_merge($filters, $defaultFilters);
+
+        return pluginApp(BlogPostRepositoryContract::class)->listPosts($page, $articlesPerPage, $filters);
+
+    }
+
 
 }

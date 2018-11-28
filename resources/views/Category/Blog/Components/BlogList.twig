@@ -135,7 +135,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: '/rest/blog/posts?page=' + Number(page) + '&itemsPerPage=' + Number(this.itemsPerPage) + this.filtersString,
+                    url: '/rest/blogplugin/articles?page=' + Number(page) + '&itemsPerPage=' + Number(this.itemsPerPage) + this.filtersString,
                     contentType: "application/json; charset=utf-8",
                     success: function(data)
                     {
@@ -156,8 +156,7 @@
 
             setFilters: function() {
                 var _this = this;
-                let date = moment().format('Y-M-D HH:mm:ss');
-                this.filtersString = '&active=true&publishedAtTo=' + date;
+                this.filtersString = '';
 
                 // Only filter by category if we give it one
                 if(this.categoryId) {
