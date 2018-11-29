@@ -9,10 +9,6 @@ use Plenty\Plugin\ConfigRepository;
 
 class BlogContext extends GlobalContext implements ContextInterface
 {
-    /**
-     * @var array
-     */
-    public $categories = [];
 
     public function init($params)
     {
@@ -22,16 +18,7 @@ class BlogContext extends GlobalContext implements ContextInterface
 
         if(!empty($blogCategoryId))
         {
-            $blogCategories = pluginApp(CategoryService::class)->getNavigationTree('blog', null, 6);
-
-            $this->categories = [];
-            foreach($blogCategories as $blogCategory) {
-                if($blogCategory['id'] == $blogCategoryId)
-                {
-                    $this->categories = $blogCategory['children'];
-                    break;
-                }
-            }
+            $this->categories = pluginApp(CategoryService::class)->getNavigationTree('blog', null, 6);
         }
 
     }
