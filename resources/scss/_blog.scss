@@ -150,6 +150,11 @@
         object-fit:cover;
     }
 
+    .blog-heading {
+        padding-bottom:15px;
+        border-bottom:$border-color solid 1px;
+    }
+
     .blog-post {
         padding-bottom:20px;
         border-bottom:$border-color solid 1px;

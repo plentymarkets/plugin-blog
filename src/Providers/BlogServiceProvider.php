@@ -65,8 +65,6 @@ class BlogServiceProvider extends ServiceProvider
             return false;
         }, 90);
 
-
-
         $eventDispatcher->listen('IO.tpl.blog.search', function(TemplateContainer $container, $data)
         {
             $container->setTemplate('Blog::Category.Blog.Search')->setTemplateData($data);
