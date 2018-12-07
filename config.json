@@ -8,6 +8,12 @@
                     "type": "inputFile",
                     "label": "Config.blogHeaderDefaultImage"
                 },
+                "general.entrypoint.category": {
+                    "type": "categoryPicker",
+                    "required": false,
+                    "label": "Config.blogEntrypointCategory",
+                    "options": {}
+                },
                 "general.list.showReadMore": {
                     "type": "checkBox",
                     "required": false,
@@ -15,12 +21,6 @@
                     "options": {
                         "defaultValue": "false"
                     }
-                },
-                "general.entrypoint.category": {
-                    "type": "categoryPicker",
-                    "required": false,
-                    "label": "Config.blogEntrypointCategory",
-                    "options": {}
                 }
             }
         }
