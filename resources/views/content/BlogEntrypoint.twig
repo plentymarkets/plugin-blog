@@ -1,0 +1,18 @@
+{% set blogCategoryId = config('Blog.general.entrypoint.category') %}
+{% if blogCategoryId is not empty %}
+
+    {% set blogCategory = services.category.get(blogCategoryId) %}
+    {% set blogCategoryURL = services.category.getURLById(blogCategoryId) %}
+
+    <ul class="blog-entrypoint controls-list list-inline">
+
+        {% if services.template.isCurrentTemplate('tpl.category.blog')
+            or services.template.isCurrentTemplate('tpl.blog.article')
+            or services.template.isCurrentTemplate('tpl.blog.search') %}
+            <li class="list-inline-item"><a href="/"><i class="fa fa-angle-left"></i> Back to store</a></li>
+        {% else %}
+            <li class="list-inline-item"><a href="{{ blogCategoryURL }}">{{ blogCategory.details[0].name }}</a></li>
+        {% endif %}
+    </ul>
+{% endif %}
+

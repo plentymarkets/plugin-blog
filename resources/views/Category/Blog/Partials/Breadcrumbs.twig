@@ -1,0 +1,40 @@
+{% set blogCategoryBreadcrumbs = services.category.getHierarchy(blogCategoryId) %}
+{% set blogCategoryUrl = '' %}
+{% if extra is not empty %}
+    {% set blogCategoryBreadcrumbs = blogCategoryBreadcrumbs | merge ([{'extra': extra}]) %}
+{% endif %}
+
+{% if blogCategoryBreadcrumbs is not empty %}
+    <div class="blog-breadcrumbs">
+        <nav class="container-max small hidden-sm-down">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/">
+                        <i aria-hidden="true" class="fa fa-home"></i>
+                    </a>
+                </li>
+
+                {% for category in blogCategoryBreadcrumbs %}
+                    {% if not loop.last %}
+
+                        {% set blogCategoryUrl = blogCategoryUrl ~ "/" ~ category.details[0].nameUrl %}
+                        <li class="breadcrumb-item">
+                            <a href="{{ blogCategoryUrl }}">{{ category.details[0].name }}</a>
+                        </li>
+
+                    {% else %}
+
+                        <li class="breadcrumb-item active">
+                            {% if category.details is not empty %}
+                                <span>{{ category.details[0].name }}</span>
+                            {% else %}
+                                <span>{{ category.extra }}</span>
+                            {% endif %}
+                        </li>
+
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+{% endif %}

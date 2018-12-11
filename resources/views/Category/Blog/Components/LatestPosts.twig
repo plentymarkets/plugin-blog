@@ -1,0 +1,64 @@
+<script type="x/template" id="vue-blog-latest-posts">
+
+    <div class="blog-recent-posts">
+        <h3 class="blog-heading"><span>Latest posts</span></h3>
+
+        <a v-for="article in articleList" class="blog-recent-post" :href="'/blog/article/' + article.data.post.urlName">
+            <img class="blog-recent-post-image" :src="article.data.images.preview.path" alt="">
+            <h4 class="blog-recent-post-title">${ article.data.post.title }</h4>
+
+            <p class="blog-recent-post-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</p>
+            <div class="clear"></div>
+        </a>
+
+        <div v-if="isLoading"> {% include "Blog::Category.Blog.Partials.Loading" %} </div>
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-latest-posts', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+        },
+
+        created: function() {
+            this.$options.template = '#vue-blog-latest-posts';
+            this.loadArticles();
+        },
+
+        data: function () {
+            return {
+                articleList: [],
+                isLoading: false
+            };
+        },
+
+        methods: {
+            loadArticles: function() {
+                var _this = this;
+                this.isLoading = true;
+
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/blogplugin/articles?page=1&itemsPerPage=5',
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data)
+                    {
+                        $.each(data.entries, function(key,value) {
+                            _this.articleList.push(value);
+                        });
+                    },
+                    error: function (){
+                    },
+                    complete: function(){
+                        _this.isLoading = false;
+
+                    }
+                })
+
+            }
+        }
+    });
+</script>

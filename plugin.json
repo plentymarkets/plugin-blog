@@ -24,15 +24,16 @@
     "3527"
   ],
   "keywords": [
-    "blog", "blog post", "blogpost"
+    "blog", "blog post", "blogpost", "post", "article", "artikel", "blog artikel"
   ],
   "require": {
     "Ceres":"~2.0"
   },
   "containers": [],
   "dataProviders": [
-    { "key":"Blog\\DataProviders\\Scripts", "name":"Blog Javascript", "description": "Javascript code for blog plugin" },
-    { "key":"Blog\\DataProviders\\Styles", "name":"Blog Styling", "description": "CSS styles for blog plugin" }
+    { "key":"Blog\\Containers\\Scripts", "name":"Blog Javascript", "description": "Javascript code for blog plugin" },
+    { "key":"Blog\\Containers\\Styles", "name":"Blog Styling", "description": "CSS styles for blog plugin" },
+    { "key":"Blog\\Containers\\BlogEntrypoint", "name":"Blog entrypoint", "description": "Blog entrypoint" }
   ],
   "dependencies":{},
   "javaScriptFiles": []

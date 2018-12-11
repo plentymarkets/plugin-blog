@@ -1,0 +1,61 @@
+<script type="x/template" id="vue-blog-search">
+
+    <div class="blog-search">
+        {#<h3 v-if="!isSearchPage" class="blog-sidebar-title"><span>Search</span></h3>#}
+
+        <div class="blog-search-wrap">
+            <input type="text" class="blog-search-input" placeholder="Search..." v-model="searchString" @keyup.enter="search()" :autofocus="isSearchPage">
+            <button class="blog-search-submit" @click="search()"><i class="fa fa-search"></i></button>
+        </div>
+
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-search', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+            isSearchPage: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            initialSearchString: {
+                type: String,
+                required: false,
+                default: ''
+            }
+        },
+
+        created: function() {
+            this.$options.template = '#vue-blog-search';
+            this.searchString = this.initialSearchString;
+        },
+
+        data: function () {
+            return {
+                searchString: ''
+            };
+        },
+
+        methods: {
+            search: function() {
+                if(this.searchString) {
+                    let newUrl = '/blog/search/' + encodeURIComponent(this.searchString);
+
+                    if(this.isSearchPage) {
+                        vueEventHub.$emit('blog-search', {
+                            'searchString': this.searchString
+                        });
+
+                        history.pushState({}, null, newUrl);
+                    }else{
+                        window.location.href = newUrl;
+                    }
+                }
+            }
+        }
+    });
+</script>

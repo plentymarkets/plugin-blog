@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700');
+
+$font-roboto:'Roboto', sans-serif;
+
+$color-text: #4d4f4d;
+$color-primary: #1976d2;
+$color-muted: #7e93a9;
+$border-color: #f1f1f1;
+$light-bg-color: #f7f7f9;
+
+
+// Mixins
+@mixin blog-breakpoint($point) {
+    // Over
+    @if $point == desktop {
+        @media (min-width:1200px) { @content ; }
+    }
+    @else if $point == laptop {
+        @media (min-width:992px) { @content ; }
+    }
+    @else if $point == tablet {
+        @media (min-width:768px) { @content ; }
+    }
+    @else if $point == phablet {
+        @media (min-width:576px)  { @content ; }
+    }
+
+    // Under
+    @else if $point == mobileonly {
+        @media (max-width:576px)  { @content ; }
+    }
+    @else if $point == undertablet {
+        @media (max-width:767px) { @content ; }
+    }
+    @else if $point == underlaptop {
+        @media (max-width:991px) { @content ; }
+    }
+    @else if $point == underdesktop {
+        @media (max-width:1199px) { @content ; }
+    }
+}
+
+$blog-animated-default:all .15s ease-out;
+@mixin blog-animated($transition:$blog-animated-default) {
+    -webkit-transition:$transition;
+    -moz-transition:$transition;
+    -o-transition:$transition;
+    transition:$transition;
+}
+
+@mixin blog-border-radius($radius:3px) {
+    -webkit-border-radius:$radius;
+    -moz-border-radius:$radius;
+    border-radius:$radius;
+}
+
+$blog-box-shadow-default:0px 1px 7px rgba(0,0,0,.06);
+@mixin blog-box-shadow($shadow:$blog-box-shadow-default) {
+    -webkit-box-shadow:$shadow;
+    -moz-box-shadow:$shadow;
+    -o-box-shadow:$shadow;
+    box-shadow:$shadow;
+}
+
+@mixin blog-box-shadow-multiple-arguments($shadow...) {
+    -webkit-box-shadow:$shadow;
+    -moz-box-shadow:$shadow;
+    -o-box-shadow:$shadow;
+    box-shadow:$shadow;
+}

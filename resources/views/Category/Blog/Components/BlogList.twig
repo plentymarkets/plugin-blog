@@ -1,0 +1,211 @@
+<script type="x/template" id="vue-blog-list">
+
+    <div>
+        <div id="blog-posts" class="blog-posts">
+
+            <h3 v-if="isSearchPage" class="blog-heading"><span>Search results for: ${ searchString }</span></h3>
+
+
+            <article v-for="article in articleList" class="blog-post">
+                <a v-if="article.data.images.preview" :href="'/blog/article/' + article.data.post.urlName">
+                    <img class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
+                </a>
+
+                <div class="blog-post-content">
+                    <div class="blog-post-header">
+                        <h5 class="blog-category-name">
+                            <a v-if="typeof blogCategories[article.data.category.id] !== 'undefined'" :href="blogCategories[article.data.category.id].url">${ blogCategories[article.data.category.id].name }</a>
+                        </h5>
+
+                        <a class="blog-post-title" :href="'/blog/article/' + article.data.post.urlName">${ article.data.post.title }</a>
+
+                        <p class="blog-details">
+                            <a :href="'/blog/search?search=' + article.data.user.realName">
+                                <span class="blog-detail blog-detail-author covfefe">
+                                    <img v-if="article.data.user.image"
+                                         :src="article.data.user.image"
+                                         :alt="article.data.user.realName"
+                                         class="blog-avatar blog-avatar-md">{#
+                                    #}<span v-else > by </span>{#
+
+                                    #}<span class="blog-detail-author-name">${ article.data.user.realName }</span>
+                                </span>
+                            </a>
+                            - <span class="blog-detail blog-detail-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</span>
+                        </p>
+                    </div>
+
+                    <p class="blog-post-shortdescription">${ article.data.post.shortDescription }</p>
+
+                    {% if config('Blog.general.list.showReadMore') == 'true' %}
+                        <div class="blog-actions">
+                            <a :href="'/blog/article/' + article.data.post.urlName" class="blog-action-readmore">Read more</a>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </article>
+
+            <div v-if="listIsLoading">
+                {% include "Blog::Category.Blog.Partials.BlogListDummyPost" %}
+                {% include "Blog::Category.Blog.Partials.Loading" %}
+            </div>
+
+            <div v-if="!listIsLoading && articleList.length == 0">
+                <h1 class="text-center">No blog posts found</h1>
+            </div>
+
+        </div>
+
+
+        <div class="blog-load-more">
+            <button v-if="page < lastPageNumber || loadMoreIsLoading" class="btn blog-btn-load-more" @click="loadMore()" :disabled="loadMoreIsLoading" > Load more </button>
+        </div>
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-list', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+            categoryId: {
+                type: Number,
+                required: false,
+                default: 0
+            },
+            categories: {
+                type:Array,
+                required: true,
+                default: {}
+            },
+            filters: String,
+            isSearchPage: {
+                type: Boolean,
+                required: false,
+                default: false
+            }
+        },
+
+        created: function() {
+            var _this = this;
+            this.$options.template = '#vue-blog-list';
+
+            vueEventHub.$on("blog-search", function (searchData) {
+                return _this.handleSearch(searchData);
+            });
+
+            this.setFilters();
+            this.setCategories(this.categories);
+            this.loadFirstPage();
+        },
+
+        data: function () {
+            return this.init();
+        },
+
+        methods: {
+            init: function() {
+                return {
+                    page: 1,
+                    lastPageNumber: 1,
+                    itemsPerPage: 5,
+                    filtersString: '',
+                    searchString: '',
+                    loadMoreIsLoading: false,
+                    listIsLoading: true,
+                    articleList: [],
+                    blogCategories: {}
+                }
+            },
+
+            loadFirstPage: function () {
+                this.getPosts(this.page)
+            },
+
+            loadMore: function() {
+                this.loadMoreIsLoading = true;
+                this.page++;
+                this.getPosts(this.page)
+            },
+
+            getPosts: function(page) {
+                var _this = this;
+
+                $.ajax({
+                    type: "GET",
+                    url: '/rest/blogplugin/articles?page=' + Number(page) + '&itemsPerPage=' + Number(this.itemsPerPage) + this.filtersString,
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data)
+                    {
+                        $.each(data.entries, function(key,value) {
+                            _this.articleList.push(value);
+                        });
+
+                        _this.lastPageNumber = data.lastPageNumber;
+                    },
+                    error: function (){
+                    },
+                    complete: function(){
+                        _this.listIsLoading = false;
+                        _this.loadMoreIsLoading = false;
+                    }
+                })
+            },
+
+            setFilters: function() {
+                var _this = this;
+                this.filtersString = '';
+
+                // Only filter by category if we give it one
+                if(this.categoryId) {
+                    this.filtersString += '&categoryId=' + this.categoryId;
+                }
+
+                if(this.isSearchPage) {
+                    this.searchString = JSON.parse(this.filters).search;
+                }
+
+                $.each( JSON.parse(this.filters), function( key, value ) {
+                    _this.filtersString += '&' + key + '=' + value;
+                });
+            },
+
+            setCategories: function(categories, url = '') {
+                var _this = this;
+
+                $.each( categories, function( key, category ) {
+                    if(category.type === 'blog') {
+
+                        let categoryUrl = url + "/" + category.details[0].nameUrl;
+
+                        _this.blogCategories[category.id] = {
+                            'url': categoryUrl,
+                            'name': category.details[0].name
+                        };
+
+                        _this.setCategories(category.children, categoryUrl);
+                    }
+
+                });
+            },
+
+            resetState: function() {
+                Object.assign(this.$data, this.init());
+                this.setFilters();
+                this.setCategories(this.categories);
+            },
+
+            handleSearch: function(searchData) {
+                this.resetState();
+
+                this.searchString = searchData.searchString;
+                this.filtersString += '&search=' + this.searchString;
+
+                this.getPosts(this.page)
+
+            }
+        }
+    });
+</script>

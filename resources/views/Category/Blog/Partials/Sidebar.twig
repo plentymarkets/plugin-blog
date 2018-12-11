@@ -1,0 +1,13 @@
+{% if isSearchPage is empty %}
+    {% set isSearchPage = false %}
+{% endif %}
+
+{% if not isSearchPage %}
+    <div class="blog-sidebar-section">
+        <blog-search></blog-search>
+    </div>
+{% endif %}
+
+<div class="blog-sidebar-section">
+    <blog-latest-posts></blog-latest-posts>
+</div>

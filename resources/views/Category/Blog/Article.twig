@@ -1,0 +1,104 @@
+{% set category = services.category.get(blogPost.data.category.id) %}
+{% set blogCategoryUrl = services.category.getURL(category) %}
+{% set blogCategoryName = category.details[0].name %}
+{% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
+
+{% extends getPartial('page-design') %}
+
+{% block PartialHead %}
+    <title>{{ blogPost.data.post.title }} | {{ ceresConfig.header.companyName }}</title>
+
+    <meta name="description" content="{{ blogPost.data.meta.description }}">
+    <meta name="keywords" content="{{ blogPost.data.meta.keywords }}">
+
+    <meta name="robots" content="{{ category.details[0].metaRobots }}">
+{% endblock %}
+
+{% block PageBody %}
+    <div class="blog-wrapper">
+
+        <section class="blog-header"
+                {% if category.details[0].imagePath is not empty %}
+                    style="background-image: url(/documents/{{ category.details[0].imagePath }})"
+                {% elseif blogHeaderDefaultImage is not empty %}
+                    style="background-image: url({{ blogHeaderDefaultImage }})"
+                {% endif %}>
+
+            <div class="container-max">
+                <h1 class="blog-category-name">
+                    {{ category.details[0].name }}
+                </h1>
+
+                {% set truncatedBlogTitle = blogPost.data.post.title|length > 50 ? blogPost.data.post.title|slice(0, 50) ~ '...' : blogPost.data.post.title %}
+                {% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': category.id, 'extra': truncatedBlogTitle } %}
+
+            </div>
+
+        </section>
+
+        <div class="container-max blog-container">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog-single">
+                        <article class="blog-post">
+
+                            <div class="blog-post-header">
+                                {#<h5 class="blog-category-name"><a href="{{ blogCategoryUrl }}" title="{{ blogCategoryName }}">{{ blogCategoryName }}</a></h5>#}
+                                <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
+
+                                <p class="blog-details">
+                                        <span class="blog-detail blog-detail-author">
+                                            {% if blogPost.data.user.image is not empty %}
+                                                <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">{#
+                                            #}{% else %}{#
+                                                #}by{#
+                                            #}{% endif %}{#
+                                            #}<a href="/blog/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
+                                        </span>
+                                    <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("j M, Y")}}</span>
+                                </p>
+
+                                <p class="blog-post-shortdescription">{{ blogPost.data.post.shortDescription }}</p>
+                            </div>
+
+                            {% if blogPost.data.images.title is not empty %}
+                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
+                            {% endif %}
+
+                            <div class="blog-post-content">
+
+                                <div class="blog-body">
+                                    {{ blogPost.data.post.body | raw }}
+                                </div>
+
+                                {% if blogPost.data.post.tags is not empty %}
+                                    <p class="blog-tags">
+                                        {% for tagId in blogPost.data.post.tags | split(',') %}
+                                            {% set tagDetails = services.tag.getTagById(tagId) %}
+
+                                            {% if tagDetails is not empty %}
+                                                <a href="/blog/tag/{{ tagId }}/{{ tagDetails.tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagDetails.tagName }}</a>
+                                            {% else %}
+                                                <a href="/blog/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagId }}</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                {% endif %}
+                            </div>
+
+                        </article>
+                    </div>
+                </div>
+
+                <div class="col-md-4 blog-sidebar">
+                    {% include "Blog::Category.Blog.Partials.Sidebar" %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
