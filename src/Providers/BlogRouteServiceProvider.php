@@ -28,7 +28,6 @@ class BlogRouteServiceProvider extends RouteServiceProvider
         $router->get('blog/search/{searchString}', 'Blog\Controllers\BlogController@searchArticles');
         $router->get('blog/tag/{tagId}/{tagName?}', 'Blog\Controllers\BlogController@listArticlesByTag')->where('tagId', '\d+');
 
-
         $apiRouter->version(['v1'], ['namespace' => 'Blog\Controllers'], function ($apiRouter)
         {
             $apiRouter->get('blogplugin/articles', 'BlogController@listArticles');
