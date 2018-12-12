@@ -31,8 +31,6 @@
   },
   "containers": [],
   "dataProviders": [
-    { "key":"Blog\\Containers\\Scripts", "name":"Blog Javascript", "description": "Javascript code for blog plugin" },
-    { "key":"Blog\\Containers\\Styles", "name":"Blog Styling", "description": "CSS styles for blog plugin" },
     { "key":"Blog\\Containers\\BlogEntrypoint", "name":"Blog entrypoint", "description": "Blog entrypoint" }
   ],
   "dependencies":{},

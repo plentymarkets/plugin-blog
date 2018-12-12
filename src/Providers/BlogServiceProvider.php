@@ -5,6 +5,7 @@ namespace Blog\Providers;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
 use Ceres\Contexts\CategoryContext;
+use Ceres\Helper\LayoutContainer;
 use IO\Helper\ResourceContainer;
 use IO\Helper\TemplateContainer;
 use Plenty\Plugin\Events\Dispatcher;
@@ -85,6 +86,21 @@ class BlogServiceProvider extends ServiceProvider
             $container->setContext(BlogContext::class);
             return false;
         }, 90);
+
+
+
+        // Automatic container links
+        $eventDispatcher->listen("Ceres.LayoutContainer.Template.Style", function(LayoutContainer $container) use ($twig) {
+            $container->addContent($twig->render('Blog::content.Style'));
+        });
+
+        $eventDispatcher->listen("Ceres.LayoutContainer.Script.Loader", function(LayoutContainer $container) use ($twig) {
+            $container->addContent($twig->render('Blog::content.Scripts'));
+        });
+
+        $eventDispatcher->listen("Ceres.LayoutContainer.Header.LeftSide", function(LayoutContainer $container) use ($twig) {
+            $container->addContent($twig->render('Blog::content.BlogEntrypoint'));
+        });
 
     }
 }

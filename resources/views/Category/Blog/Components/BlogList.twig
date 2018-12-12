@@ -3,8 +3,7 @@
     <div>
         <div id="blog-posts" class="blog-posts">
 
-            <h3 v-if="isSearchPage" class="blog-heading"><span>Search results for: ${ searchString }</span></h3>
-
+            <h3 v-if="isSearchPage" class="blog-heading"><span>{{ trans('Blog::Template.searchResultsFor') }} ${ searchString }</span></h3>
 
             <article v-for="article in articleList" class="blog-post">
                 <a v-if="article.data.images.preview" :href="'/blog/article/' + article.data.post.urlName">
@@ -39,7 +38,7 @@
 
                     {% if config('Blog.general.list.showReadMore') == 'true' %}
                         <div class="blog-actions">
-                            <a :href="'/blog/article/' + article.data.post.urlName" class="blog-action-readmore">Read more</a>
+                            <a :href="'/blog/article/' + article.data.post.urlName" class="blog-action-readmore">{{ trans('Blog::Template.readMore') }}</a>
                         </div>
                     {% endif %}
                 </div>
@@ -52,14 +51,13 @@
             </div>
 
             <div v-if="!listIsLoading && articleList.length == 0">
-                <h1 class="text-center">No blog posts found</h1>
+                <h1 class="text-center">{{ trans('Blog::Template.noBlogPostResults') }}</h1>
             </div>
 
         </div>
 
-
         <div class="blog-load-more">
-            <button v-if="page < lastPageNumber || loadMoreIsLoading" class="btn blog-btn-load-more" @click="loadMore()" :disabled="loadMoreIsLoading" > Load more </button>
+            <button v-if="page < lastPageNumber || loadMoreIsLoading" class="btn blog-btn-load-more" @click="loadMore()" :disabled="loadMoreIsLoading" > {{ trans('Blog::Template.loadMore') }} </button>
         </div>
     </div>
 
@@ -142,6 +140,10 @@
                         $.each(data.entries, function(key,value) {
                             _this.articleList.push(value);
                         });
+
+                        if(data.entries.length === 0){
+                            $('.blog-search-input').focus();
+                        }
 
                         _this.lastPageNumber = data.lastPageNumber;
                     },
