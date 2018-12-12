@@ -180,12 +180,18 @@
                 $.each( categories, function( key, category ) {
                     if(category.type === 'blog') {
 
-                        let categoryUrl = url + "/" + category.details[0].nameUrl;
+                        if(category.details.length !== 0) {
+                            var categoryUrl = url + "/" + category.details[0].nameUrl;
 
-                        _this.blogCategories[category.id] = {
-                            'url': categoryUrl,
-                            'name': category.details[0].name
-                        };
+                            _this.blogCategories[category.id] = {
+                                'url': categoryUrl,
+                                'name': category.details[0].name
+                            };
+                        }
+
+
+
+
 
                         _this.setCategories(category.children, categoryUrl);
                     }
