@@ -14,6 +14,7 @@ use Ceres\Contexts\GlobalContext;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Redirect;
 use IO\Controllers\LayoutController;
+use IO\Services\SessionStorageService;
 use IO\Services\TagService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Plugin\Controller;
@@ -110,9 +111,13 @@ class BlogController extends LayoutController
      */
     public function listArticles(Request $request)
     {
+        $lang = pluginApp(SessionStorageService::class)->getLang();
+
+        // These filters should not be overwritten by the requested filters
         $defaultFilters = [
             'active' => 'true',
-            'publishedAtTo' => date('Y-m-d H:i:s')
+            'publishedAtTo' => date('Y-m-d H:i:s'),
+            'lang' => $lang
         ];
 
         $page = $request->get('page', 1);
