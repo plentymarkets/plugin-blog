@@ -75,10 +75,10 @@
                                 {% if blogPost.data.post.tags is not empty %}
                                     <p class="blog-tags">
                                         {% for tagId in blogPost.data.post.tags | split(',') %}
-                                            {% set tagDetails = services.tag.getTagById(tagId) %}
+                                            {% set tagName = services.tag.getTagName(tagId) %}
 
-                                            {% if tagDetails is not empty %}
-                                                <a href="/blog/tag/{{ tagId }}/{{ tagDetails.tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagDetails.tagName }}</a>
+                                            {% if tagName is not empty %}
+                                                <a href="/blog/tag/{{ tagId }}/{{ tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagName }}</a>
                                             {% else %}
                                                 <a href="/blog/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagId }}</a>
                                             {% endif %}
