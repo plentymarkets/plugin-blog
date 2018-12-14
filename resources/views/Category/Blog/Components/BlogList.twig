@@ -19,7 +19,7 @@
                         <a class="blog-post-title" :href="'/blog/article/' + article.data.post.urlName">${ article.data.post.title }</a>
 
                         <p class="blog-details">
-                            <a :href="'/blog/search?search=' + article.data.user.realName">
+                            <a :href="'/blog/search/' + article.data.user.realName">
                                 <span class="blog-detail blog-detail-author covfefe">
                                     <img v-if="article.data.user.image"
                                          :src="article.data.user.image"
