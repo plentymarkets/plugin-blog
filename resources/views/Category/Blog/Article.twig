@@ -52,7 +52,7 @@
                                             {% if blogPost.data.user.image is not empty %}
                                                 <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">{#
                                             #}{% else %}{#
-                                                #}{{ trans('Blog::Template.createdBy') }}{#
+                                                #}{{ trans('Blog::Template.createdBy') }} {#
                                             #}{% endif %}{#
                                             #}<a href="/blog/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
                                         </span>

@@ -25,7 +25,7 @@
                                          :src="article.data.user.image"
                                          :alt="article.data.user.realName"
                                          class="blog-avatar blog-avatar-md">{#
-                                    #}<span v-else > by </span>{#
+                                    #}<span v-else >{{ trans('Blog::Template.createdBy') }} </span>{#
 
                                     #}<span class="blog-detail-author-name">${ article.data.user.realName }</span>
                                 </span>
