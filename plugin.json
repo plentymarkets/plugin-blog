@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.9.0",
   "name": "Blog",
   "marketplaceName" : {"de": "Blog","en": "Blog"},
   "description": "This is the official blog developed by plentymarkets.",
@@ -16,8 +16,8 @@
     "de": "Das offizielle, von plentymarkets entwickelte Blog-Plugin. Zeigen Sie Blog-Eintrag im Webshop an.",
     "en": "The official blog plugin developed by plentymarkets. Display blog posts in your online store."
   },
-  "authorIcon": "",
-  "pluginIcon": "",
+  "authorIcon": "icon_author_xs.png",
+  "pluginIcon": "icon_plugin_xs.png",
   "email": "sales@plentymarkets.com",
   "phone": "+49 561 98 681 100",
   "categories": [
