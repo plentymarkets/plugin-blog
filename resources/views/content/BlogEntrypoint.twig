@@ -1,5 +1,5 @@
 {% set blogCategoryId = config('Blog.general.entrypoint.category') %}
-{% if blogCategoryId is not empty %}
+{% if blogCategoryId is not empty and blogCategoryId != '0' %}
 
     {% set blogCategory = services.category.get(blogCategoryId) %}
     {% set blogCategoryURL = services.category.getURLById(blogCategoryId) %}
