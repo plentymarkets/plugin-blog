@@ -6,7 +6,7 @@
   "namespace": "Blog",
   "author": "plentymarkets GmbH",
   "type": "general",
-  "isClosedSource": true,
+  "isClosedSource": false,
   "serviceProvider": "Blog\\Providers\\BlogServiceProvider",
   "runOnBuild": [
   ],
