@@ -1,6 +1,8 @@
 .top-bar .controls-list.blog-entrypoint {
     float:left;
     margin-left:-12px;
+    order: 99;
+    margin-right: auto;
 
     @include blog-breakpoint(underdesktop) {
         margin-left:0;

@@ -27,7 +27,7 @@
     "blog", "blog post", "blogpost", "post", "article", "artikel", "blog artikel"
   ],
   "require": {
-    "Ceres":"~2.0"
+    "Ceres":">=2.0"
   },
   "containers": [],
   "dataProviders": [
