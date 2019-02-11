@@ -1,6 +1,8 @@
 {% if isSearchPage is empty %}
     {% set isSearchPage = false %}
 {% endif %}
+{% set showLatestPosts = config('Blog.sidebar.latestposts.display') %}
+
 
 {% if not isSearchPage %}
     <div class="blog-sidebar-section">
@@ -8,6 +10,8 @@
     </div>
 {% endif %}
 
-<div class="blog-sidebar-section">
-    <blog-latest-posts></blog-latest-posts>
-</div>
+{% if showLatestPosts == "true" %}
+    <div class="blog-sidebar-section">
+        <blog-latest-posts></blog-latest-posts>
+    </div>
+{% endif %}

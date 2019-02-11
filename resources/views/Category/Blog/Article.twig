@@ -63,7 +63,9 @@
                             </div>
 
                             {% if blogPost.data.images.title is not empty %}
-                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
+                                {% if blogPost.data.images.title.path is not empty %}
+                                    <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
+                                {% endif %}
                             {% endif %}
 
                             <div class="blog-post-content">

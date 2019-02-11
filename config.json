@@ -23,6 +23,31 @@
                     }
                 }
             }
+        },
+        "Config.tabSidebar": {
+            "label": "Config.tabSidebar",
+            "formFields": {
+                "sidebar.latestposts.display": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.latestPostsDisplay",
+                    "options": {
+                        "defaultValue": "true"
+                    }
+                },
+                "sidebar.latestposts.count": {
+                    "type": "inputText",
+                    "required": false,
+                    "label": "Config.latestPostsCount",
+                    "options": {
+                        "defaultValue": "5"
+                    }
+                },
+                "sidebar.latestposts.default_image": {
+                    "type": "inputFile",
+                    "label": "Config.latestPostsDefaultImage"
+                }
+            }
         }
     }
 }

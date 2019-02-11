@@ -7,7 +7,7 @@
 
             <article v-for="article in articleList" class="blog-post">
                 <a v-if="article.data.images.preview" :href="'/blog/article/' + article.data.post.urlName">
-                    <img class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
+                    <img v-if="article.data.images.preview.path" class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
                 </a>
 
                 <div class="blog-post-content">
