@@ -6,7 +6,7 @@
             <h3 v-if="isSearchPage" class="blog-heading"><span>{{ trans('Blog::Template.searchResultsFor') }} ${ searchString }</span></h3>
 
             <article v-for="article in articleList" class="blog-post">
-                <a v-if="article.data.images.preview" :href="'/blog/article/' + article.data.post.urlName">
+                <a v-if="article.data.images.preview" :href="'/blog/' + article.data.post.urlName">
                     <img v-if="article.data.images.preview.path" class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
                 </a>
 
@@ -16,7 +16,7 @@
                             <a v-if="typeof blogCategories[article.data.category.id] !== 'undefined'" :href="blogCategories[article.data.category.id].url">${ blogCategories[article.data.category.id].name }</a>
                         </h5>
 
-                        <a class="blog-post-title" :href="'/blog/article/' + article.data.post.urlName">${ article.data.post.title }</a>
+                        <a class="blog-post-title" :href="'/blog/' + article.data.post.urlName">${ article.data.post.title }</a>
 
                         <p class="blog-details">
                             <a :href="'/blog/search/' + article.data.user.realName">
@@ -38,7 +38,7 @@
 
                     {% if config('Blog.general.list.showReadMore') == 'true' %}
                         <div class="blog-actions">
-                            <a :href="'/blog/article/' + article.data.post.urlName" class="blog-action-readmore">{{ trans('Blog::Template.readMore') }}</a>
+                            <a :href="'/blog/' + article.data.post.urlName" class="blog-action-readmore">{{ trans('Blog::Template.readMore') }}</a>
                         </div>
                     {% endif %}
                 </div>
