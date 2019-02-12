@@ -26,6 +26,8 @@ class BlogRouteServiceProvider extends RouteServiceProvider
     {
         $router->get('blog/search/{searchString}', 'Blog\Controllers\BlogController@searchArticles');
         $router->get('blog/tag/{tagId}/{tagName?}', 'Blog\Controllers\BlogController@listArticlesByTag')->where('tagId', '\d+');
+        // TODO Remove the /article/ route when changes are made to the terra preview button
+        $router->get('blog/article/{urlName}', 'Blog\Controllers\BlogController@showArticle');
         $router->get('blog/{urlName}', 'Blog\Controllers\BlogController@showArticle');
 
         $apiRouter->version(['v1'], ['namespace' => 'Blog\Controllers'], function ($apiRouter)
