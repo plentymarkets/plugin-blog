@@ -1,5 +1,10 @@
 # Release notes for Blog plugin
 
+## v0.9.3 (2019-03-06)
+
+- FIX - Fix meta tags
+
+
 ## v0.9.2 (2019-02-22)
 
 - FIX - Better image layouts
