@@ -2,6 +2,7 @@
 
 namespace Blog\Containers;
 
+use Blog\Services\BlogService;
 use Plenty\Plugin\Templates\Twig;
 
 class BlogEntrypoint
@@ -13,8 +14,9 @@ class BlogEntrypoint
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function call(Twig $twig, $page)
+    public function call(Twig $twig, BlogService $service, $page)
     {
-        return $twig->render('Blog::content.BlogEntrypoint');
+        $data = $service->prepareDataForEntrypoint();
+        return $twig->render('Blog::content.BlogEntrypoint', $data);
     }
 }

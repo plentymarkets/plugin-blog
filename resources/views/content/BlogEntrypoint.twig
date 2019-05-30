@@ -1,18 +1,10 @@
-{% set blogCategoryId = config('Blog.general.entrypoint.category') %}
-{% if blogCategoryId is not empty and blogCategoryId != '0' %}
-
-    {% set blogCategory = services.category.get(blogCategoryId) %}
-    {% set blogCategoryURL = services.category.getURLById(blogCategoryId) %}
-
-    <ul class="blog-entrypoint controls-list list-inline">
-
-        {% if services.template.isCurrentTemplate('tpl.category.blog')
-            or services.template.isCurrentTemplate('tpl.blog.article')
-            or services.template.isCurrentTemplate('tpl.blog.search') %}
-            <li class="list-inline-item"><a href="/"><i class="fa fa-angle-left"></i> {{ trans('Blog::Template.backToStore') }}</a></li>
-        {% else %}
-            <li class="list-inline-item"><a href="{{ blogCategoryURL }}">{{ blogCategory.details[0].name }}</a></li>
-        {% endif %}
-    </ul>
-{% endif %}
-
+<ul class="blog-entrypoint controls-list list-inline">
+    {% if services.template.isCurrentTemplate('tpl.category.blog')
+        or services.template.isCurrentTemplate('tpl.blog.article')
+        or services.template.isCurrentTemplate('tpl.blog.landing')
+        or services.template.isCurrentTemplate('tpl.blog.search') %}
+        <li class="list-inline-item"><a href="/"><i class="fa fa-angle-left"></i> {{ trans('Blog::CustomUrl.backToStoreMessage') }}</a></li>
+    {% else %}
+        <li class="list-inline-item"><a href="{{ landing.url }}">{{ trans('Blog::CustomUrl.entrypointMessage') }}</a></li>
+    {% endif %}
+</ul>

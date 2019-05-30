@@ -3,7 +3,7 @@
     <div class="blog-search">
 
         <div class="blog-search-wrap">
-            <input type="text" class="blog-search-input" placeholder="{{ trans('Blog::Template.searchInputPlaceholder') }}" v-model="searchString" @keyup.enter="search()" :autofocus="isSearchPage">
+            <input type="search" class="blog-search-input" placeholder="{{ trans('Blog::Template.searchInputPlaceholder') }}" v-model="searchString" @keyup.enter="search()" :autofocus="isSearchPage" autocomplete="new-search">
             <button class="blog-search-submit" @click="search()"><i class="fa fa-search"></i></button>
         </div>
 

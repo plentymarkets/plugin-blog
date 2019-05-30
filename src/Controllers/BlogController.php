@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Redirect;
 use IO\Controllers\LayoutController;
 use IO\Services\SessionStorageService;
 use IO\Services\TagService;
+use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
+use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
+use Plenty\Plugin\Application;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Plugin\Templates\Twig;
+use Plenty\Plugin\Translation\Translator;
 
 class BlogController extends LayoutController
 {
@@ -28,9 +32,6 @@ class BlogController extends LayoutController
     /**
      * @param $urlName
      * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
      * @throws \ErrorException
      */
     public function showArticle($urlName)
@@ -47,10 +48,10 @@ class BlogController extends LayoutController
         ];
 
 
-        if(!empty($blogPost))
-        {
+        if(!empty($blogPost)) {
             return $this->renderTemplate('tpl.blog.article', $data);
-        }else{
+        }
+        else {
             return $this->renderTemplate('tpl.page-not-found');
         }
 
@@ -112,12 +113,14 @@ class BlogController extends LayoutController
     public function listArticles(Request $request)
     {
         $lang = pluginApp(SessionStorageService::class)->getLang();
+        $clientStoreId = pluginApp(Application::class)->getWebstoreId();
 
         // These filters should not be overwritten by the requested filters
         $defaultFilters = [
             'active' => 'true',
             'publishedAtTo' => date('Y-m-d H:i:s'),
-            'lang' => $lang
+            'lang' => $lang,
+            'clientStoreId' => $clientStoreId
         ];
 
         $page = $request->get('page', 1);
@@ -130,5 +133,33 @@ class BlogController extends LayoutController
 
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     * @throws \ErrorException
+     */
+    public function showLandingPage(Request $request, BlogService $blogService)
+    {
+        $lang = $blogService->getLanguage();
+        $translations = $blogService->buildCustomUrlTranslationsByLanguage($lang);
+
+        $data = [
+            'blogCustomUrlName' => $translations['urlName'],
+            'page' => [
+                'template' => 'blog',
+                'type' => 'landing',
+                'metaTitle' => $translations['landingTitle'],
+                'title' => $translations['landingTitle']
+            ]
+        ];
+
+        return $this->renderTemplate('tpl.blog.landing', $data);
+    }
+
+    public function test()
+    {
+//        $service = pluginApp(BlogService::class);
+//        dd($service->buildCustomUrlTranslationsByLanguage());
+    }
 
 }

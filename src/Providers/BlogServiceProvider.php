@@ -2,8 +2,10 @@
 
 namespace Blog\Providers;
 
+use Blog\Assistants\BlogCustomUrl\BlogCustomUrlAssistant;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
+use Blog\Services\BlogService;
 use Ceres\Contexts\CategoryContext;
 use Ceres\Helper\LayoutContainer;
 use IO\Helper\ResourceContainer;
@@ -12,6 +14,8 @@ use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Http\Request;
+use Plenty\Modules\Wizard\Contracts\WizardContainerContract;
+use Blog\Wizards\BlogWizard;
 
 
 
@@ -32,6 +36,7 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function boot(Twig $twig, Dispatcher $eventDispatcher, Request $request)
     {
+        pluginApp(WizardContainerContract::class)->register('blog-landing-page', BlogCustomUrlAssistant::class);
 
         // Custom components
         $eventDispatcher->listen('IO.Resources.Import',
@@ -73,6 +78,13 @@ class BlogServiceProvider extends ServiceProvider
             return false;
         }, 90);
 
+        $eventDispatcher->listen('IO.tpl.blog.landing', function(TemplateContainer $container, $data)
+        {
+            $container->setTemplate('Blog::Landing.Landing')->setTemplateData($data);
+
+            return false;
+        }, 90);
+
 
 
         // Context for Category Blog page
@@ -99,7 +111,9 @@ class BlogServiceProvider extends ServiceProvider
         });
 
         $eventDispatcher->listen("Ceres.LayoutContainer.Header.LeftSide", function(LayoutContainer $container) use ($twig) {
-            $container->addContent($twig->render('Blog::content.BlogEntrypoint'));
+            $service = pluginApp(BlogService::class);
+            $data = $service->prepareDataForEntrypoint();
+            $container->addContent($twig->render('Blog::content.BlogEntrypoint', $data));
         });
 
     }

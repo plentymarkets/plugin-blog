@@ -1,0 +1,56 @@
+{% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
+
+{% extends getPartial('page-design') %}
+
+{% block PartialHead %}
+    <title>{{ trans("Blog::CustomUrl.landingMetaTitle") }} | {{ ceresConfig.header.companyName }}</title>
+
+    <meta name="description" content="tofill">
+    <meta name="keywords" content="tofill">
+
+    <meta name="robots" content="tofill">
+
+{% endblock %}
+
+{% block PageBody %}
+    <div class="blog-wrapper">
+
+        <section class="blog-header"
+            {% if blogHeaderDefaultImage is not empty %}
+                style="background-image: url({{ blogHeaderDefaultImage }})"
+            {% endif %}>
+
+            <div class="container-max">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="blog-category-name">
+                            {{ trans("Blog::CustomUrl.landingTitle") }}
+                        </h1>
+
+                        {#{% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': 0 } %}#}
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="container-max blog-container">
+
+            <div class="row">
+                <div class="col-md-8">
+
+                    <blog-list :categories="{{ categories | json_encode }}"
+                               filters="{{ blogData.filters | json_encode }}">
+                    </blog-list>
+
+                </div>
+
+                <div class="col-md-4 blog-sidebar">
+                    {% include "Blog::Category.Blog.Partials.Sidebar" %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

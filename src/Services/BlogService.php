@@ -9,7 +9,11 @@
 namespace Blog\Services;
 
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
+use Plenty\Modules\Blog\Services\BlogPluginService;
+use Plenty\Modules\PluginMultilingualism\Contracts\PluginTranslationRepositoryContract;
+use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request;
+use Plenty\Plugin\Translation\Translator;
 
 /**
  * Class BlogService
@@ -45,5 +49,122 @@ class BlogService
     public function extractFilters(Request $request)
     {
         return $request->except(['page', 'itemsPerPage', 'plentyMarkets']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getLanguages()
+    {
+        return [
+            'de',
+            'en',
+            'fr',
+            'it',
+            'es',
+            'tr',
+            'nl',
+            'pl',
+            'nn',
+            'da',
+            'se',
+            'cz',
+            'ru',
+            'sk',
+            'cn',
+            'vn',
+            'pt',
+            'bg',
+            'ro'
+        ];
+    }
+
+    public function getCustomTranslations(string $lang = '')
+    {
+        $pluginTranslationRepositoryContract = pluginApp(PluginTranslationRepositoryContract::class);
+
+        $filters = [
+            'pluginSetId' => $this->getPluginSetId(),
+            'pluginName' => 'Blog'
+        ];
+
+        $allTranslations = $pluginTranslationRepositoryContract->listTranslations($filters);
+
+        $translationsByLanguage = [];
+
+        foreach($allTranslations as $translation) {
+            if($translation['fileName'] == 'CustomUrl.properties' && $translation['key'] == 'urlName') {
+                $translationsByLanguage[$translation['languageCode']][$translation['key']] = $translation['value'];
+            }
+        }
+
+        if(!empty($lang) && in_array($lang,$this->getLanguages())) {
+            return $translationsByLanguage[$lang];
+        }
+
+        return $translationsByLanguage;
+
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function buildCustomUrlTranslationsByLanguage(string $language = '')
+    {
+        $translationsByLanguage = [
+            'default' => [
+                'urlName' => 'blog'
+            ]
+        ];
+
+        $allTranslations = $this->getCustomTranslations();
+
+        foreach($allTranslations as $lang => $translations) {
+            foreach($translations as $key => $translation) {
+                $translationsByLanguage[$lang] = $translationsByLanguage['default'];
+                $translationsByLanguage[$lang][$key] = $translation;
+            }
+        }
+
+        if(!empty($language) && in_array($language,$this->getLanguages())) {
+            return $translationsByLanguage[$language];
+        }
+
+        return $translationsByLanguage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPluginSetId()
+    {
+        $blogPluginService = pluginApp(BlogPluginService::class);
+        return $blogPluginService->getPluginSetIdFromConfig();
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        $config = pluginApp(ConfigRepository::class);
+        return $config->get('locale');
+    }
+
+    /**
+     * @return array
+     */
+    public function prepareDataForEntrypoint()
+    {
+        $lang = $this->getLanguage();
+        $trans = pluginApp(Translator::class);
+
+        $data = [
+            'landing' => [
+                'url' => "/$lang/" . $trans->trans('Blog::CustomUrl.urlName')
+            ]
+        ];
+
+        return $data;
     }
 }
