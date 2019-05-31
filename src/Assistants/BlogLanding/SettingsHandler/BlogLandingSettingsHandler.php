@@ -1,15 +1,15 @@
 <?php
 
-namespace Blog\Assistants\BlogCustomUrl\SettingsHandler;
+namespace Blog\Assistants\BlogLanding\SettingsHandler;
 
 use Plenty\Modules\PluginMultilingualism\Contracts\PluginTranslationRepositoryContract;
 use Plenty\Modules\Wizard\Contracts\WizardSettingsHandler;
 
 /**
- * Class BlogCustomUrlSettingsHandler
+ * Class BlogLandingSettingsHandler
  * @package Blog\Assistants\BlogCustomUrl\SettingsHandler
  */
-class BlogCustomUrlSettingsHandler implements WizardSettingsHandler
+class BlogLandingSettingsHandler implements WizardSettingsHandler
 {
     /**
      * @param array $parameters
@@ -55,7 +55,7 @@ class BlogCustomUrlSettingsHandler implements WizardSettingsHandler
             }else{
                 $preparedData[] = [
                     'pluginName' => 'Blog',
-                    'fileName' => 'CustomUrl.properties',
+                    'fileName' => 'Landing.properties',
                     'key' => $fillable,
                     'pluginSetId' => $data['pluginSetId'],
                     'languageCode' => $data['languageCode'],

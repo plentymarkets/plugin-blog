@@ -8,6 +8,9 @@
 
 namespace Blog\Services;
 
+use IO\Services\SessionStorageService;
+use IO\Services\UrlBuilder\UrlQuery;
+use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
 use Plenty\Modules\PluginMultilingualism\Contracts\PluginTranslationRepositoryContract;
@@ -93,7 +96,7 @@ class BlogService
         $translationsByLanguage = [];
 
         foreach($allTranslations as $translation) {
-            if($translation['fileName'] == 'CustomUrl.properties' && $translation['key'] == 'urlName') {
+            if($translation['fileName'] == 'Landing.properties' && $translation['key'] == 'urlName') {
                 $translationsByLanguage[$translation['languageCode']][$translation['key']] = $translation['value'];
             }
         }
@@ -152,19 +155,44 @@ class BlogService
     }
 
     /**
+     * @return mixed
+     */
+    public function getDefaultLanguage()
+    {
+        return pluginApp(WebstoreConfigurationService::class)->getDefaultLanguage();
+    }
+
+    /**
      * @return array
      */
     public function prepareDataForEntrypoint()
     {
-        $lang = $this->getLanguage();
         $trans = pluginApp(Translator::class);
 
         $data = [
             'landing' => [
-                'url' => "/$lang/" . $trans->trans('Blog::CustomUrl.urlName')
+                'url' => $this->buildUrl($trans->trans('Blog::Landing.urlName'))
             ]
         ];
 
         return $data;
+    }
+
+    /**
+     * @param string $url
+     * @return mixed
+     */
+    public function buildUrl(string $url = '/')
+    {
+        return pluginApp(UrlQuery::class,
+            ['path' => $url])->toRelativeUrl($this->getDefaultLanguage() !== $this->getLanguage());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLandingUrlName()
+    {
+        return pluginApp(Translator::class)->trans('Blog::Landing.urlName');
     }
 }

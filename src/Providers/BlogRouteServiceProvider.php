@@ -36,12 +36,15 @@ class BlogRouteServiceProvider extends RouteServiceProvider
         foreach($translations as $lang => $translation) {
             $urlName = $translation['urlName'];
 
+            // Landing
             $router->get("$urlName", 'Blog\Controllers\BlogController@showLandingPage');
+
+            // Search
             $router->get("$urlName/search/{searchString}", 'Blog\Controllers\BlogController@searchArticles');
             $router->get("$urlName/tag/{tagId}/{tagName?}", 'Blog\Controllers\BlogController@listArticlesByTag')->where('tagId', '\d+');
-            // TODO Remove the /article/ route when changes are made to the terra preview button
-            $router->get("$urlName/article/{urlName}", 'Blog\Controllers\BlogController@showArticle');
-            $router->get("$urlName/{urlName}", 'Blog\Controllers\BlogController@showArticle');
+
+            // Article or category
+            $router->get("$urlName/{part1?}/{part2?}/{part3?}/{part4?}/{part5?}", 'Blog\Controllers\BlogController@showArticleOrCategory');
         }
 
         $apiRouter->version(['v1'], ['namespace' => 'Blog\Controllers'], function ($apiRouter)

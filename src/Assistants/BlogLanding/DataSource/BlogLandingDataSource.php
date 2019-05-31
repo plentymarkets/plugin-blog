@@ -6,17 +6,17 @@
  * Time: 17:00
  */
 
-namespace Blog\Assistants\BlogCustomUrl\DataSource;
+namespace Blog\Assistants\BlogLanding\DataSource;
 
 use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
 use Plenty\Modules\PluginMultilingualism\Contracts\PluginTranslationRepositoryContract;
 use Plenty\Modules\Wizard\Services\DataSources\BaseWizardDataSource;
 
 /**
- * Class BlogCustomUrlDataSource
- * @package Blog\Assistants\BlogCustomUrl\DataSource
+ * Class BlogLandingDataSource
+ * @package Blog\Assistants\BlogLanding\DataSource
  */
-class BlogCustomUrlDataSource extends BaseWizardDataSource
+class BlogLandingDataSource extends BaseWizardDataSource
 {
 
     /**
@@ -35,7 +35,7 @@ class BlogCustomUrlDataSource extends BaseWizardDataSource
 
         foreach($allTranslations as $key => $entity) {
             $optionId = $entity['pluginSetId'].'_'.$entity['languageCode'];
-            if($entity['fileName'] == 'CustomUrl.properties') {
+            if($entity['fileName'] == 'Landing.properties') {
                 if(empty($entities[$optionId]['pluginSetId'])) $entities[$optionId]['pluginSetId'] = $entity['pluginSetId'];
                 if(empty($entities[$optionId]['languageCode'])) $entities[$optionId]['languageCode'] = $entity['languageCode'];
 

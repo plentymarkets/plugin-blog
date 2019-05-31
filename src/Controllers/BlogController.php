@@ -14,8 +14,10 @@ use Ceres\Contexts\GlobalContext;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Redirect;
 use IO\Controllers\LayoutController;
+use IO\Services\CategoryService;
 use IO\Services\SessionStorageService;
 use IO\Services\TagService;
+use IO\Services\UrlService;
 use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
@@ -36,7 +38,6 @@ class BlogController extends LayoutController
      */
     public function showArticle($urlName)
     {
-
         $blogPost = pluginApp(BlogService::class)->getBlogPost($urlName);
 
         $data = [
@@ -110,10 +111,12 @@ class BlogController extends LayoutController
      * @param Request $request
      * @return mixed
      */
-    public function listArticles(Request $request)
+    public function listArticles(Request $request, BlogService $blogService, CategoryService $categoryService)
     {
         $lang = pluginApp(SessionStorageService::class)->getLang();
         $clientStoreId = pluginApp(Application::class)->getWebstoreId();
+        $landingUrlName = $blogService->getLandingUrlName();
+        $landingUrl = $blogService->buildUrl($landingUrlName);
 
         // These filters should not be overwritten by the requested filters
         $defaultFilters = [
@@ -126,10 +129,38 @@ class BlogController extends LayoutController
         $page = $request->get('page', 1);
         $articlesPerPage = $request->get('itemsPerPage', 5);
 
-        $filters = pluginApp(BlogService::class)->extractFilters($request);
+        $filters = $blogService->extractFilters($request);
         $filters = array_merge($filters, $defaultFilters);
+        $paginatedPosts = pluginApp(BlogPostRepositoryContract::class)->listPosts($page, $articlesPerPage, $filters);
 
-        return pluginApp(BlogPostRepositoryContract::class)->listPosts($page, $articlesPerPage, $filters);
+        $posts = $paginatedPosts['entries'];
+
+        foreach($posts as $post) {
+
+            $categoryUrl = $categoryService->getURLById($post['data']['category']['id']);
+
+            // If we have the category url
+            if(!empty($categoryUrl)) {
+                // And it's not for the default language we need to remove the language prefix
+                if(strpos($categoryUrl,"/$lang/") === 0 ){
+                    $categoryUrl = str_replace("/$lang/", '/', $categoryUrl);
+                }
+                // prefix it with the landing url
+                $categoryUrl = $landingUrl . $categoryUrl;
+            }else{
+                $categoryUrl = $landingUrl;
+            }
+
+            $post->urls = [
+                'postUrl' => $categoryUrl . '/' . $post['data']['post']['urlName'],
+                'landingUrl' => $landingUrl,
+                'categoryUrl' => $categoryUrl
+            ];
+        }
+
+        $paginatedPosts['entries'] = $posts;
+
+        return $paginatedPosts;
 
     }
 
@@ -160,6 +191,66 @@ class BlogController extends LayoutController
     {
 //        $service = pluginApp(BlogService::class);
 //        dd($service->buildCustomUrlTranslationsByLanguage());
+    }
+
+    /**
+     * @param Request $request
+     * @param null $part1
+     * @param null $part2
+     * @param null $part3
+     * @param null $part4
+     * @param null $part5
+     */
+    public function showArticleOrCategory(Request $request, $part1 = null, $part2 = null, $part3 = null, $part4 = null, $part5 = null)
+    {
+        $blogPostRepository = pluginApp(BlogPostRepositoryContract::class);
+        $urlService = pluginApp(UrlService::class);
+        $translator = pluginApp(Translator::class);
+
+        $lastPart = '';
+        $landingUrlName = $translator->trans('Blog::Landing.urlName');
+
+        // omg we can't use dynamic variables
+        if($part1) {
+            $lastPart = $part1;
+            if($part2) {
+                $lastPart = $part2;
+                if($part3) {
+                    $lastPart = $part3;
+                    if($part4) {
+                        $lastPart = $part4;
+                        if($part5) {
+                            $lastPart = $part5;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Ok now that we have the last part let's find out what it is
+
+        // Old posts example urlname "b-16"
+        if(strpos($lastPart,'b-') === 0 ){
+            $oldPostId = str_replace('b-', "", $lastPart);
+
+            if(is_numeric($oldPostId)) {
+                $oldPost = $blogPostRepository->getOldPostById(intval($oldPostId));
+                if($oldPost) {
+                    return $urlService->redirectTo("$landingUrlName/$oldPost->newUrlNameSlug");
+//                    return $this->showArticle($oldPost->newUrlNameSlug);
+                }
+            }
+        }
+
+        // New post
+        $blogPost = pluginApp(BlogService::class)->getBlogPost($lastPart);
+        if($blogPost) {
+            return $this->showArticle($lastPart);
+        }
+
+        // Category
+
+        return false;
     }
 
 }

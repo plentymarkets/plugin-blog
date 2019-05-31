@@ -6,7 +6,7 @@
  * Time: 10:18
  */
 
-namespace Blog\Assistants\BlogCustomUrl;
+namespace Blog\Assistants\BlogLanding;
 
 use Blog\Services\BlogService;
 use IO\Services\WebstoreConfigurationService;
@@ -15,10 +15,10 @@ use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Wizard\Services\WizardProvider;
 
 /**
- * Class BlogCustomUrlAssistant
- * @package Blog\Assistants\BlogCustomUrl
+ * Class BlogLandingAssistant
+ * @package Blog\Assistants\BlogLanding
  */
-class BlogCustomUrlAssistant extends WizardProvider
+class BlogLandingAssistant extends WizardProvider
 {
 
     /**
@@ -32,8 +32,8 @@ class BlogCustomUrlAssistant extends WizardProvider
             'title' => 'Blog Landing Page',
             'key' => 'blog-landing-page',
             'translationNamespace' => 'Blog',
-            'dataSource' => 'Blog\Assistants\BlogCustomUrl\DataSource\BlogCustomUrlDataSource',
-            'settingsHandlerClass' => 'Blog\Assistants\BlogCustomUrl\SettingsHandler\BlogCustomUrlSettingsHandler',
+            'dataSource' => 'Blog\Assistants\BlogLanding\DataSource\BlogLandingDataSource',
+            'settingsHandlerClass' => 'Blog\Assistants\BlogLanding\SettingsHandler\BlogLandingSettingsHandler',
             'reloadStructure' => true,
             'createOptionIdTitle' => 'Create new setting',
             'options' => [
@@ -70,7 +70,7 @@ class BlogCustomUrlAssistant extends WizardProvider
                     'sections' => [
                         [
                             'title' => 'Entrypoint settings',
-                            'description' => 'Leaving any of these fields empty will reset them to default value',
+                            'description' => '⚠️ Leaving any of these fields empty will reset them to default value',
                             'form' => [
                                 'entrypointMessage' => [
                                     'type' => 'text',
@@ -88,10 +88,11 @@ class BlogCustomUrlAssistant extends WizardProvider
                         ],
                         [
                             'title' => 'Landing page settings',
-                            'description' => 'Empty fields will stay empty',
+                            'description' => '⚠️ Empty fields will stay empty',
                             'form' => [
                                 'urlName' => [
                                     'type' => 'text',
+                                    'defaultValue' => 'blog',
                                     'options' => [
                                         'name' => 'Custom URL',
                                         'minLength' => 3,

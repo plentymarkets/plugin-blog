@@ -3,7 +3,7 @@
 {% extends getPartial('page-design') %}
 
 {% block PartialHead %}
-    <title>{{ trans("Blog::CustomUrl.landingMetaTitle") }} | {{ ceresConfig.header.companyName }}</title>
+    <title>{{ trans("Blog::Landing.landingMetaTitle") }} | {{ ceresConfig.header.companyName }}</title>
 
     <meta name="description" content="tofill">
     <meta name="keywords" content="tofill">
@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h1 class="blog-category-name">
-                            {{ trans("Blog::CustomUrl.landingTitle") }}
+                            {{ trans("Blog::Landing.landingTitle") }}
                         </h1>
 
                         {#{% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': 0 } %}#}

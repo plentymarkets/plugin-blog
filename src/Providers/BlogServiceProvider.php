@@ -2,7 +2,7 @@
 
 namespace Blog\Providers;
 
-use Blog\Assistants\BlogCustomUrl\BlogCustomUrlAssistant;
+use Blog\Assistants\BlogLanding\BlogLandingAssistant;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
 use Blog\Services\BlogService;
@@ -15,10 +15,12 @@ use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Http\Request;
 use Plenty\Modules\Wizard\Contracts\WizardContainerContract;
-use Blog\Wizards\BlogWizard;
 
 
-
+/**
+ * Class BlogServiceProvider
+ * @package Blog\Providers
+ */
 class BlogServiceProvider extends ServiceProvider
 {
 
@@ -36,7 +38,7 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function boot(Twig $twig, Dispatcher $eventDispatcher, Request $request)
     {
-        pluginApp(WizardContainerContract::class)->register('blog-landing-page', BlogCustomUrlAssistant::class);
+        pluginApp(WizardContainerContract::class)->register('blog-landing-page', BlogLandingAssistant::class);
 
         // Custom components
         $eventDispatcher->listen('IO.Resources.Import',
