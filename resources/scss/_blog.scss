@@ -1,16 +1,6 @@
-.top-bar .controls-list.blog-entrypoint {
-    float:left;
-    margin-left:-12px;
-    order: 99;
-    margin-right: auto;
-
-    @include blog-breakpoint(underdesktop) {
-        margin-left:0;
-    }
-
-    i.fa {
-        margin-right: 3px;
-        font-size: 13px !important;
+#page-header {
+    .breadcrumbs {
+        display:none !important;
     }
 }
 
@@ -65,10 +55,10 @@
     padding-top:40px;
     min-height:530px;
 
-    @include blog-breakpoint(desktop) {
-        padding-left:0;
-        padding-right:0;
-    }
+    //@include blog-breakpoint(desktop) {
+    //    padding-left:0;
+    //    padding-right:0;
+    //}
 
     .blog-row-small-gutters {
         margin-left:-10px;
@@ -87,11 +77,11 @@
     border-bottom:$border-color solid 1px;
     padding:35px 0;
 
-    .container-max {
-        @include blog-breakpoint(desktop) {
-            padding-left:0;
-        }
-    }
+    //.container-max {
+    //    @include blog-breakpoint(desktop) {
+    //        padding-left:0;
+    //    }
+    //}
 
     .blog-category-name {
         margin:0;
@@ -191,12 +181,14 @@
         }
 
         .blog-post-title {
-            color:$color-text;
             font-weight:bold;
             font-size:27px;
             line-height: 1.2;
             margin-bottom:10px;
-            display:inline-block;
+
+            a {
+                color:$color-text;
+            }
         }
 
         .blog-details {

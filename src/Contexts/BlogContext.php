@@ -6,6 +6,7 @@ use Ceres\Contexts\GlobalContext;
 use IO\Helper\ContextInterface;
 use IO\Services\CategoryService;
 use Plenty\Plugin\ConfigRepository;
+use Plenty\Plugin\Translation\Translator;
 
 class BlogContext extends GlobalContext implements ContextInterface
 {
@@ -14,12 +15,26 @@ class BlogContext extends GlobalContext implements ContextInterface
     {
         parent::init($params);
 
-        $blogCategoryId = pluginApp(ConfigRepository::class)->get('Blog.general.entrypoint.category');
+        $landingUrl = pluginApp(Translator::class)->trans('Blog::Landing.urlName');
 
-        if(!empty($blogCategoryId))
-        {
-            $this->categories = pluginApp(CategoryService::class)->getNavigationTree('blog', null, 6);
+        $this->categories = pluginApp(CategoryService::class)->getNavigationTree('blog', null, 6);
+
+        $this->updateCategoryTree($this->categories, $landingUrl);
+
+    }
+
+    /**
+     * Update category urls ( and maybe more than that in the future )
+     *
+     * @param $categories
+     * @param $landingUrl
+     */
+    private function updateCategoryTree(&$categories, $landingUrl)
+    {
+        foreach($categories as &$category) {
+            if(!empty($category['details'])) {
+                $category['details'][0]['nameUrl'] = "$landingUrl/" . $category['details'][0]['nameUrl'];
+            }
         }
-
     }
 }

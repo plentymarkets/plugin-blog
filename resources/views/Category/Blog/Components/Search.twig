@@ -35,14 +35,15 @@
 
         data: function () {
             return {
-                searchString: ''
+                searchString: '',
+                landingUrl: '{{ trans('Blog::Landing.urlName') }}'
             };
         },
 
         methods: {
             search: function() {
                 if(this.searchString) {
-                    let newUrl = '/blog/search/' + encodeURIComponent(this.searchString);
+                    let newUrl = '/' + this.landingUrl + '/search/' + encodeURIComponent(this.searchString);
 
                     if(this.isSearchPage) {
                         vueEventHub.$emit('blog-search', {

@@ -9,7 +9,7 @@
     <div class="blog-recent-posts">
         <h3 class="blog-heading"><span>{{ trans('Blog::Template.recentPosts') }}</span></h3>
 
-        <a v-for="article in articleList" class="blog-recent-post" :href="'/blog/' + article.data.post.urlName">
+        <a v-for="article in articleList" class="blog-recent-post" :href="article.urls.postUrl">
             <div class="blog-recent-post-image">
                 <img v-if="article.data.images.preview.path" :src="article.data.images.preview.path" alt="">
                 {% if latestPostsDefaultImage is not empty %}

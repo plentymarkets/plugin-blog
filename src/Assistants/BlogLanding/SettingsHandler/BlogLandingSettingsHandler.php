@@ -34,12 +34,26 @@ class BlogLandingSettingsHandler implements WizardSettingsHandler
         $existingTranslations = $translationRepository->listTranslations($filters);
 
         $fillables = [
-            'urlName', 'entrypointMessage', 'backToStoreMessage', 'landingTitle', 'landingMetaTitle'
+            'urlName',
+            'entrypointMessage',
+            'backToStoreMessage',
+            'landingTitle',
+            'landingMetaTitle',
+            'landingMetaDescription',
+            'landingMetaKeywords',
+            'landingRobots',
         ];
 
         $resetIfEmpty = [
-            'urlName', 'entrypointMessage', 'backToStoreMessage',
+            'urlName',
+            'entrypointMessage',
+            'backToStoreMessage'
         ];
+
+        // Should never be empty, but just in case..
+        if(!empty($data['landingRobots'])) {
+            $data['landingRobots'] = str_replace('_', ', ', $data['landingRobots']);
+        }
 
         foreach($fillables as $fillable) {
 

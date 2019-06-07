@@ -13,6 +13,7 @@ use Blog\Services\BlogService;
 use Ceres\Contexts\GlobalContext;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Redirect;
+use IO\Api\ResponseCode;
 use IO\Controllers\LayoutController;
 use IO\Services\CategoryService;
 use IO\Services\SessionStorageService;
@@ -20,10 +21,13 @@ use IO\Services\TagService;
 use IO\Services\UrlService;
 use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
+use Plenty\Modules\Blog\Services\BlogPluginService;
+use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
 use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
 use Plenty\Plugin\Application;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
+use Plenty\Plugin\Http\Response;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Translation\Translator;
@@ -200,12 +204,20 @@ class BlogController extends LayoutController
      * @param null $part3
      * @param null $part4
      * @param null $part5
+     * @return Response|string
+     * @throws \ErrorException
      */
     public function showArticleOrCategory(Request $request, $part1 = null, $part2 = null, $part3 = null, $part4 = null, $part5 = null)
     {
+        $blogPluginService = pluginApp(BlogPluginService::class);
         $blogPostRepository = pluginApp(BlogPostRepositoryContract::class);
         $urlService = pluginApp(UrlService::class);
         $translator = pluginApp(Translator::class);
+
+        /** @var SessionStorageService $sessionService */
+        $sessionService  = pluginApp(SessionStorageService::class);
+        $lang = $sessionService->getLang();
+        $webstoreId = pluginApp(Application::class)->getWebstoreId();
 
         $lastPart = '';
         $landingUrlName = $translator->trans('Blog::Landing.urlName');
@@ -228,8 +240,9 @@ class BlogController extends LayoutController
         }
 
         // Ok now that we have the last part let's find out what it is
-
-        // Old posts example urlname "b-16"
+        // --------
+        // Old post - example urlname "b-16"
+        // --------
         if(strpos($lastPart,'b-') === 0 ){
             $oldPostId = str_replace('b-', "", $lastPart);
 
@@ -242,15 +255,33 @@ class BlogController extends LayoutController
             }
         }
 
+        // --------
         // New post
+        // --------
         $blogPost = pluginApp(BlogService::class)->getBlogPost($lastPart);
         if($blogPost) {
             return $this->showArticle($lastPart);
         }
 
+        // --------
         // Category
+        // --------
+        $category = $blogPluginService->findCategoryByUrl($part1, $part2, $part3, $part4, $part5, null, $webstoreId, $lang);
 
-        return false;
+            // If it's not a valid category : 404
+        if ($category === null || (($category->clients->count() == 0 || $category->details->count() == 0) && !$this->app->isAdminPreview()))
+        {
+            /** @var Response $response */
+            $response = pluginApp(Response::class);
+            $response->forceStatus(ResponseCode::NOT_FOUND);
+
+            return $response;
+        }
+
+        $data = [
+            'category' => $category
+        ];
+        return $this->renderTemplate('tpl.blog.category', $data);
     }
 
 }

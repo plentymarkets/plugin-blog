@@ -1,0 +1,22 @@
+/* line 1, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/blog_entrypoint.scss */
+.top-bar .controls-list.blog-entrypoint {
+  float: left;
+  margin-left: -12px;
+  order: 99;
+  margin-right: auto;
+}
+
+@media (max-width: 1199px) {
+  /* line 1, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/blog_entrypoint.scss */
+  .top-bar .controls-list.blog-entrypoint {
+    margin-left: 0;
+  }
+}
+
+/* line 9, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/blog_entrypoint.scss */
+.top-bar .controls-list.blog-entrypoint i.fa {
+  margin-right: 3px;
+  font-size: 13px !important;
+}
+
+/*# sourceMappingURL=../css/blog_entrypoint.map */

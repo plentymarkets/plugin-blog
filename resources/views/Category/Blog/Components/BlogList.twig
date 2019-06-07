@@ -6,21 +6,23 @@
             <h3 v-if="isSearchPage" class="blog-heading"><span>{{ trans('Blog::Template.searchResultsFor') }} ${ searchString }</span></h3>
 
             <article v-for="article in articleList" class="blog-post">
-                <a v-if="article.data.images.preview" :href="'/blog/' + article.data.post.urlName">
+                <a v-if="article.data.images.preview" :href="article.urls.postUrl">
                     <img v-if="article.data.images.preview.path" class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
                 </a>
 
                 <div class="blog-post-content">
                     <div class="blog-post-header">
-                        <h5 class="blog-category-name">
-                            <a v-if="typeof blogCategories[article.data.category.id] !== 'undefined'" :href="blogCategories[article.data.category.id].url">${ blogCategories[article.data.category.id].name }</a>
-                        </h5>
+                        <a class="blog-category-name" v-if="typeof blogCategories[article.data.category.id] !== 'undefined'" :href="article.urls.categoryUrl">${ blogCategories[article.data.category.id].name }</a>
 
-                        <a class="blog-post-title" :href="'/blog/' + article.data.post.urlName">${ article.data.post.title }</a>
+                        <h2 class="blog-post-title">
+                            <a :href="article.urls.postUrl">
+                                ${ article.data.post.title }
+                            </a>
+                        </h2>
 
                         <p class="blog-details">
-                            <a :href="'/blog/search/' + article.data.user.realName">
-                                <span class="blog-detail blog-detail-author covfefe">
+                            <a :href="article.urls.landingUrl + '/search/' + article.data.user.realName">
+                                <span class="blog-detail blog-detail-author">
                                     <img v-if="article.data.user.image"
                                          :src="article.data.user.image"
                                          :alt="article.data.user.realName"
@@ -38,7 +40,7 @@
 
                     {% if config('Blog.general.list.showReadMore') == 'true' %}
                         <div class="blog-actions">
-                            <a :href="'/blog/' + article.data.post.urlName" class="blog-action-readmore">{{ trans('Blog::Template.readMore') }}</a>
+                            <a :href="article.urls.postUrl" class="blog-action-readmore">{{ trans('Blog::Template.readMore') }}</a>
                         </div>
                     {% endif %}
                 </div>

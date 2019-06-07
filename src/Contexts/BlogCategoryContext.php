@@ -16,9 +16,12 @@ class BlogCategoryContext extends BlogContext implements ContextInterface
     public function init($params)
     {
         parent::init($params);
+        $service = pluginApp(CategoryService::class);
 
-        $this->category = pluginApp(CategoryService::class)->getCurrentCategory()->toArray();
+        $service->setCurrentCategoryID($params['category']->plenty_category_id);
 
-        $this->metaRobots = str_replace('_', ', ', $this->category->details[0]->metaRobots);
+        $this->category = $service->getCurrentCategory()->toArray();
+
+        $this->metaRobots = str_replace('_', ', ', $this->category['details'][0]['metaRobots']);
     }
 }

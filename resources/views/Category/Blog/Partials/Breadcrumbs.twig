@@ -1,5 +1,13 @@
 {% set blogCategoryBreadcrumbs = services.category.getHierarchy(blogCategoryId) %}
-{% set blogCategoryUrl = '' %}
+{% set homepageUrl = services.url.getHomepageURL() %}
+
+{% if homepageUrl == '/' %}
+    {% set blogCategoryUrl = '/' ~ trans('Blog::Landing.urlName') %}
+{% else %}
+    {% set blogCategoryUrl = homepageUrl ~ '/' ~ trans('Blog::Landing.urlName') %}
+{% endif %}
+
+{# Extra is the extra text as last breadcrumb, in this case it's the truncated title #}
 {% if extra is not empty %}
     {% set blogCategoryBreadcrumbs = blogCategoryBreadcrumbs | merge ([{'extra': extra}]) %}
 {% endif %}
@@ -9,7 +17,7 @@
         <nav class="container-max small hidden-sm-down">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="/">
+                    <a href="{{ blogCategoryUrl }}">
                         <i aria-hidden="true" class="fa fa-home"></i>
                     </a>
                 </li>

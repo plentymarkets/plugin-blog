@@ -1,0 +1,13 @@
+.top-bar .controls-list.blog-entrypoint {
+    float:left;
+    margin-left:-12px;
+    order: 99;
+    margin-right: auto;
+
+    @media (max-width:1199px) { margin-left:0; }
+
+    i.fa {
+        margin-right: 3px;
+        font-size: 13px !important;
+    }
+}

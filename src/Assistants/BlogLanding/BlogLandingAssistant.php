@@ -112,6 +112,44 @@ class BlogLandingAssistant extends WizardProvider
                                     'options' => [
                                         'name' => 'Landing page meta title'
                                     ]
+                                ],
+                                'landingMetaDescription' => [
+                                    'type' => 'text',
+                                    'options' => [
+                                        'name' => 'Landing page meta description'
+                                    ]
+                                ],
+                                'landingMetaKeywords' => [
+                                    'type' => 'text',
+                                    'options' => [
+                                        'name' => 'Landing page meta keywords'
+                                    ]
+                                ],
+                                'landingRobots' => [
+                                    'type' => 'select',
+                                    'defaultValue' => 'ALL',
+                                    'options' => [
+                                        'name' => 'Landing page robots',
+                                        'required' => true,
+                                        'listBoxValues' => [
+                                            [
+                                                'caption' => 'ALL (INDEX, FOLLOW)',
+                                                'value' => 'INDEX_FOLLOW'
+                                            ],
+                                            [
+                                                'caption' => 'NOINDEX, FOLLOW',
+                                                'value' => 'NOINDEX_FOLLOW'
+                                            ],
+                                            [
+                                                'caption' => 'INDEX, NOFOLLOW',
+                                                'value' => 'INDEX_NOFOLLOW'
+                                            ],
+                                            [
+                                                'caption' => 'NOINDEX, NOFOLLOW',
+                                                'value' => 'NOINDEX_NOFOLLOW'
+                                            ],
+                                        ]
+                                    ]
                                 ]
                             ]
                         ]

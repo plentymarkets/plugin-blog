@@ -3,6 +3,7 @@
 namespace Blog\Providers;
 
 use Blog\Assistants\BlogLanding\BlogLandingAssistant;
+use Blog\Assistants\CustomDataSourceExample\CustomDataSourceAssistant;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
 use Blog\Services\BlogService;
@@ -53,7 +54,19 @@ class BlogServiceProvider extends ServiceProvider
 
         // Category Blog page
         // 90 priority, 100 is Ceres, themes typically use "0" because that's how theme creators are instructed in the theme creation guide
-        $eventDispatcher->listen('IO.tpl.category.blog', function(TemplateContainer $container) use ($request)
+        $eventDispatcher->listen('IO.tpl.category.blog', function(TemplateContainer $container, $data) use ($request)
+        {
+            // TODO This will redirect users to the /custom/ url
+            $blogData = [
+                'filters' => $request->except(['plentyMarkets'])
+            ];
+
+            $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogData, 'blogData');
+
+            return false;
+        });
+
+        $eventDispatcher->listen('IO.tpl.blog.category', function(TemplateContainer $container, $data) use ($request)
         {
             $blogData = [
                 'filters' => $request->except(['plentyMarkets'])
@@ -63,8 +76,6 @@ class BlogServiceProvider extends ServiceProvider
 
             return false;
         }, 90);
-
-
 
         $eventDispatcher->listen('IO.tpl.blog.article', function(TemplateContainer $container, $data)
         {
@@ -89,15 +100,21 @@ class BlogServiceProvider extends ServiceProvider
 
 
 
+        // Context for single article
+        $eventDispatcher->listen('IO.ctx.blog.*', function (TemplateContainer $container) {
+            $container->setContext(BlogContext::class);
+            return false;
+        }, 90);
+
         // Context for Category Blog page
-        $eventDispatcher->listen('IO.ctx.category.blog', function (TemplateContainer $container) {
+        $eventDispatcher->listen('IO.ctx.blog.category', function (TemplateContainer $container) {
             $container->setContext(BlogCategoryContext::class);
             return false;
         }, 90);
 
-        // Context for single article
-        $eventDispatcher->listen('IO.ctx.blog.*', function (TemplateContainer $container) {
-            $container->setContext(BlogContext::class);
+        // Context for Category Blog page
+        $eventDispatcher->listen('IO.ctx.category.blog', function (TemplateContainer $container) {
+            $container->setContext(BlogCategoryContext::class);
             return false;
         }, 90);
 

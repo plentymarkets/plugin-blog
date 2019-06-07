@@ -26,9 +26,9 @@
                 {% endif %}>
 
             <div class="container-max">
-                <h1 class="blog-category-name">
+                <h2 class="h1 blog-category-name">
                     {{ category.details[0].name }}
-                </h1>
+                </h2>
 
                 {% set truncatedBlogTitle = blogPost.data.post.title|length > 50 ? blogPost.data.post.title|slice(0, 50) ~ '...' : blogPost.data.post.title %}
                 {% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': category.id, 'extra': truncatedBlogTitle } %}
@@ -45,7 +45,6 @@
                         <article class="blog-post">
 
                             <div class="blog-post-header">
-                                {#<h5 class="blog-category-name"><a href="{{ blogCategoryUrl }}" title="{{ blogCategoryName }}">{{ blogCategoryName }}</a></h5>#}
                                 <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
 
                                 <p class="blog-details">
@@ -55,7 +54,7 @@
                                             #}{% else %}{#
                                                 #}{{ trans('Blog::Template.createdBy') }} {#
                                             #}{% endif %}{#
-                                            #}<a href="/blog/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
+                                            #}<a href="/{{ trans('Blog::Landing.urlName') }}/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
                                         </span>
                                     <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("j M, Y")}}</span>
                                 </p>
@@ -81,9 +80,9 @@
                                             {% set tagName = services.tag.getTagName(tagId) %}
 
                                             {% if tagName is not empty %}
-                                                <a href="/blog/tag/{{ tagId }}/{{ tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagName }}</a>
+                                                <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}/{{ tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagName }}</a>
                                             {% else %}
-                                                <a href="/blog/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagId }}</a>
+                                                <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagId }}</a>
                                             {% endif %}
                                         {% endfor %}
                                     </p>
