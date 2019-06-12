@@ -11,6 +11,7 @@ use Ceres\Contexts\CategoryContext;
 use Ceres\Helper\LayoutContainer;
 use IO\Helper\ResourceContainer;
 use IO\Helper\TemplateContainer;
+use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
@@ -37,7 +38,7 @@ class BlogServiceProvider extends ServiceProvider
     /**
      * Boot a template for the footer that will be displayed in the template plugin instead of the original footer.
      */
-    public function boot(Twig $twig, Dispatcher $eventDispatcher, Request $request)
+    public function boot(Twig $twig, Dispatcher $eventDispatcher, Request $request, ConfigRepository $config)
     {
         pluginApp(WizardContainerContract::class)->register('blog-landing-page', BlogLandingAssistant::class);
 
@@ -129,11 +130,13 @@ class BlogServiceProvider extends ServiceProvider
             $container->addContent($twig->render('Blog::content.Scripts'));
         });
 
-        $eventDispatcher->listen("Ceres.LayoutContainer.Header.LeftSide", function(LayoutContainer $container) use ($twig) {
-            $service = pluginApp(BlogService::class);
-            $data = $service->prepareDataForEntrypoint();
-            $container->addContent($twig->render('Blog::content.BlogEntrypoint', $data));
-        });
-
+        // Config bools are strings...
+        if($config->get('Blog.general.entrypoint.automaticLink') === 'true') {
+            $eventDispatcher->listen("Ceres.LayoutContainer.Header.LeftSide", function(LayoutContainer $container) use ($twig) {
+                $service = pluginApp(BlogService::class);
+                $data = $service->prepareDataForEntrypoint();
+                $container->addContent($twig->render('Blog::content.BlogEntrypoint', $data));
+            });
+        }
     }
 }

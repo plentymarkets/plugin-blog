@@ -210,7 +210,7 @@
 
 
     .blog-post-image {
-        margin-bottom:30px;
+        margin-bottom:20px;
         @include blog-border-radius;
 
         &.blog-post-image-fullwidth {
@@ -275,6 +275,7 @@
 
         h1,h2,h3,h4,h5,h6 {
             line-height:1.46em;
+            font-weight:bold;
         }
 
         img {

@@ -191,12 +191,6 @@ class BlogController extends LayoutController
         return $this->renderTemplate('tpl.blog.landing', $data);
     }
 
-    public function test()
-    {
-//        $service = pluginApp(BlogService::class);
-//        dd($service->buildCustomUrlTranslationsByLanguage());
-    }
-
     /**
      * @param Request $request
      * @param null $part1
@@ -268,7 +262,7 @@ class BlogController extends LayoutController
         // --------
         $category = $blogPluginService->findCategoryByUrl($part1, $part2, $part3, $part4, $part5, null, $webstoreId, $lang);
 
-            // If it's not a valid category : 404
+        // If it's not a valid category : 404
         if ($category === null || (($category->clients->count() == 0 || $category->details->count() == 0) && !$this->app->isAdminPreview()))
         {
             /** @var Response $response */

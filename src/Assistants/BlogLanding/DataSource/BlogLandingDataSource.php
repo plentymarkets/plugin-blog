@@ -40,6 +40,7 @@ class BlogLandingDataSource extends BaseWizardDataSource
                 if(empty($entities[$optionId]['languageCode'])) $entities[$optionId]['languageCode'] = $entity['languageCode'];
 
                 $entities[$optionId][$entity['key']] = $entity['value'];
+                $entities[$optionId]['translationIds'][] = ['id' => $entity['id']];
             }
         }
 
@@ -94,13 +95,15 @@ class BlogLandingDataSource extends BaseWizardDataSource
         $entities = $this->getEntities();
 
         if(array_key_exists($optionId, $entities)) {
-            $id = $entities[$optionId]['id'];
+            $translationIds = $entities[$optionId]['translationIds'];
         }else{
             throw new \Exception('Option not found!');
         }
 
         try{
-            $translationRepository->deleteTranslation($id);
+            foreach($translationIds as $translationId) {
+                $translationRepository->deleteTranslation($translationId['id']);
+            }
         }catch(\Exception $exception){
             throw $exception;
         }
