@@ -1,5 +1,69 @@
 # Release notes for Blog plugin
 
+## v1.0.0 (2019-06-19)
+
+### NEW: Landing page
+An assistant was created to set up the blog landing page. 
+Separate assistant options for each plugin set and language combination are available.
+Settings in the assistant under **System >> Assistants**:
+- custom url
+- entrypoint message
+- back to store message
+- landing page title
+- landing page meta title
+- landing page meta description
+- landing page meta keywords
+- landing page robots
+
+Landing page acts like a category. Looks like a category of type blog.
+- adjust route for categories to contain custom url
+- adjust route for posts to contain custom url
+- adjust route for search and search by tag to contain custom url
+**REQUIRES** plugin build to see changes in UI
+
+### Special cases and standards
+URLs will work as below:
+**Standard**
+- /custom - Landing page mentioned above
+- /custom/category1 - category of type blog
+- /custom/category1/category2 - category of type blog
+- /custom/category1/category2/postUrlName - post
+
+**Special**
+- /category1 - category of type blog works just as before
+- /category1/category2 - category of type blog works just as before
+- /custom/category1/category2/b-15 - old post, redirects to new migrated url
+    
+**Default**
+- /custom/ defaults to /blog/ if no custom is given. /blog/ works even if custom is set
+
+
+### CHANGES: UI
+- Hide shopbuilder breadcrumbs on blog pages
+- Post short description is no longer displayed on single post page
+- Optional ( in plugin config ) setting to automatically link the entrypoint container
+- change links in the UI to contain custom url ( categories, posts and search )
+- change links in the breadcrumb to contain custom url
+
+Category pages:
+- category name in the header is h1
+- category name in a post is now a span, was h5
+- post title in a post is now a h2, was a simple anchor
+Single post page:
+- category name in the header is h2
+- post title is h1
+
+Blue color is no longer enforced, blog uses Ceres primary color ( if Ceres uses green => Blog will be green as well )
+Adjusted left and right paddings on wrapper, desktop screen size, to align the edges better
+CSS for blog is now only loaded on blog pages
+JS for blog is now only loaded on blog pages
+Entrypoint CSS is still loaded on all shop pages
+Search inputs are now of type "search", they were of type "text"
+
+### REMOVED
+Blog entrypoint category picker from plugin config setting - it's now configurable in the assistant, not a category
+
+
 ## v0.9.3 (2019-03-06)
 
 - FIX - Fix meta tags
