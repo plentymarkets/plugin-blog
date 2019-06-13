@@ -15,6 +15,7 @@ Einstellung | Beschreibung
 ----|-----
 Im Blog-Header angezeigtes Standardbild | Bilddatei auswählen, welche im Blog-Header standardmäßig angezeigt wird. Auf Blog-Kategorieseiten wird das im Menü **Artikel » Kategorien** hinterlegte Kategoriebild 1 im Header angezeigt. Ist dort kein Kategoriebild hinterlegt, wird das Standardbild angezeigt. Ist kein Standardbild hinterlegt, wird ein grauer Platzhalter verwendet. Das Standardbild wird ebenfalls im Blog-Header der Suchseiten angezeigt. Die Bilddatei sollte mindestens eine Breite von 800px haben.
 "Weiterlesen" Button für gelistete Beiträge anzeigen | Checkbox aktivieren, um den "Weiterlesen"-Button für Blog-Beiträge in der Blog-Übersicht anzuzeigen.
+Automatischer Link zum Blog links im Header | Checkbox aktivieren, um den automatischen Link zum Blog links im Shop-Header anzuzeigen.
 
 ## Blog-Einstiegsseite im Assistenten einrichten
 Durchlaufe den Blog-Assistenten, um einige grundlegende Einstellungen zu deinem Blog vorzunehmen. Unter anderem legst du hier den URL-Teil fest, der dauerhaft zu deinem Blog führt, wie die Verlinkung zwischen Blog und Shop lauten soll und wichtige SEO-Einstellung zur Seite selbst, wie Titel, Metadaten und robots. Du findest ihn im Menü **System » Assistenten**.
