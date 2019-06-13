@@ -45,7 +45,6 @@ class BlogLandingAssistant extends WizardProvider
                 ],
                 'pluginSetId' => [
                     'type' => 'select',
-                    'defaultValue' => 1,
                     'options' => [
                         'name' => 'Assistant.pluginSet',
                         'required' => true,
@@ -54,7 +53,6 @@ class BlogLandingAssistant extends WizardProvider
                 ],
                 'languageCode' => [
                     'type' => 'select',
-                    'defaultValue' => 'de',
                     'options' => [
                         'name' => 'Assistant.language',
                         'required' => true,
@@ -171,6 +169,10 @@ class BlogLandingAssistant extends WizardProvider
 
         $selects = [];
 
+        $selects[] = [
+            'caption' => ''
+        ];
+
         foreach($allSets as $set) {
             $selects[] = [
                 'caption' => $set->name,
@@ -190,6 +192,10 @@ class BlogLandingAssistant extends WizardProvider
         $languages = $blogService->getLanguages();
 
         $selects = [];
+
+        $selects[] = [
+            'caption' => ''
+        ];
 
         foreach($languages as $language) {
             $selects[] = [
