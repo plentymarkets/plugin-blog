@@ -59,7 +59,6 @@ class BlogController extends LayoutController
         else {
             return $this->renderTemplate('tpl.page-not-found');
         }
-
     }
 
 
@@ -68,41 +67,42 @@ class BlogController extends LayoutController
      * @return string
      * @throws \ErrorException
      */
-    public function searchArticles($searchString, Request $request)
+    public function searchArticles($searchString, Request $request, Translator $translator)
     {
         $data = [
             'filters' => ['search' => $searchString],
             'page' => [
                 'template' => 'blog',
                 'type' => 'search',
-                'metaTitle' => 'Search',
+                'metaTitle' => $translator->trans('Blog::Template.search'),
                 'title' => '' // Search
             ]
         ];
 
         return $this->renderTemplate('tpl.blog.search', $data);
-
     }
 
 
     /**
+     * @param Request $request
+     * @param Translator $translator
      * @param int $tagId
      * @param string $tagName
-     * @param Request $request
      * @return string
      * @throws \ErrorException
      */
-    public function listArticlesByTag(int $tagId, Request $request, string $tagName = '')
+    public function listArticlesByTag(Request $request, Translator $translator, int $tagId, string $tagName = '')
     {
         $tag = pluginApp(TagService::class)->getTagById($tagId);
+        $title = $translator->trans('Blog::Template.searchByTag'). ': ' . $tag['tagName'];
 
         $data = [
             'filters' => ['tag' => (string)$tagId],
             'page' => [
                 'template' => 'blog',
                 'type' => 'tag',
-                'metaTitle' => 'Search tag: ' . $tag['tagName'],
-                'title' => 'Search by tag: ' . $tag['tagName']
+                'metaTitle' =>  $title,
+                'title' => $title
             ]
         ];
 
