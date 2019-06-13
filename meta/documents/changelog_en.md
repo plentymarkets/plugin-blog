@@ -5,7 +5,7 @@
 ### NEW: Landing page
 An assistant was created to set up the blog landing page. 
 Separate assistant options for each plugin set and language combination are available.
-Settings in the assistant:
+Settings in the assistant under **System >> Assistants**:
 - custom url
 - entrypoint message
 - back to store message
