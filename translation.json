@@ -3,6 +3,7 @@
   "ignoredTranslationFiles":
   [
     "Config.properties",
-    "Languages.properties"
+    "Languages.properties",
+    "Assistant.properties"
   ]
 }

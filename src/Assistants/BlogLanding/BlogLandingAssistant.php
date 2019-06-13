@@ -29,13 +29,16 @@ class BlogLandingAssistant extends WizardProvider
     protected function structure() {
 
         return [
-            'title' => 'Blog Landing Page',
+            'title' => 'Assistant.title',
             'key' => 'blog-landing-page',
             'translationNamespace' => 'Blog',
             'dataSource' => 'Blog\Assistants\BlogLanding\DataSource\BlogLandingDataSource',
             'settingsHandlerClass' => 'Blog\Assistants\BlogLanding\SettingsHandler\BlogLandingSettingsHandler',
             'reloadStructure' => true,
-            'createOptionIdTitle' => 'Create new setting',
+            'shortDescription' => 'Assistant.description',
+            'topics' => [
+                'blog',
+            ],
             'options' => [
                 'data' => [
                     'urlName'
@@ -44,7 +47,7 @@ class BlogLandingAssistant extends WizardProvider
                     'type' => 'select',
                     'defaultValue' => 1,
                     'options' => [
-                        'name' => 'Plugin set',
+                        'name' => 'Assistant.pluginSet',
                         'required' => true,
                         'listBoxValues' => $this->listPluginSets()
                     ]
@@ -53,48 +56,45 @@ class BlogLandingAssistant extends WizardProvider
                     'type' => 'select',
                     'defaultValue' => 'de',
                     'options' => [
-                        'name' => 'Language',
+                        'name' => 'Assistant.language',
                         'required' => true,
                         'listBoxValues' => $this->languages()
                     ]
                 ]
             ],
-            'shortDescription' => 'Settings for Blog landing page',
-            'topics' => [
-                'blog',
-            ],
+
             'steps' => [
                 'step1' => [
-                    'title' => 'Landing Page ',
-                    'description' => 'Settings for Blog landing page',
+                    'title' => 'Assistant.landingPageStepTitle',
+                    'description' => 'Assistant.landingPageStepDescription',
                     'sections' => [
                         [
-                            'title' => 'Entrypoint settings',
-                            'description' => '⚠️ Leaving any of these fields empty will reset them to default value',
+                            'title' => 'Assistant.entrypointSectionTitle',
+                            'description' => 'Assistant.entrypointSectionDescription',
                             'form' => [
                                 'entrypointMessage' => [
                                     'type' => 'text',
                                     'options' => [
-                                        'name' => 'Entrypoint message'
+                                        'name' => 'Assistant.entrypointMessage'
                                     ]
                                 ],
                                 'backToStoreMessage' => [
                                     'type' => 'text',
                                     'options' => [
-                                        'name' => 'Back to store message'
+                                        'name' => 'Assistant.entrypointExitMessage'
                                     ]
                                 ]
                             ]
                         ],
                         [
-                            'title' => 'Landing page settings',
-                            'description' => '⚠️ Empty fields will stay empty',
+                            'title' => 'Assistant.landingSectionTitle',
+                            'description' => 'Assistant.landingSectionDescription',
                             'form' => [
                                 'urlName' => [
                                     'type' => 'text',
                                     'defaultValue' => 'blog',
                                     'options' => [
-                                        'name' => 'Custom URL',
+                                        'name' => 'Assistant.customUrl',
                                         'minLength' => 3,
                                         'maxLength' => 20,
                                         'required' => true,
@@ -104,48 +104,48 @@ class BlogLandingAssistant extends WizardProvider
                                 'landingTitle' => [
                                     'type' => 'text',
                                     'options' => [
-                                        'name' => 'Landing page title'
+                                        'name' => 'Assistant.landingTitle'
                                     ]
                                 ],
                                 'landingMetaTitle' => [
                                     'type' => 'text',
                                     'options' => [
-                                        'name' => 'Landing page meta title'
+                                        'name' => 'Assistant.landingMetaTitle'
                                     ]
                                 ],
                                 'landingMetaDescription' => [
                                     'type' => 'text',
                                     'options' => [
-                                        'name' => 'Landing page meta description'
+                                        'name' => 'Assistant.landingMetaDescription'
                                     ]
                                 ],
                                 'landingMetaKeywords' => [
                                     'type' => 'text',
                                     'options' => [
-                                        'name' => 'Landing page meta keywords'
+                                        'name' => 'Assistant.landingMetaKeywords'
                                     ]
                                 ],
                                 'landingRobots' => [
                                     'type' => 'select',
-                                    'defaultValue' => 'ALL',
+                                    'defaultValue' => 'INDEX_FOLLOW',
                                     'options' => [
-                                        'name' => 'Landing page robots',
+                                        'name' => 'Assistant.landingRobots',
                                         'required' => true,
                                         'listBoxValues' => [
                                             [
-                                                'caption' => 'ALL (INDEX, FOLLOW)',
+                                                'caption' => 'Assistant.indexfollow',
                                                 'value' => 'INDEX_FOLLOW'
                                             ],
                                             [
-                                                'caption' => 'NOINDEX, FOLLOW',
+                                                'caption' => 'Assistant.noindexfollow',
                                                 'value' => 'NOINDEX_FOLLOW'
                                             ],
                                             [
-                                                'caption' => 'INDEX, NOFOLLOW',
+                                                'caption' => 'Assistant.indexnofollow',
                                                 'value' => 'INDEX_NOFOLLOW'
                                             ],
                                             [
-                                                'caption' => 'NOINDEX, NOFOLLOW',
+                                                'caption' => 'Assistant.noindexnofollow',
                                                 'value' => 'NOINDEX_NOFOLLOW'
                                             ],
                                         ]
