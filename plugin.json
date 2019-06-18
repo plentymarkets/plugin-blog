@@ -1,5 +1,5 @@
 {
-  "version": "0.9.3",
+  "version": "1.0.0",
   "name": "Blog",
   "marketplaceName" : {"de": "Blog","en": "Blog"},
   "description": "This is the official blog developed by plentymarkets.",
