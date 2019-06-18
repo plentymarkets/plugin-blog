@@ -10,26 +10,17 @@ namespace Blog\Controllers;
 
 
 use Blog\Services\BlogService;
-use Ceres\Contexts\GlobalContext;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Redirect;
 use IO\Api\ResponseCode;
 use IO\Controllers\LayoutController;
 use IO\Services\CategoryService;
 use IO\Services\SessionStorageService;
 use IO\Services\TagService;
 use IO\Services\UrlService;
-use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
-use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
-use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
 use Plenty\Plugin\Application;
-use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Http\Response;
-use Plenty\Plugin\Log\Loggable;
-use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Translation\Translator;
 
 class BlogController extends LayoutController
@@ -203,6 +194,7 @@ class BlogController extends LayoutController
      */
     public function showArticleOrCategory(Request $request, $part1 = null, $part2 = null, $part3 = null, $part4 = null, $part5 = null)
     {
+        // TODO DI these
         $blogPluginService = pluginApp(BlogPluginService::class);
         $blogPostRepository = pluginApp(BlogPostRepositoryContract::class);
         $urlService = pluginApp(UrlService::class);

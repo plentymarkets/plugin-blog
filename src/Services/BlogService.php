@@ -10,6 +10,7 @@ namespace Blog\Services;
 
 use IO\Services\SessionStorageService;
 use IO\Services\UrlBuilder\UrlQuery;
+use IO\Services\UrlService;
 use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
@@ -167,11 +168,9 @@ class BlogService
      */
     public function prepareDataForEntrypoint()
     {
-        $trans = pluginApp(Translator::class);
-
         $data = [
             'landing' => [
-                'url' => $this->buildUrl($trans->trans('Blog::Landing.urlName'))
+                'url' => $this->buildLandingUrl()
             ]
         ];
 
@@ -186,6 +185,33 @@ class BlogService
     {
         return pluginApp(UrlQuery::class,
             ['path' => $url])->toRelativeUrl($this->getDefaultLanguage() !== $this->getLanguage());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function buildLandingUrl()
+    {
+        return $this->buildUrl($this->getLandingUrlName());
+    }
+
+    /**
+     * @param string $urlName
+     * @return string
+     */
+    public function buildPostUrl(string $urlName)
+    {
+        // TODO this should include the category names in the url, sometime in the future
+        return $this->buildLandingUrl()."/$urlName";
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function buildCategoryUrl(int $id)
+    {
+        return pluginApp(UrlService::class)->getCategoryURL($id);
     }
 
     /**

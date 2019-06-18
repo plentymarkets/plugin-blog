@@ -7,6 +7,7 @@ use Blog\Assistants\CustomDataSourceExample\CustomDataSourceAssistant;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
 use Blog\Services\BlogService;
+use Blog\Twig\Links;
 use Ceres\Contexts\CategoryContext;
 use Ceres\Helper\LayoutContainer;
 use IO\Helper\ResourceContainer;
@@ -41,6 +42,8 @@ class BlogServiceProvider extends ServiceProvider
     public function boot(Twig $twig, Dispatcher $eventDispatcher, Request $request, ConfigRepository $config)
     {
         pluginApp(WizardContainerContract::class)->register('blog-landing-page', BlogLandingAssistant::class);
+
+        $twig->addExtension(Links::class);
 
         // Custom components
         $eventDispatcher->listen('IO.Resources.Import',
