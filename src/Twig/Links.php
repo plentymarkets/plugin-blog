@@ -43,8 +43,8 @@ class Links extends Twig_Extension
     {
         return [
             $this->factory->createSimpleFunction('Link', [$this, 'linkCategory'], ['is_safe' => array('html')]),
-            $this->factory->createSimpleFunction('Link_blog', [$this, 'linkBlog'], ['is_safe' => array('html')]),
-            $this->factory->createSimpleFunction('Link_item', [$this, 'linkItem'], ['is_safe' => array('html')]),
+            $this->factory->createSimpleFunction('Link_Blog', [$this, 'linkBlog'], ['is_safe' => array('html')]),
+            $this->factory->createSimpleFunction('Link_Item', [$this, 'linkItem'], ['is_safe' => array('html')]),
             $this->factory->createSimpleFunction('BuildBody', [$this, 'buildBody'], ['is_safe' => array('html')])
         ];
     }
