@@ -12,7 +12,7 @@
     <meta name="description" content="{{ blogPost.data.metaData.description }}">
     <meta name="keywords" content="{{ blogPost.data.metaData.keywords }}">
 
-    <meta name="robots" content="{{ blogPost.data.metaData.robots }}">
+    <meta name="robots" content="{% if blogPost.data.metaData.robots is not empty %}{{ blogPost.data.metaData.robots }}{% else %}index,follow{% endif %}">
 {% endblock %}
 
 {% block PageBody %}

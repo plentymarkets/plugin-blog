@@ -8,7 +8,7 @@
     <meta name="description" content="{{ trans("Blog::Landing.landingMetaTitle") }}">
     <meta name="keywords" content="{{ trans("Blog::Landing.landingMetaKeywords") }}">
 
-    <meta name="robots" content="{{ trans("Blog::Landing.landingRobots") }}">
+    <meta name="robots" content="{% if trans("Blog::Landing.landingRobots") is not empty %}{{ trans("Blog::Landing.landingRobots") }}{% else %}INDEX, FOLLOW{% endif %}">
 
 {% endblock %}
 
