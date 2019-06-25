@@ -8,7 +8,6 @@
 
 namespace Blog\Assistants\BlogLanding\DataSource;
 
-use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
 use Plenty\Modules\PluginMultilingualism\Contracts\PluginTranslationRepositoryContract;
 use Plenty\Modules\Wizard\Services\DataSources\BaseWizardDataSource;
 

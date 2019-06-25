@@ -1,0 +1,80 @@
+{% set truncatedBlogTitle = blogPost.data.post.title|length > 50 ? blogPost.data.post.title|slice(0, 50) ~ '...' : blogPost.data.post.title %}
+
+<div class="blog-wrapper" id="blog-single-layout-center">
+
+    <section class="blog-header">
+        <div class="container-max">
+            {% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': category.id, 'extra': truncatedBlogTitle } %}
+
+            <h2 class="h4 blog-category-name text-center">
+                {{ category.details[0].name }}
+            </h2>
+        </div>
+    </section>
+
+    <div class="container-max blog-container">
+
+        <div class="row">
+            <div class="col-lg-9 col-md-10 mx-auto">
+                <div class="blog-single">
+
+                    <article class="blog-post">
+
+                        <div class="blog-post-header">
+                            <h1 class="blog-post-title text-center">{{ blogPost.data.post.title }}</h1>
+
+                            <p class="blog-details text-center">
+                                        <span class="blog-detail blog-detail-author">
+                                            {% if blogPost.data.user.image is not empty %}
+                                                <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">{#
+                                            #}{% else %}{#
+                                                #}{{ trans('Blog::Template.createdBy') }} {#
+                                            #}{% endif %}{#
+                                            #}<a href="/{{ trans('Blog::Landing.urlName') }}/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
+                                        </span>
+                                <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("j M, Y")}}</span>
+                            </p>
+
+                            {#<p class="blog-post-shortdescription">{{ blogPost.data.post.shortDescription }}</p>#}
+                        </div>
+
+                        {% if blogPost.data.images.title is not empty %}
+                            {% if blogPost.data.images.title.path is not empty %}
+                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
+                            {% endif %}
+                        {% endif %}
+
+                        <div class="blog-post-content">
+
+                            <div class="blog-body">
+                                {{ BuildBody(blogPost.data.post.body) }}
+                            </div>
+
+                            {% if blogPost.data.post.tags is not empty %}
+                                <p class="blog-tags">
+                                    {% for tagId in blogPost.data.post.tags | split(',') %}
+                                        {% set tagName = services.tag.getTagName(tagId) %}
+
+                                        {% if tagName is not empty %}
+                                            <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}/{{ tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagName }}</a>
+                                        {% else %}
+                                            <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagId }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                    </article>
+
+                    <div class="blog-recent-posts">
+                        <blog-latest-posts horizontal></blog-latest-posts>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -3,6 +3,12 @@
 {% set blogCategoryName = category.details[0].name %}
 {% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
 
+{% if config('Blog.layouts.article') is not empty %}
+    {% set articleLayout = config('Blog.layouts.article') %}
+{% else %}
+    {% set articleLayout = 'default' %}
+{% endif %}
+
 {% extends getPartial('page-design') %}
 
 {% block PartialHead %}
@@ -10,97 +16,28 @@
 
     <meta name="title" content="{{ blogPost.data.metaData.title }}">
     <meta name="description" content="{{ blogPost.data.metaData.description }}">
-    <meta name="keywords" content="{{ blogPost.data.metaData.keywords }}">
 
+    <meta name="og:title" content="{{ blogPost.data.metaData.title }}">
+    <meta name="og:description" content="{{ blogPost.data.metaData.description }}">
+    <meta name="og:url" content="{{ blogPost.urls.postUrl }}">
+
+    {% if blogPost.data.images.title.path is not empty %}
+        <meta name="og:image" content="{{ blogPost.data.images.title.path }}">
+    {% elseif blogPost.data.images.preview.path is not empty %}
+        <meta name="og:image" content="{{ blogPost.data.images.preview.path }}">
+    {% endif %}
+
+    <meta name="keywords" content="{{ blogPost.data.metaData.keywords }}">
     <meta name="robots" content="{% if blogPost.data.metaData.robots is not empty %}{{ blogPost.data.metaData.robots }}{% else %}index,follow{% endif %}">
 {% endblock %}
 
 {% block PageBody %}
-    <div class="blog-wrapper">
 
-        <section class="blog-header"
-                {% if category.details[0].imagePath is not empty %}
-                    style="background-image: url(/documents/{{ category.details[0].imagePath }})"
-                {% elseif blogHeaderDefaultImage is not empty %}
-                    style="background-image: url({{ blogHeaderDefaultImage }})"
-                {% endif %}>
-
-            <div class="container-max">
-                <h2 class="h1 blog-category-name">
-                    {{ category.details[0].name }}
-                </h2>
-
-                {% set truncatedBlogTitle = blogPost.data.post.title|length > 50 ? blogPost.data.post.title|slice(0, 50) ~ '...' : blogPost.data.post.title %}
-                {% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': category.id, 'extra': truncatedBlogTitle } %}
-
-            </div>
-
-        </section>
-
-        <div class="container-max blog-container">
-
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="blog-single">
-                        <article class="blog-post">
-
-                            <div class="blog-post-header">
-                                <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
-
-                                <p class="blog-details">
-                                        <span class="blog-detail blog-detail-author">
-                                            {% if blogPost.data.user.image is not empty %}
-                                                <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">{#
-                                            #}{% else %}{#
-                                                #}{{ trans('Blog::Template.createdBy') }} {#
-                                            #}{% endif %}{#
-                                            #}<a href="/{{ trans('Blog::Landing.urlName') }}/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
-                                        </span>
-                                    <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("j M, Y")}}</span>
-                                </p>
-
-                                {#<p class="blog-post-shortdescription">{{ blogPost.data.post.shortDescription }}</p>#}
-                            </div>
-
-                            {% if blogPost.data.images.title is not empty %}
-                                {% if blogPost.data.images.title.path is not empty %}
-                                    <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
-                                {% endif %}
-                            {% endif %}
-
-                            <div class="blog-post-content">
-
-                                <div class="blog-body">
-                                    {{ BuildBody(blogPost.data.post.body) }}
-                                </div>
-
-                                {% if blogPost.data.post.tags is not empty %}
-                                    <p class="blog-tags">
-                                        {% for tagId in blogPost.data.post.tags | split(',') %}
-                                            {% set tagName = services.tag.getTagName(tagId) %}
-
-                                            {% if tagName is not empty %}
-                                                <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}/{{ tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagName }}</a>
-                                            {% else %}
-                                                <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagId }}</a>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </p>
-                                {% endif %}
-                            </div>
-
-                        </article>
-                    </div>
-                </div>
-
-                <div class="col-md-4 blog-sidebar">
-                    {% include "Blog::Category.Blog.Partials.Sidebar" %}
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-
+    {% if articleLayout == 'default' %}
+        {% include "Blog::Category.Blog.ArticleLayouts.ArticleLayoutDefault" %}
+    {% elseif articleLayout == 'defaultreverse' %}
+        {% include "Blog::Category.Blog.ArticleLayouts.ArticleLayoutDefault" with { 'reverse': true } %}
+    {% elseif articleLayout == 'center' %}
+        {% include "Blog::Category.Blog.ArticleLayouts.ArticleLayoutCenter" %}
+    {% endif %}
 {% endblock %}

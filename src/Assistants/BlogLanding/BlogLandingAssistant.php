@@ -9,9 +9,7 @@
 namespace Blog\Assistants\BlogLanding;
 
 use Blog\Services\BlogService;
-use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
-use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Wizard\Services\WizardProvider;
 
 /**
@@ -37,7 +35,7 @@ class BlogLandingAssistant extends WizardProvider
             'reloadStructure' => true,
             'shortDescription' => 'Assistant.description',
             'topics' => [
-                'blog',
+                'omni-channel.blog',
             ],
             'options' => [
                 'data' => [
@@ -151,6 +149,24 @@ class BlogLandingAssistant extends WizardProvider
                                 ]
                             ]
                         ]
+                    ]
+                ],
+                'plugin_build' => [
+                    'title' => 'Assistant.pluginBuildTitle',
+                    'sections' => [
+                        [
+                            'title' => 'Assistant.pluginBuildSectionTitle',
+                            'description' => 'Assistant.pluginBuildSectionDescription',
+                            'form' => [
+                                'agreement' => [
+                                    'type' => 'checkbox',
+                                    'options' => [
+                                        'required' => true,
+                                        'name' => 'Assistant.pluginBuildAgreement',
+                                    ]
+                                ]
+                            ]
+                        ],
                     ]
                 ]
             ]

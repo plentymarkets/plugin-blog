@@ -5,7 +5,6 @@ namespace Blog\Contexts;
 use Ceres\Contexts\GlobalContext;
 use IO\Helper\ContextInterface;
 use IO\Services\CategoryService;
-use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Translation\Translator;
 
 class BlogContext extends GlobalContext implements ContextInterface

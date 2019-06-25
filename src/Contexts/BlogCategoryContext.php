@@ -2,10 +2,8 @@
 
 namespace Blog\Contexts;
 
-use Ceres\Contexts\GlobalContext;
 use IO\Helper\ContextInterface;
 use IO\Services\CategoryService;
-use Plenty\Plugin\ConfigRepository;
 
 class BlogCategoryContext extends BlogContext implements ContextInterface
 {

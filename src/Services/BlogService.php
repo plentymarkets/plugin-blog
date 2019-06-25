@@ -8,6 +8,7 @@
 
 namespace Blog\Services;
 
+use IO\Services\CategoryService;
 use IO\Services\SessionStorageService;
 use IO\Services\UrlBuilder\UrlQuery;
 use IO\Services\UrlService;
@@ -40,6 +41,10 @@ class BlogService
         $blogPosts = pluginApp(BlogPostRepositoryContract::class)->listPosts(1, 1, $filters);
 
         $blogPost = $blogPosts['entries'][0];
+
+        if($blogPost) {
+            $blogPost->urls = $this->buildFullPostUrl($blogPost);
+        }
 
         return $blogPost;
     }
@@ -203,6 +208,40 @@ class BlogService
     {
         // TODO this should include the category names in the url, sometime in the future
         return $this->buildLandingUrl()."/$urlName";
+    }
+
+    /**
+     * @param $post
+     * @return mixed
+     */
+    public function buildFullPostUrl($post)
+    {
+        if($post) {
+            $lang = pluginApp(SessionStorageService::class)->getLang();
+            $categoryService = pluginApp(CategoryService::class);
+            $categoryUrl = $categoryService->getURLById($post['data']['category']['id']);
+            $landingUrl = $this->buildLandingUrl();
+
+            // If we have the category url
+            if(!empty($categoryUrl)) {
+                // And it's not for the default language we need to remove the language prefix
+                if(strpos($categoryUrl,"/$lang/") === 0 ){
+                    $categoryUrl = str_replace("/$lang/", '/', $categoryUrl);
+                }
+                // prefix it with the landing url
+                $categoryUrl = $landingUrl . $categoryUrl;
+            }else{
+                $categoryUrl = $landingUrl;
+            }
+
+            return [
+                'postUrl' => $categoryUrl . '/' . $post['data']['post']['urlName'],
+                'landingUrl' => $landingUrl,
+                'categoryUrl' => $categoryUrl
+            ];
+        }else{
+            return null;
+        }
     }
 
     /**

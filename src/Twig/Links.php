@@ -3,14 +3,10 @@ namespace Blog\Twig;
 
 use Blog\Services\BlogService;
 use IO\Services\CategoryService;
-use IO\Services\ItemService;
-use IO\Services\UrlBuilder\CategoryUrlBuilder;
-use IO\Services\UrlService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Plugin\Templates\Extensions\Twig_Extension;
 use Plenty\Plugin\Templates\Factories\TwigFactory;
 use Plenty\Plugin\Templates\Twig;
-
 
 class Links extends Twig_Extension
 {
@@ -93,6 +89,10 @@ class Links extends Twig_Extension
         return pluginApp(BlogService::class)->buildUrl("a-$id");
     }
 
+    /**
+     * @param $body
+     * @return mixed
+     */
     public function buildBody($body)
     {
         $twig = pluginApp(Twig::class);

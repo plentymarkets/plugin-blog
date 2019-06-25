@@ -7,10 +7,9 @@
 .blog-wrapper {
     // This is here if theme creators need to change the background of the blog page
     background:white;
-    font-family:$font-roboto;
+    //font-family:$font-roboto;
 
-    .blog-recent-post:hover .blog-recent-post-title, a:not(.blog-recent-post):not(.blog-action-readmore):not(.btn):hover
-    {
+    .blog-recent-post:hover .blog-recent-post-title, a:not(.blog-recent-post):not(.blog-action-readmore):not(.btn):hover {
         text-decoration:underline;
     }
 
@@ -48,7 +47,6 @@
             }
         }
     }
-
 }
 
 .blog-container {
@@ -281,6 +279,7 @@
         img {
             max-width:100%;
             height:auto;
+            @include blog-border-radius;
         }
 
         blockquote {
@@ -351,11 +350,6 @@
 }
 
 .blog-sidebar {
-
-    @include blog-breakpoint(desktop) {
-        padding-left:35px;
-    }
-
     .blog-sidebar-section {
         margin-bottom:50px;
 
@@ -364,89 +358,96 @@
             font-size:22px;
             font-weight:bold;
         }
+    }
+}
 
-        //.blog-sidebar-title {
-        //    margin-bottom:15px;
-        //    font-size:15px;
-        //    text-transform:uppercase;
-        //    text-align:center;
-        //    position:relative;
-        //
-        //    span {
-        //        background:white;
-        //        position:relative;
-        //        padding:0 20px;
-        //        z-index:2;
-        //    }
-        //
-        //    &:before {
-        //        content:'';
-        //        width:100%;
-        //        height:1px;
-        //        background:#efefef;
-        //        position:absolute;
-        //        display:block;
-        //        top:50%;
-        //        left:0;
-        //        z-index:1;
-        //    }
-        //}
+.blog-single-layout-default {
+    .blog-sidebar {
+        @include blog-breakpoint(desktop) {
+            padding-left:35px;
+        }
+    }
+}
+
+// Reverse layout
+.blog-single-layout-default-reverse {
+    .blog-sidebar {
+        @include blog-breakpoint(desktop) {
+            padding-right:35px;
+        }
+    }
+}
+
+
+.blog-recent-posts {
+
+    .blog-sidebar-loading {
+        text-align:center;
     }
 
-    .blog-recent-posts {
+    .blog-recent-post {
+        margin-bottom:20px;
+        display:block;
 
-        .blog-sidebar-loading {
-            text-align:center;
+        .blog-recent-post-title {
+            margin-bottom:5px;
+            padding-top:4px;
+            color:$color-text;
+            font-weight:600;
+            font-size:15px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2;
+            line-height:18px;
+            max-height:40px;
         }
 
-        .blog-recent-post {
-            margin-bottom:20px;
-            display:block;
+        .blog-recent-post-date {
+            color:$color-muted;
+            font-size:12px;
+            margin-bottom:0;
+            text-decoration: none !important;
+        }
 
-            .blog-recent-post-title {
-                margin-bottom:5px;
-                padding-top:4px;
-                color:$color-text;
-                font-weight:600;
-                font-size:15px;
-                overflow:hidden;
-                text-overflow:ellipsis;
-                display:-webkit-box;
-                -webkit-box-orient:vertical;
-                -webkit-line-clamp:2;
-                line-height:18px;
-                max-height:40px;
-            }
+        .blog-recent-post-image {
+            width:90px;
+            height:65px;
+            float:left;
+            margin-right:15px;
+            background-color:$light-bg-color;
+            @include blog-border-radius(3px);
 
-            .blog-recent-post-date {
-                color:$color-muted;
-                font-size:12px;
-                margin-bottom:0;
-                text-decoration: none !important;
-            }
-
-            .blog-recent-post-image {
-                width:90px;
+            img {
+                object-fit:cover;
+                width:100%;
                 height:65px;
-                float:left;
-                margin-right:15px;
-                background-color:$light-bg-color;
                 @include blog-border-radius(3px);
-
-                img {
-                    object-fit:cover;
-                    width:100%;
-                    height:65px;
-                    @include blog-border-radius(3px);
-                }
-
-
             }
 
-            &:hover {
-                .blog-recent-post-title {
-                    color:$color-primary;
-                }
+
+        }
+
+        &:hover {
+            .blog-recent-post-title {
+                color:$color-primary;
+            }
+        }
+    }
+
+    &.blog-recent-horizontal {
+        margin-bottom:20px;
+
+        .blog-recent-post-image {
+            width:100%;
+            height:290px;
+            float:none;
+            margin-right:0;
+            margin-bottom:10px;
+
+            img {
+                height:100%;
             }
         }
     }

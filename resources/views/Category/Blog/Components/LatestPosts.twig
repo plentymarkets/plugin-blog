@@ -6,21 +6,25 @@
 
 <script type="x/template" id="vue-blog-latest-posts">
 
-    <div class="blog-recent-posts">
+    <div class="blog-recent-posts" :class="{'blog-recent-horizontal': horizontal}">
         <h3 class="blog-heading"><span>{{ trans('Blog::Template.recentPosts') }}</span></h3>
 
-        <a v-for="article in articleList" class="blog-recent-post" :href="article.urls.postUrl">
-            <div class="blog-recent-post-image">
-                <img v-if="article.data.images.preview.path" :src="article.data.images.preview.path" alt="">
-                {% if latestPostsDefaultImage is not empty %}
-                    <img v-else src="{{ latestPostsDefaultImage }}" alt="">
-                {% endif %}
-            </div>
-            <h4 class="blog-recent-post-title">${ article.data.post.title }</h4>
+        <div class="row">
+            <div v-for="article in articleList" :class="[horizontal ? 'col-md-4 col-sm-6 mb-3' : 'col-12']">
+                <a class="blog-recent-post" :href="article.urls.postUrl">
+                    <div class="blog-recent-post-image">
+                        <img v-if="article.data.images.preview.path" :src="article.data.images.preview.path" alt="">
+                        {% if latestPostsDefaultImage is not empty %}
+                            <img v-else src="{{ latestPostsDefaultImage }}" alt="">
+                        {% endif %}
+                    </div>
+                    <h4 class="blog-recent-post-title">${ article.data.post.title }</h4>
 
-            <p class="blog-recent-post-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</p>
-            <div class="clear"></div>
-        </a>
+                    <p class="blog-recent-post-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</p>
+                    <div class="clear"></div>
+                </a>
+            </div>
+        </div>
 
         <div v-if="isLoading"> {% include "Blog::Category.Blog.Partials.Loading" %} </div>
     </div>
@@ -32,6 +36,11 @@
         delimiters: ['${', '}'],
 
         props: {
+            horizontal: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
         },
 
         created: function() {

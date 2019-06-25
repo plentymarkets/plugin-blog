@@ -3,12 +3,10 @@
 namespace Blog\Providers;
 
 use Blog\Assistants\BlogLanding\BlogLandingAssistant;
-use Blog\Assistants\CustomDataSourceExample\CustomDataSourceAssistant;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
 use Blog\Services\BlogService;
 use Blog\Twig\Links;
-use Ceres\Contexts\CategoryContext;
 use Ceres\Helper\LayoutContainer;
 use IO\Helper\ResourceContainer;
 use IO\Helper\TemplateContainer;

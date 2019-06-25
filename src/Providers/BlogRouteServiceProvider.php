@@ -9,11 +9,9 @@
 namespace Blog\Providers;
 
 use Blog\Services\BlogService;
-use Plenty\Modules\PluginMultilingualism\Contracts\PluginTranslationRepositoryContract;
 use Plenty\Plugin\RouteServiceProvider;
 use Plenty\Plugin\Routing\ApiRouter;
 use Plenty\Plugin\Routing\Router;
-use Plenty\Plugin\Translation\Translator;
 
 /**
  * Class BlogRouteServiceProvider
@@ -30,8 +28,6 @@ class BlogRouteServiceProvider extends RouteServiceProvider
     {
         // We can't know which language is selected at this point... so we register all routes for all languages
         $translations = $blogService->buildCustomUrlTranslationsByLanguage();
-
-        $router->get("test/123", 'Blog\Controllers\BlogController@test');
 
         foreach($translations as $lang => $translation) {
             $urlName = $translation['urlName'];
