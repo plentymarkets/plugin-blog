@@ -1,5 +1,17 @@
 # Release notes for Blog plugin
 
+## v1.0.2 (2019-06-27)
+
+### NEW: OG Tags added
+- title = meta title
+- description = meta description
+- url = relative url to the article
+- image = title image if it's available, otherwise the preview image, if neither is available no og:image tag is set
+
+### NEW: Custom fonts are now supported in the blog
+
+### NEW: Landing page assistant is now available under System >> Assistants >> Omni Channel >> Blog
+
 ## v1.0.0 (2019-06-19)
 
 ### NEW: Landing page
