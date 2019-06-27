@@ -1,4 +1,16 @@
-# Release notes für das Blog Plugin
+# Release notes for Blog plugin
+
+## v1.0.2 (2019-06-27)
+
+### NEW: OG Tags wurden hinzugefügt
+- title = Metatitle
+- description = Meta Description
+- url = Relative URL zum Blogartikel
+- image = Titelbild wenn verfügbar, sonst Vorschaubild. Wenn keines vorhanden wird kein og:image Tag übertragen.
+
+### NEW: Custom fonts werden nun vom Blog unterstützt
+
+### NEW: Der Landingpage Assistent is jetzt unter System >> Assistenten >> Omni Channel >> Blog verfügbar
 
 ## v1.0.0 (2019-06-19)
 
