@@ -20,6 +20,7 @@
 
                     .blog-sidebar-category-toggler {
                         background:darken($light-bg-color,5%);
+                        opacity:1;
                     }
                 }
             }
@@ -33,12 +34,12 @@
 
                 &.blog-sidebar-category-name {
                     &.active {
-                        background:$light-bg-color;
+                        //background:$light-bg-color;
                         font-weight:bold;
 
-                        & + .blog-sidebar-category-toggler {
-                            background:darken($light-bg-color,5%);
-                        }
+                        //& + .blog-sidebar-category-toggler {
+                        //    background:darken($light-bg-color,5%);
+                        //}
                     }
                 }
 
@@ -48,6 +49,8 @@
                     top:0;
                     text-align:center;
                     height:100%;
+                    opacity:0;
+                    @include blog-animated;
 
                     i {
                         font-size:22px;
