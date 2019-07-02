@@ -1,0 +1,34 @@
+{% if blogTreeId %}
+<ul id="bt-sidebar-category-{{ blogTreeId }}" class="collapse {{ blogCategoryIsActive ? 'show' : '' }}">
+{% else %}
+<ul>
+{% endif %}
+    {% for blogCategory in blogCategoryTree %}
+    {% set blogCategoryURL = blogUrlTree ~ '/' ~ blogCategory.details[0].nameUrl %}
+
+    {% set blogCategoryIsActive = false %}
+    {% for blogSingleCategory in blogCategoryHierarchy if blogCategory.id == blogSingleCategory.id %}
+        {% set blogCategoryIsActive = true %}
+    {% endfor %}
+
+        <li>
+        <span class="blog-name-row-wrap">
+            <a class="blog-sidebar-category-name {{ blogCategoryIsActive ? 'active' : '' }}" href="{{ blogCategoryURL }}">{{ blogCategory.details[0].name }}</a>
+
+            {% if blogCategory.children is not empty  %}
+            <a class="blog-sidebar-category-toggler {{ blogCategoryIsActive ? '' : 'collapsed' }}"
+                   data-toggle="collapse"
+                   href="#bt-sidebar-category-{{ blogCategory.id }}"
+                   aria-controls="bt-sidebar-category-{{ blogCategory.id }}">
+                <i class="blog-hide-icon fa fa-angle-up"></i>
+                <i class="blog-show-icon fa fa-angle-down"></i>
+            </a>
+            {% endif %}
+
+        </span>
+
+        {% include "Blog::Sidebar.Components.Categories.CategoryList" with { 'blogCategoryTree': blogCategory.children, 'blogUrlTree' : blogCategoryURL, 'blogTreeId' : blogCategory.id, 'blogCategoryIsActive' : blogCategoryIsActive }  %}
+
+    </li>
+    {% endfor %}
+</ul>

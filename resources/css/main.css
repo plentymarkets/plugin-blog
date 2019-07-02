@@ -714,7 +714,6 @@
 .blog-sidebar-categories ul {
   list-style: none;
   padding-left: 20px;
-  border-left: #f7f7f9 solid 1px;
 }
 
 /* line 8, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
@@ -724,6 +723,22 @@
 }
 
 /* line 12, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+.blog-sidebar-categories ul li .blog-name-row-wrap {
+  display: block;
+  position: relative;
+}
+
+/* line 17, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+.blog-sidebar-categories ul li .blog-name-row-wrap:hover .blog-sidebar-category-name {
+  background: #f7f7f9;
+}
+
+/* line 21, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+.blog-sidebar-categories ul li .blog-name-row-wrap:hover .blog-sidebar-category-toggler {
+  background: #e8e8ee;
+}
+
+/* line 27, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
 .blog-sidebar-categories ul li a {
   padding: 8px 12px;
   display: block;
@@ -734,40 +749,53 @@
   border-radius: 3px;
 }
 
-/* line 20, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
-.blog-sidebar-categories ul li a.blog-sidebar-category-name:hover, .blog-sidebar-categories ul li a.blog-sidebar-category-name.active {
+/* line 35, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+.blog-sidebar-categories ul li a.blog-sidebar-category-name.active {
   background: #f7f7f9;
+  font-weight: bold;
 }
 
-/* line 23, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
-.blog-sidebar-categories ul li a.blog-sidebar-category-name:hover + .blog-sidebar-category-toggler, .blog-sidebar-categories ul li a.blog-sidebar-category-name.active + .blog-sidebar-category-toggler {
+/* line 39, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+.blog-sidebar-categories ul li a.blog-sidebar-category-name.active + .blog-sidebar-category-toggler {
   background: #e8e8ee;
 }
 
-/* line 29, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+/* line 45, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
 .blog-sidebar-categories ul li a.blog-sidebar-category-toggler {
   position: absolute;
   right: 0;
   top: 0;
   text-align: center;
+  height: 100%;
 }
 
-/* line 35, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+/* line 52, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+.blog-sidebar-categories ul li a.blog-sidebar-category-toggler i {
+  font-size: 22px;
+}
+
+/* line 56, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
 .blog-sidebar-categories ul li a.blog-sidebar-category-toggler .blog-show-icon {
   display: none;
+  line-height: 20px;
 }
 
-/* line 40, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+/* line 61, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+.blog-sidebar-categories ul li a.blog-sidebar-category-toggler .blog-hide-icon {
+  line-height: 16px;
+}
+
+/* line 67, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
 .blog-sidebar-categories ul li a.blog-sidebar-category-toggler.collapsed .blog-show-icon {
   display: inline;
 }
 
-/* line 43, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+/* line 70, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
 .blog-sidebar-categories ul li a.blog-sidebar-category-toggler.collapsed .blog-hide-icon {
   display: none;
 }
 
-/* line 53, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
+/* line 80, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/sidebar/_categories.scss */
 .blog-sidebar-categories > ul {
   padding-left: 0;
   border-left: none;

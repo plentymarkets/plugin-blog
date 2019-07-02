@@ -6,6 +6,7 @@ use Blog\Assistants\BlogLanding\BlogLandingAssistant;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
 use Blog\Services\BlogService;
+use Blog\Twig\CategoryTree;
 use Blog\Twig\Links;
 use Ceres\Helper\LayoutContainer;
 use IO\Helper\ResourceContainer;
@@ -42,6 +43,7 @@ class BlogServiceProvider extends ServiceProvider
         pluginApp(WizardContainerContract::class)->register('blog-landing-page', BlogLandingAssistant::class);
 
         $twig->addExtension(Links::class);
+        $twig->addExtension(CategoryTree::class);
 
         // Custom components
         $eventDispatcher->listen('IO.Resources.Import',
