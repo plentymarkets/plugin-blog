@@ -34,10 +34,10 @@
 {% block PageBody %}
 
     {% if articleLayout == 'default' %}
-        {% include "Blog::Category.Blog.ArticleLayouts.ArticleLayoutDefault" %}
+        {% include "Blog::Article.Layouts.Default" %}
     {% elseif articleLayout == 'defaultreverse' %}
-        {% include "Blog::Category.Blog.ArticleLayouts.ArticleLayoutDefault" with { 'reverse': true } %}
+        {% include "Blog::Article.Layouts.Default" with { 'reverse': true } %}
     {% elseif articleLayout == 'center' %}
-        {% include "Blog::Category.Blog.ArticleLayouts.ArticleLayoutCenter" %}
+        {% include "Blog::Article.Layouts.Centered" %}
     {% endif %}
 {% endblock %}

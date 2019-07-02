@@ -48,8 +48,8 @@
             </article>
 
             <div v-if="listIsLoading">
-                {% include "Blog::Category.Blog.Partials.BlogListDummyPost" %}
-                {% include "Blog::Category.Blog.Partials.Loading" %}
+                {% include "Blog::Other.BlogListDummyPost" %}
+                {% include "Blog::Other.Loading" %}
             </div>
 
             <div v-if="!listIsLoading && articleList.length == 0">

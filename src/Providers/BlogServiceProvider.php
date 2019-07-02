@@ -46,9 +46,9 @@ class BlogServiceProvider extends ServiceProvider
         // Custom components
         $eventDispatcher->listen('IO.Resources.Import',
             function (ResourceContainer $container) {
-                $container->addScriptTemplate('Blog::Category.Blog.Components.BlogList');
-                $container->addScriptTemplate('Blog::Category.Blog.Components.Search');
-                $container->addScriptTemplate('Blog::Category.Blog.Components.LatestPosts');
+                $container->addScriptTemplate('Blog::Category.Components.BlogList');
+                $container->addScriptTemplate('Blog::Sidebar.Components.Search');
+                $container->addScriptTemplate('Blog::Sidebar.Components.LatestPosts');
             }
         );
 
@@ -63,7 +63,7 @@ class BlogServiceProvider extends ServiceProvider
                 'filters' => $request->except(['plentyMarkets'])
             ];
 
-            $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogData, 'blogData');
+            $container->setTemplate('Blog::Category.CategoryBlog')->withData($blogData, 'blogData');
 
             return false;
         });
@@ -74,21 +74,21 @@ class BlogServiceProvider extends ServiceProvider
                 'filters' => $request->except(['plentyMarkets'])
             ];
 
-            $container->setTemplate('Blog::Category.Blog.CategoryBlog')->withData($blogData, 'blogData');
+            $container->setTemplate('Blog::Category.CategoryBlog')->withData($blogData, 'blogData');
 
             return false;
         }, 90);
 
         $eventDispatcher->listen('IO.tpl.blog.article', function(TemplateContainer $container, $data)
         {
-            $container->setTemplate('Blog::Category.Blog.Article')->setTemplateData($data);
+            $container->setTemplate('Blog::Article.Article')->setTemplateData($data);
 
             return false;
         }, 90);
 
         $eventDispatcher->listen('IO.tpl.blog.search', function(TemplateContainer $container, $data)
         {
-            $container->setTemplate('Blog::Category.Blog.Search')->setTemplateData($data);
+            $container->setTemplate('Blog::Category.Search')->setTemplateData($data);
 
             return false;
         }, 90);

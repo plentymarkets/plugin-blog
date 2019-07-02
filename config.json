@@ -50,6 +50,51 @@
                     "label": "Config.latestPostsDefaultImage"
                 }
             }
+        },
+        "Config.tabLayouts": {
+            "label": "Config.tabLayouts",
+            "formFields": {
+                "layouts.article": {
+                    "type": "selectBox",
+                    "required": false,
+                    "label": "Config.labelArticleLayout",
+                    "options": {
+                        "defaultValue": "default",
+                        "selectBoxValues": [
+                            {
+                                "value": "default",
+                                "caption": "Config.labelArticleLayoutRightSidebar"
+                            },
+                            {
+                                "value": "defaultreverse",
+                                "caption": "Config.labelArticleLayoutLeftSidebar"
+                            },
+                            {
+                                "value": "center",
+                                "caption": "Config.labelArticleLayoutCenter"
+                            }
+                        ]
+                    }
+                },
+                "layouts.category": {
+                    "type": "selectBox",
+                    "required": false,
+                    "label": "Config.labelCategoryLayout",
+                    "options": {
+                        "defaultValue": "default",
+                        "selectBoxValues": [
+                            {
+                                "value": "default",
+                                "caption": "Config.labelCategoryLayoutRightSidebar"
+                            },
+                            {
+                                "value": "defaultreverse",
+                                "caption": "Config.labelCategoryLayoutLeftSidebar"
+                            }
+                        ]
+                    }
+                }
+            }
         }
     }
 }

@@ -1,0 +1,29 @@
+{# Naming this following variable "categoryBreadcrumbs" activates the default Ceres breadcrumbs #}
+{% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
+
+{% if config('Blog.layouts.category') is not empty %}
+    {% set blogLayout = config('Blog.layouts.category') %}
+{% else %}
+    {% set blogLayout = 'default' %}
+{% endif %}
+
+{% extends getPartial('page-design') %}
+
+{% block PartialHead %}
+    <title>{{ category.details[0].metaTitle }} | {{ ceresConfig.header.companyName }}</title>
+
+    <meta name="description" content="{{ category.details[0].metaDescription }}">
+    <meta name="keywords" content="{{ category.details[0].metaKeywords }}">
+
+    <meta name="robots" content="{{ metaRobots }}">
+{% endblock %}
+
+{% block PageBody %}
+
+    {% if blogLayout == 'default' %}
+        {% include "Blog::Category.Layouts.Default" %}
+    {% elseif blogLayout == 'defaultreverse' %}
+        {% include "Blog::Category.Layouts.Default" with { 'reverse': true } %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% if isSearchPage is empty %}
+    {% set isSearchPage = false %}
+{% endif %}
+{% set showLatestPosts = config('Blog.sidebar.latestposts.display') %}
+
+
+{% if not isSearchPage %}
+    <div class="blog-sidebar-section">
+        <blog-search></blog-search>
+    </div>
+{% endif %}
+
+<div class="blog-sidebar-section blog-sidebar-categories">
+    <h3 class="blog-heading"><span>Categories</span></h3>
+
+    <ul>
+        <li>
+            <a class="blog-sidebar-category-name active" href="#">Level 1</a>
+            {# Toggler #}
+            <a class="blog-sidebar-category-toggler"
+               data-toggle="collapse"
+               href="#bt-sidebar-category-2"
+               aria-controls="bt-sidebar-category-2">
+                <i class="blog-hide-icon fa fa-minus"></i>
+                <i class="blog-show-icon fa fa-plus"></i>
+            </a>
+
+            {# Collapses #}
+            <ul id="bt-sidebar-category-2"
+                class="collapse show"
+                role="tabpanel">
+                <li>
+                    <a class="blog-sidebar-category-name active" href="#">Level 2</a>
+
+                    <a class="blog-sidebar-category-toggler collapsed"
+                       data-toggle="collapse"
+                       href="#bt-sidebar-category-3"
+                       aria-controls="bt-sidebar-category-3">
+                        <i class="blog-hide-icon fa fa-minus"></i>
+                        <i class="blog-show-icon fa fa-plus"></i>
+                    </a>
+
+                    <ul id="bt-sidebar-category-3"
+                        class="collapse"
+                        role="tabpanel">
+                        <li><a class="blog-sidebar-category-name" href="#">Level 3</a></li>
+                        <li><a class="blog-sidebar-category-name" href="#">Level 3</a></li>
+                        <li><a class="blog-sidebar-category-name" href="#">Level 3</a></li>
+                        <li><a class="blog-sidebar-category-name" href="#">Level 3</a></li>
+                    </ul>
+                </li>
+                <li><a class="blog-sidebar-category-name" href="#">Level 2</a></li>
+                <li><a class="blog-sidebar-category-name" href="#">Level 2</a></li>
+                <li><a class="blog-sidebar-category-name" href="#">Level 2</a></li>
+            </ul>
+        </li>
+
+        <li><a class="blog-sidebar-category-name" href="#">Level 1</a></li>
+        <li><a class="blog-sidebar-category-name" href="#">Level 1</a></li>
+        <li><a class="blog-sidebar-category-name" href="#">Level 1</a></li>
+    </ul>
+    {#{{ Tree.get_sidemenu(categoryBreadcrumbs, categories, "") }}#}
+</div>
+
+{% if showLatestPosts == "true" %}
+    <div class="blog-sidebar-section">
+        <blog-latest-posts></blog-latest-posts>
+    </div>
+{% endif %}

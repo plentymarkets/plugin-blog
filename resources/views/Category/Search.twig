@@ -51,9 +51,9 @@
 
                 <div class="col-md-4 blog-sidebar">
                     {% if page.type == 'search' %}
-                        {% include "Blog::Category.Blog.Partials.Sidebar" with { 'isSearchPage': true } %}
+                        {% include "Blog::Sidebar.Sidebar" with { 'isSearchPage': true } %}
                     {% else %}
-                        {% include "Blog::Category.Blog.Partials.Sidebar" %}
+                        {% include "Blog::Sidebar.Sidebar" %}
                     {% endif %}
                 </div>
             </div>

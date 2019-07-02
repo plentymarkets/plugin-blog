@@ -1,0 +1,36 @@
+<div class="blog-wrapper">
+
+    <section class="blog-header"
+        {% if category.details[0].imagePath is not empty %}
+            style="background-image: url(/documents/{{ category.details[0].imagePath }})"
+        {% elseif blogHeaderDefaultImage is not empty %}
+            style="background-image: url({{ blogHeaderDefaultImage }})"
+        {% endif %}>
+
+        <div class="container-max">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="blog-category-name">{{ category.details[0].name }}</h1>
+
+                    {% include "Blog::Other.Breadcrumbs" with { 'blogCategoryId': category.id } %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container-max blog-container">
+
+        <div class="row {{ reverse ? 'flex-row-reverse' : '' }}">
+            <div class="col-md-8">
+                <blog-list :category-id="{{ category.id }}"
+                           :categories="{{ categories | json_encode }}"
+                           filters="{{ blogData.filters | json_encode }}">
+                </blog-list>
+            </div>
+
+            <div class="col-md-4 blog-sidebar">
+                {% include "Blog::Sidebar.Sidebar" %}
+            </div>
+        </div>
+    </div>
+</div>
