@@ -1,7 +1,5 @@
-{% if isSearchPage is empty %}
-    {% set isSearchPage = false %}
-{% endif %}
-{% set showLatestPosts = config('Blog.sidebar.latestposts.display') %}
+{% set showSidebarLatestPosts = config('Blog.sidebar.latestposts.display') %}
+{% set showSidebarCategories = config('Blog.sidebar.categories.display') %}
 
 
 {% if not isSearchPage %}
@@ -10,11 +8,13 @@
     </div>
 {% endif %}
 
-<div class="blog-sidebar-section">
-    {% include "Blog::Sidebar.Components.Categories" %}
-</div>
+{% if showSidebarCategories == "true" %}
+    <div class="blog-sidebar-section">
+        {% include "Blog::Sidebar.Components.Categories" %}
+    </div>
+{% endif %}
 
-{% if showLatestPosts == "true" %}
+{% if showSidebarLatestPosts == "true" %}
     <div class="blog-sidebar-section">
         <blog-latest-posts></blog-latest-posts>
     </div>

@@ -487,14 +487,14 @@
 
 @media (min-width: 1200px) {
   /* line 365, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
-  .blog-single-layout-default .blog-sidebar {
+  .blog-layout-default .blog-sidebar {
     padding-left: 35px;
   }
 }
 
 @media (min-width: 1200px) {
   /* line 374, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/_blog.scss */
-  .blog-single-layout-default-reverse .blog-sidebar {
+  .blog-layout-default-reverse .blog-sidebar {
     padding-right: 35px;
   }
 }

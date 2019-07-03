@@ -361,7 +361,7 @@
     }
 }
 
-.blog-single-layout-default {
+.blog-layout-default {
     .blog-sidebar {
         @include blog-breakpoint(desktop) {
             padding-left:35px;
@@ -370,7 +370,7 @@
 }
 
 // Reverse layout
-.blog-single-layout-default-reverse {
+.blog-layout-default-reverse {
     .blog-sidebar {
         @include blog-breakpoint(desktop) {
             padding-right:35px;

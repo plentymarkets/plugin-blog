@@ -1,4 +1,4 @@
-<div class="blog-wrapper">
+<div class="blog-wrapper {{ reverse ? 'blog-layout-default-reverse' : 'blog-layout-default' }}">
 
     <section class="blog-header"
         {% if category.details[0].imagePath is not empty %}

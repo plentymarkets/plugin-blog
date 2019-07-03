@@ -27,7 +27,9 @@
 
         </span>
 
-        {% include "Blog::Sidebar.Components.Categories.CategoryList" with { 'blogCategoryTree': blogCategory.children, 'blogUrlTree' : blogCategoryURL, 'blogTreeId' : blogCategory.id, 'blogCategoryIsActive' : blogCategoryIsActive }  %}
+        {% if blogCategory.children is not empty  %}
+            {% include "Blog::Sidebar.Components.Categories.CategoryList" with { 'blogCategoryTree': blogCategory.children, 'blogUrlTree' : blogCategoryURL, 'blogTreeId' : blogCategory.id, 'blogCategoryIsActive' : blogCategoryIsActive }  %}
+        {% endif %}
 
     </li>
     {% endfor %}

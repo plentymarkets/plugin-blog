@@ -29,6 +29,14 @@
         "Config.tabSidebar": {
             "label": "Config.tabSidebar",
             "formFields": {
+                "sidebar.categories.display": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.categoriesDisplay",
+                    "options": {
+                        "defaultValue": "true"
+                    }
+                },
                 "sidebar.latestposts.display": {
                     "type": "checkBox",
                     "required": false,
