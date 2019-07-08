@@ -98,6 +98,14 @@
                             {
                                 "value": "defaultreverse",
                                 "caption": "Config.labelCategoryLayoutLeftSidebar"
+                            },
+                            {
+                                "value": "modern",
+                                "caption": "Config.labelCategoryLayoutModern"
+                            },
+                            {
+                                "value": "modernreverse",
+                                "caption": "Config.labelCategoryLayoutModernLeftSidebar"
                             }
                         ]
                     }

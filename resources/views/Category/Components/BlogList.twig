@@ -1,64 +1,37 @@
 <script type="x/template" id="vue-blog-list">
 
     <div>
-        <div id="blog-posts" class="blog-posts">
+
+        <div class="blog-posts">
 
             <h3 v-if="isSearchPage" class="blog-heading"><span>{{ trans('Blog::Template.searchResultsFor') }} ${ searchString }</span></h3>
+            <h3 v-if="headingText" class="blog-heading">${ headingText }</h3>
 
-            <article v-for="article in articleList" class="blog-post">
-                <a v-if="article.data.images.preview" :href="article.urls.postUrl">
-                    <img v-if="article.data.images.preview.path" class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
-                </a>
-
-                <div class="blog-post-content">
-                    <div class="blog-post-header">
-                        <a class="blog-category-name" v-if="typeof blogCategories[article.data.category.id] !== 'undefined'" :href="article.urls.categoryUrl">${ blogCategories[article.data.category.id].name }</a>
-
-                        <h2 class="blog-post-title">
-                            <a :href="article.urls.postUrl">
-                                ${ article.data.post.title }
-                            </a>
-                        </h2>
-
-                        <p class="blog-details">
-                            <a :href="article.urls.landingUrl + '/search/' + article.data.user.realName">
-                                <span class="blog-detail blog-detail-author">
-                                    <img v-if="article.data.user.image"
-                                         :src="article.data.user.image"
-                                         :alt="article.data.user.realName"
-                                         class="blog-avatar blog-avatar-md">{#
-                                    #}<span v-else >{{ trans('Blog::Template.createdBy') }} </span>{#
-
-                                    #}<span class="blog-detail-author-name">${ article.data.user.realName }</span>
-                                </span>
-                            </a>
-                            - <span class="blog-detail blog-detail-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</span>
-                        </p>
-                    </div>
-
-                    <p class="blog-post-shortdescription">${ article.data.post.shortDescription }</p>
-
-                    {% if config('Blog.general.list.showReadMore') == 'true' %}
-                        <div class="blog-actions">
-                            <a :href="article.urls.postUrl" class="blog-action-readmore">{{ trans('Blog::Template.readMore') }}</a>
-                        </div>
-                    {% endif %}
+            <div v-if="horizontal" class="row">
+                <div v-for="(article,index) in articleList" v-if="index >= skip" :class="horizontalClasses">
+                    <blog-post :key="index" :article="article" :layout="layout" ></blog-post>
                 </div>
+            </div>
 
-            </article>
+            <div v-else>
+                <blog-post v-for="(article,index) in articleList" v-if="index >= skip" :key="index" :article="article" :layout="layout" ></blog-post>
+            </div>
 
-            <div v-if="listIsLoading">
+            <div v-if="listIsLoading && layout === 'vertical-XL' && showDummy">
                 {% include "Blog::Other.BlogListDummyPost" %}
+            </div>
+
+            <div v-if="listIsLoading && showLoader">
                 {% include "Blog::Other.Loading" %}
             </div>
 
-            <div v-if="!listIsLoading && articleList.length == 0">
+            <div v-if="!listIsLoading && articleList.length === 0">
                 <h1 class="text-center">{{ trans('Blog::Template.noBlogPostResults') }}</h1>
             </div>
 
         </div>
 
-        <div class="blog-load-more">
+        <div class="blog-load-more" v-if="showLoadMore">
             <button v-if="page < lastPageNumber || loadMoreIsLoading" class="btn blog-btn-load-more" @click="loadMore()" :disabled="loadMoreIsLoading" > {{ trans('Blog::Template.loadMore') }} </button>
         </div>
     </div>
@@ -75,16 +48,50 @@
                 required: false,
                 default: 0
             },
-            categories: {
-                type:Array,
-                required: true,
-                default: {}
-            },
             filters: String,
+            layout: {
+                type: String,
+                required: false,
+                default: 'vertical-XL'
+            },
             isSearchPage: {
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            showLoader: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            showLoadMore: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            showDummy: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            horizontal: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            horizontalClasses: {
+                type: String,
+                required: false,
+                default: 'col-md-6 col-lg-4 col-xl-3'
+            },
+            headingText: {
+                type: String,
+                required: false
+            },
+            skip: {
+                type: Number,
+                required: false,
+                default: 0
             }
         },
 
@@ -97,7 +104,6 @@
             });
 
             this.setFilters();
-            this.setCategories(this.categories);
             this.loadFirstPage();
         },
 
@@ -115,8 +121,7 @@
                     searchString: '',
                     loadMoreIsLoading: false,
                     listIsLoading: true,
-                    articleList: [],
-                    blogCategories: {}
+                    articleList: []
                 }
             },
 
@@ -176,31 +181,9 @@
                 });
             },
 
-            setCategories: function(categories, url = '') {
-                var _this = this;
-
-                $.each( categories, function( key, category ) {
-                    if(category.type === 'blog') {
-
-                        if(category.details.length !== 0) {
-                            var categoryUrl = url + "/" + category.details[0].nameUrl;
-
-                            _this.blogCategories[category.id] = {
-                                'url': categoryUrl,
-                                'name': category.details[0].name
-                            };
-                        }
-
-                        _this.setCategories(category.children, categoryUrl);
-                    }
-
-                });
-            },
-
             resetState: function() {
                 Object.assign(this.$data, this.init());
                 this.setFilters();
-                this.setCategories(this.categories);
             },
 
             handleSearch: function(searchData) {

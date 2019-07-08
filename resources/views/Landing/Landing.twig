@@ -41,9 +41,7 @@
             <div class="row">
                 <div class="col-md-8">
 
-                    <blog-list :categories="{{ categories | json_encode }}"
-                               filters="{{ blogData.filters | json_encode }}">
-                    </blog-list>
+                    <blog-list filters="{{ blogData.filters | json_encode }}"></blog-list>
 
                 </div>
 

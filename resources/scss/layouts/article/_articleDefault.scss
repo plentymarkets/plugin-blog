@@ -1,0 +1,130 @@
+.blog-single-post {
+    margin-bottom:45px;
+    padding-bottom:20px;
+
+    .blog-post-content {
+        padding-bottom:20px;
+    }
+
+    .blog-post-image-fullwidth {
+        max-height:300px;
+        object-fit:cover;
+    }
+
+    .blog-post-header {
+        padding-bottom:10px;
+
+        .blog-category-name, .blog-details .blog-detail {
+            color:$color-muted;
+        }
+
+        .blog-category-name {
+            color:$color-primary;
+            font-size:13px;
+        }
+
+        .blog-post-title {
+            font-weight:bold;
+            font-size:30px;
+            line-height:1.2em;
+            margin-bottom:20px;
+
+            a {
+                color:$color-text;
+            }
+        }
+
+        .blog-details {
+            .blog-detail {
+                font-size:13px;
+
+                &.blog-detail-author {
+                    .blog-avatar {
+                        margin-right:10px;
+                    }
+
+                    .blog-detail-author-name {
+                        color:$color-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .blog-post-image {
+        margin-bottom:20px;
+        @include blog-border-radius;
+
+        &.blog-post-image-fullwidth {
+            width:100%;
+        }
+    }
+
+    .blog-body {
+        margin-bottom:20px;
+
+        p {
+            margin-bottom:1.5em;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+            line-height:1.46em;
+            font-weight:bold;
+        }
+
+        img {
+            max-width:100%;
+            height:auto;
+            @include blog-border-radius;
+        }
+
+        blockquote {
+            position: relative;
+            font-size: 25px;
+            padding: 30px 40px 20px;
+            text-align: center;
+
+            p {
+                margin-bottom:0;
+            }
+
+            &:before {
+                content: "\201c";
+                position: absolute;
+                font-family: Georgia,Arial,sans-serif;
+                z-index: 0;
+                margin: 0;
+                left: 50%;
+                transform: translateX(-50%) rotate(1deg);
+                color: $color-muted;
+                line-height:40px;
+                opacity: .11;
+                font-size: 120px;
+            }
+        }
+    }
+
+    .blog-tags {
+        margin-bottom:0;
+        padding:15px 0;
+        border-top:$border-color solid 1px;
+        border-bottom:$border-color solid 1px;
+    }
+}
+
+.blog-layout-default {
+    .blog-sidebar {
+        @include blog-breakpoint(desktop) {
+            padding-left:35px;
+        }
+    }
+}
+
+// Reverse layout
+.blog-layout-default-reverse {
+    .blog-sidebar {
+        @include blog-breakpoint(desktop) {
+            padding-right:35px;
+        }
+    }
+}

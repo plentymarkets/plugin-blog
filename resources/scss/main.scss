@@ -7,7 +7,16 @@
 // Blog
 @import "blog";
 @import "sidebar/categories";
+@import "layouts/article/articleDefault";
 @import "layouts/article/articleCenter";
+
+// Post layouts
+@import "layouts/components/blog-post-featured-1";
+@import "layouts/components/blog-post-horizontal-MD";
+@import "layouts/components/blog-post-vertical-SM";
+@import "layouts/components/blog-post-vertical-XL";
+
+
 
 
 

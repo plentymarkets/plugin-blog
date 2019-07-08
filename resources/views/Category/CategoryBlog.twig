@@ -24,6 +24,10 @@
         {% include "Blog::Category.Layouts.Default" %}
     {% elseif blogLayout == 'defaultreverse' %}
         {% include "Blog::Category.Layouts.Default" with { 'reverse': true } %}
+    {% elseif blogLayout == 'modern' %}
+        {% include "Blog::Category.Layouts.Modern" %}
+    {% elseif blogLayout == 'modernreverse' %}
+        {% include "Blog::Category.Layouts.Modern" with { 'reverse': true } %}
     {% endif %}
 
 {% endblock %}

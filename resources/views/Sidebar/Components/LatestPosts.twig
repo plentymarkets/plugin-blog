@@ -1,5 +1,4 @@
 {% set latestPostsCount = config('Blog.sidebar.latestposts.count') %}
-{% set latestPostsDefaultImage = config('Blog.sidebar.latestposts.default_image') %}
 {% if not (latestPostsCount matches '/^\\d+$/') %}
     {% set latestPostsCount = 5 %}
 {% endif %}
@@ -10,19 +9,9 @@
         <h3 class="blog-heading"><span>{{ trans('Blog::Template.recentPosts') }}</span></h3>
 
         <div class="row">
-            <div v-for="article in articleList" :class="[horizontal ? 'col-md-4 col-sm-6 mb-3' : 'col-12']">
-                <a class="blog-recent-post" :href="article.urls.postUrl">
-                    <div class="blog-recent-post-image">
-                        <img v-if="article.data.images.preview.path" :src="article.data.images.preview.path" alt="">
-                        {% if latestPostsDefaultImage is not empty %}
-                            <img v-else src="{{ latestPostsDefaultImage }}" alt="">
-                        {% endif %}
-                    </div>
-                    <h4 class="blog-recent-post-title">${ article.data.post.title }</h4>
-
-                    <p class="blog-recent-post-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</p>
-                    <div class="clear"></div>
-                </a>
+            <div v-for="(article,index) in articleList" :class="[horizontal ? 'col-md-4 col-sm-6 mb-3' : 'col-12']">
+                <blog-post v-if="horizontal" :key="index" :article="article" layout="horizontal-MD" ></blog-post>
+                <blog-post v-else :key="index" :article="article" layout="vertical-SM" ></blog-post>
             </div>
         </div>
 

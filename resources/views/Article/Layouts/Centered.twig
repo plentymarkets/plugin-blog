@@ -18,7 +18,7 @@
             <div class="col-lg-9 col-md-10 mx-auto">
                 <div class="blog-single">
 
-                    <article class="blog-post">
+                    <article class="blog-single-post">
 
                         <div class="blog-post-header">
                             <h1 class="blog-post-title text-center">{{ blogPost.data.post.title }}</h1>
@@ -56,9 +56,9 @@
                                         {% set tagName = services.tag.getTagName(tagId) %}
 
                                         {% if tagName is not empty %}
-                                            <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}/{{ tagName | replace({' ':'_'}) }}" class="btn btn-primary btn-sm blog-tag">{{ tagName }}</a>
+                                            <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}/{{ tagName | replace({' ':'_'}) }}" class="btn btn-light mr-1 btn-sm blog-tag">{{ tagName }}</a>
                                         {% else %}
-                                            <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}" class="btn btn-primary btn-sm blog-tag">{{ tagId }}</a>
+                                            <a href="/{{ trans('Blog::Landing.urlName') }}/tag/{{ tagId }}" class="btn btn-light mr-1 btn-sm blog-tag">{{ tagId }}</a>
                                         {% endif %}
                                     {% endfor %}
                                 </p>
@@ -67,8 +67,14 @@
 
                     </article>
 
-                    <div class="blog-recent-posts">
-                        <blog-latest-posts horizontal></blog-latest-posts>
+                    <div class="blog-related-posts mb-4">
+                        <blog-list heading-text="Related posts"
+                                   horizontal
+                                   horizontal-classes="col-md-4 col-sm-6 mb-3"
+                                   layout="horizontal-MD"
+                                   :category-id="{{ blogPost.data.category.id }}"
+                                   filters="{{ [] | merge({'itemsPerPage':6}) | json_encode }}"
+                                   show-loader></blog-list>
                     </div>
 
                 </div>

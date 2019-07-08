@@ -1,30 +1,31 @@
 <article class="blog-post blog-dummy-post">
-    <div class="blog-post-image blog-post-image-fullwidth"></div>
+    <div class="blog-post-vertical-XL">
+        <div class="blog-post-image blog-post-image-fullwidth"></div>
 
-    <div class="blog-post-content">
-        <div class="blog-post-header">
-            <h5 class="blog-category-name"><span></span></h5>
-            <h1 class="blog-post-title"><span class="blog-dummy-fullwidth"></span><br><span></span></h1>
+        <div class="blog-post-content">
+            <div class="blog-post-header">
+                <h5 class="blog-category-name"><span></span></h5>
+                <h1 class="blog-post-title"><span class="blog-dummy-fullwidth"></span><br><span></span></h1>
 
-            <p class="blog-details">
+                <p class="blog-details">
                 <span class="blog-detail blog-detail-author">
                     <span class="blog-avatar blog-avatar-md"></span>
                     <span class="blog-detail-author-name"></span>
                 </span>
-                - <span class="blog-detail blog-detail-date"></span>
-            </p>
-        </div>
-
-        <p class="blog-post-shortdescription">
-            <span class="blog-dummy-fullwidth"></span>
-            <span class="blog-dummy-fullwidth"></span>
-        </p>
-
-        {% if config('Blog.general.list.showReadMore') == 'true' %}
-            <div class="blog-actions">
-                <span class="blog-action-readmore"></span>
+                    - <span class="blog-detail blog-detail-date"></span>
+                </p>
             </div>
-        {% endif %}
-    </div>
 
+            <p class="blog-post-shortdescription">
+                <span class="blog-dummy-fullwidth"></span>
+                <span class="blog-dummy-fullwidth"></span>
+            </p>
+
+            {% if config('Blog.general.list.showReadMore') == 'true' %}
+                <div class="blog-actions">
+                    <span class="blog-action-readmore"></span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </article>

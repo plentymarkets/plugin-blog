@@ -1,0 +1,55 @@
+<script type="x/template" id="vue-blog-post-featured-1">
+
+    <div class="blog-post-featured-1">
+        <div class="blog-post-image-wrap" v-if="article.data.images.preview">
+            <img v-if="article.data.images.preview.path" class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
+        </div>
+
+        <div class="blog-post-content">
+            <div class="blog-post-header">
+
+                <a class="blog-category-name" v-if="article.category" :href="article.urls.categoryUrl">${ article.category.name }</a>
+
+                <h2 class="blog-post-title">
+                    <a :href="article.urls.postUrl">
+                        ${ article.data.post.title }
+                    </a>
+                </h2>
+
+                <p class="blog-details">
+                    <a :href="article.urls.landingUrl + '/search/' + article.data.user.realName">
+                            <span class="blog-detail blog-detail-author">
+                                <img v-if="article.data.user.image"
+                                     :src="article.data.user.image"
+                                     :alt="article.data.user.realName"
+                                     class="blog-avatar blog-avatar-sm">{#
+                                #}<span v-else >{{ trans('Blog::Template.createdBy') }} </span>{#
+
+                                #}<span class="blog-detail-author-name">${ article.data.user.realName }</span>
+                            </span>
+                    </a>
+                    - <span class="blog-detail blog-detail-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-post-featured-1', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+            article: {
+                type: Object,
+                required: true
+            }
+        },
+
+        created: function() {
+            this.$options.template = '#vue-blog-post-featured-1';
+        },
+    });
+</script>

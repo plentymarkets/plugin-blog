@@ -1,0 +1,36 @@
+{% set latestPostsDefaultImage = config('Blog.sidebar.latestposts.default_image') %}
+<script type="x/template" id="vue-blog-post-vertical-SM">
+
+    <div class="blog-post-vertical-SM">
+        <a class="blog-post" :href="article.urls.postUrl">
+            <div class="blog-post-image">
+                <img v-if="article.data.images.preview.path" :src="article.data.images.preview.path" alt="">
+                {% if latestPostsDefaultImage is not empty %}
+                    <img v-else src="{{ latestPostsDefaultImage }}" alt="">
+                {% endif %}
+            </div>
+            <h4 class="blog-post-title">${ article.data.post.title }</h4>
+
+            <p class="blog-post-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</p>
+            <div class="clear"></div>
+        </a>
+    </div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-post-vertical-SM', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+            article: {
+                type: Object,
+                required: true
+            }
+        },
+
+        created: function() {
+            this.$options.template = '#vue-blog-post-vertical-SM';
+        },
+    });
+</script>

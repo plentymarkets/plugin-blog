@@ -1,0 +1,131 @@
+.blog-post-featured-1 {
+    margin-bottom:10px;
+    position:relative;
+
+    .blog-post-content {
+        padding:20px 25px;
+
+        @include blog-breakpoint(laptop) {
+            width:50%;
+            position:absolute;
+            bottom:0;
+            right:0;
+            background:white;
+        }
+
+    }
+
+    .blog-heading {
+        padding-bottom:15px;
+        border-bottom:$border-color solid 1px;
+    }
+
+    .blog-post-header {
+
+        .blog-category-name, .blog-details .blog-detail {
+            color:$color-muted;
+        }
+
+        .blog-category-name {
+            color:$color-primary;
+            font-size:13px;
+        }
+
+        .blog-post-title {
+            font-weight:bold;
+            font-size:37px;
+            margin-bottom:10px;
+
+            @include blog-breakpoint(laptop) {
+                overflow:hidden;
+                text-overflow:ellipsis;
+                display:-webkit-box;
+                -webkit-box-orient:vertical;
+                -webkit-line-clamp:3;
+                line-height:1.15em;
+                max-height:3.45em;
+            }
+
+            a {
+                color:$color-text;
+            }
+        }
+
+        .blog-details {
+            margin-bottom:0;
+
+            .blog-detail {
+                font-size:13px;
+
+                &.blog-detail-author {
+                    .blog-avatar {
+                        margin-right:10px;
+                    }
+
+                    .blog-detail-author-name {
+                        color:$color-primary;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .blog-post-image {
+        &.blog-post-image-fullwidth {
+            width:100%;
+            max-height:650px;
+            object-fit:cover;
+        }
+    }
+
+    .blog-post-shortdescription {
+        margin-bottom:20px;
+        font-size:15px;
+    }
+
+    .blog-actions {
+        font-size:14px;
+
+        .blog-action-readmore {
+            border-bottom:transparent solid 1px;
+            padding:5px 15px 5px 0;
+            position:relative;
+            @include blog-animated;
+
+            &:after, &:before {
+                content:'\f105';
+                font-family: "FontAwesome";
+                position:absolute;
+                font-size:14px;
+                top:4px;
+                @include blog-animated;
+            }
+
+            &:after {
+                right:4px;
+            }
+
+            &:before {
+                right:12px;
+                opacity:0;
+            }
+
+            &:hover {
+                border-bottom-color:$color-primary;
+
+                &:after {
+                    right:0;
+                }
+
+                &:before {
+                    right:4px;
+                    opacity:1;
+                }
+            }
+        }
+
+    }
+
+}
+

@@ -51,6 +51,11 @@ class BlogServiceProvider extends ServiceProvider
                 $container->addScriptTemplate('Blog::Category.Components.BlogList');
                 $container->addScriptTemplate('Blog::Sidebar.Components.Search');
                 $container->addScriptTemplate('Blog::Sidebar.Components.LatestPosts');
+                $container->addScriptTemplate('Blog::Article.Components.Post');
+                $container->addScriptTemplate('Blog::Article.Components.Layouts.Featured1');
+                $container->addScriptTemplate('Blog::Article.Components.Layouts.HorizontalMD');
+                $container->addScriptTemplate('Blog::Article.Components.Layouts.VerticalSM');
+                $container->addScriptTemplate('Blog::Article.Components.Layouts.VerticalXL');
             }
         );
 

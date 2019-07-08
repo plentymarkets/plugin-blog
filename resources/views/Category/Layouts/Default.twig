@@ -21,14 +21,11 @@
     <div class="container-max blog-container">
 
         <div class="row {{ reverse ? 'flex-row-reverse' : '' }}">
-            <div class="col-md-8">
-                <blog-list :category-id="{{ category.id }}"
-                           :categories="{{ categories | json_encode }}"
-                           filters="{{ blogData.filters | json_encode }}">
-                </blog-list>
+            <div class="col-lg-8">
+                <blog-list :category-id="{{ category.id }}" filters="{{ blogData.filters | json_encode }}"></blog-list>
             </div>
 
-            <div class="col-md-4 blog-sidebar">
+            <div class="col-lg-4 blog-sidebar">
                 {% include "Blog::Sidebar.Sidebar" %}
             </div>
         </div>

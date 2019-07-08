@@ -18,6 +18,7 @@ use IO\Services\TagService;
 use IO\Services\UrlService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
+use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
 use Plenty\Plugin\Application;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Http\Response;
@@ -108,6 +109,7 @@ class BlogController extends LayoutController
      */
     public function listArticles(Request $request, BlogService $blogService, CategoryService $categoryService)
     {
+        $navigationList = $blogService->getNavigationList();
         $lang = pluginApp(SessionStorageService::class)->getLang();
         $clientStoreId = pluginApp(Application::class)->getWebstoreId();
         $landingUrlName = $blogService->getLandingUrlName();
@@ -130,9 +132,11 @@ class BlogController extends LayoutController
 
         $posts = $paginatedPosts['entries'];
 
+
         foreach($posts as $post) {
 
             $categoryUrl = $categoryService->getURLById($post['data']['category']['id']);
+            $post->category = $navigationList[$post['data']['category']['id']];
 
             // If we have the category url
             if(!empty($categoryUrl)) {

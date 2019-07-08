@@ -15,6 +15,7 @@ use IO\Services\UrlService;
 use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
+use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
 use Plenty\Modules\PluginMultilingualism\Contracts\PluginTranslationRepositoryContract;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request;
@@ -259,5 +260,39 @@ class BlogService
     public function getLandingUrlName()
     {
         return pluginApp(Translator::class)->trans('Blog::Landing.urlName');
+    }
+
+    /**
+     * @return array
+     */
+    public function getNavigationList()
+    {
+        $categoryRepositoryContract = pluginApp(CategoryRepositoryContract::class);
+        $arrayTree = $categoryRepositoryContract->getArrayTree("blog");
+
+        return $this->buildCategoryNavigationList($arrayTree);
+    }
+
+    /**
+     * @param $categories
+     * @return array
+     */
+    private function buildCategoryNavigationList($categories)
+    {
+        $result = [];
+
+        foreach($categories as $category) {
+            $result[$category['id']] = [
+                'name' => $category['details'][0]['name'],
+                'id' => $category['id']
+            ];
+
+            if(!empty($category['children'])) {
+                // I add the arrays to keep the indices
+                $result += $this->buildCategoryNavigationList($category['children']);
+            }
+        }
+
+        return $result;
     }
 }

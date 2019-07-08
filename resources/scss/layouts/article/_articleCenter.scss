@@ -3,24 +3,29 @@
         background:none;
         border:none;
         padding:0;
+
+        .blog-category-name {
+            margin-top:25px;
+        }
     }
-    .blog-category-name {
-        margin-top:25px;
-    }
+
     .blog-container {
         padding-top:0;
     }
-    .blog-body {
-        @include blog-breakpoint(laptop) {
-            margin-bottom:45px;
-        }
-    }
-    .blog-post-title {
-        @include blog-breakpoint(laptop) {
-            padding:0 10%;
-        }
-    }
-    .blog-post {
+
+    .blog-single-post {
         margin-bottom:20px;
+
+        .blog-post-title {
+            @include blog-breakpoint(laptop) {
+                padding:0 10%;
+            }
+        }
+
+        .blog-body {
+            @include blog-breakpoint(laptop) {
+                margin-bottom:45px;
+            }
+        }
     }
 }
