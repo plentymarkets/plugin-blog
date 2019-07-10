@@ -1,5 +1,4 @@
 .blog-single-post {
-    margin-bottom:45px;
     padding-bottom:20px;
 
     .blog-post-content {
@@ -102,6 +101,10 @@
                 font-size: 120px;
             }
         }
+
+        hr {
+            border-top-color:$border-color;
+        }
     }
 
     .blog-tags {
@@ -112,7 +115,7 @@
     }
 }
 
-.blog-layout-default {
+/*.blog-layout-default {
     .blog-sidebar {
         @include blog-breakpoint(desktop) {
             padding-left:35px;
@@ -127,4 +130,4 @@
             padding-right:35px;
         }
     }
-}
+}*/

@@ -4,23 +4,18 @@
 
     .blog-post-title {
         margin-bottom:5px;
-        padding-top:4px;
         color:$color-text;
         font-weight:600;
-        font-size:15px;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        display:-webkit-box;
-        -webkit-box-orient:vertical;
-        -webkit-line-clamp:2;
-        line-height:18px;
-        max-height:40px;
+        font-size:14px;
+        line-height:1.35em;
+        padding-left:105px;
     }
 
     .blog-post-date {
         color:$color-muted;
         font-size:12px;
         margin-bottom:0;
+        padding-left:105px;
         text-decoration: none !important;
     }
 

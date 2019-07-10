@@ -27,5 +27,16 @@
                 margin-bottom:45px;
             }
         }
+
+        .blog-tags {
+            font-family:Georgia, Arial, sans-serif;
+            font-style:italic;
+            padding:25px 0;
+
+            .blog-tag {
+                margin-left:10px;
+                color:$color-muted;
+            }
+        }
     }
 }

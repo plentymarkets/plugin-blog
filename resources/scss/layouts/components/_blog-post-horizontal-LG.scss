@@ -1,5 +1,5 @@
-.blog-post-horizontal-MD {
-    margin-bottom:20px;
+.blog-post-horizontal-LG {
+    margin-bottom:35px;
     display:block;
 
     .blog-post-title {
@@ -20,7 +20,7 @@
 
     .blog-post-image {
         width:100%;
-        height:130px;
+        height:290px;
         margin-bottom:10px;
         background-color:$light-bg-color;
         @include blog-border-radius(3px);

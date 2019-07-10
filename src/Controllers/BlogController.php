@@ -180,6 +180,9 @@ class BlogController extends LayoutController
                 'type' => 'landing',
                 'metaTitle' => $translations['landingTitle'],
                 'title' => $translations['landingTitle']
+            ],
+            'blogData' => [
+                'filters' => $request->except(['plentyMarkets'])
             ]
         ];
 

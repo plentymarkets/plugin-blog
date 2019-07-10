@@ -54,6 +54,7 @@ class BlogServiceProvider extends ServiceProvider
                 $container->addScriptTemplate('Blog::Article.Components.Post');
                 $container->addScriptTemplate('Blog::Article.Components.Layouts.Featured1');
                 $container->addScriptTemplate('Blog::Article.Components.Layouts.HorizontalMD');
+                $container->addScriptTemplate('Blog::Article.Components.Layouts.HorizontalLG');
                 $container->addScriptTemplate('Blog::Article.Components.Layouts.VerticalSM');
                 $container->addScriptTemplate('Blog::Article.Components.Layouts.VerticalXL');
             }

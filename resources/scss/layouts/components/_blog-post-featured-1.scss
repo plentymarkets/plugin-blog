@@ -36,16 +36,6 @@
             font-size:37px;
             margin-bottom:10px;
 
-            @include blog-breakpoint(laptop) {
-                overflow:hidden;
-                text-overflow:ellipsis;
-                display:-webkit-box;
-                -webkit-box-orient:vertical;
-                -webkit-line-clamp:3;
-                line-height:1.15em;
-                max-height:3.45em;
-            }
-
             a {
                 color:$color-text;
             }

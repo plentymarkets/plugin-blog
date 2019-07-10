@@ -1,5 +1,11 @@
 {% set blogHeaderDefaultImage = config('Blog.general.header.default_image') %}
 
+{% if config('Blog.layouts.landing') is not empty %}
+    {% set blogLayout = config('Blog.layouts.landing') %}
+{% else %}
+    {% set blogLayout = 'default' %}
+{% endif %}
+
 {% extends getPartial('page-design') %}
 
 {% block PartialHead %}
@@ -13,42 +19,15 @@
 {% endblock %}
 
 {% block PageBody %}
-    <div class="blog-wrapper">
 
-        <section class="blog-header"
-            {% if blogHeaderDefaultImage is not empty %}
-                style="background-image: url({{ blogHeaderDefaultImage }})"
-            {% endif %}>
+    {% if blogLayout == 'default' %}
+        {% include "Blog::Landing.Layouts.Default" %}
+    {% elseif blogLayout == 'defaultreverse' %}
+        {% include "Blog::Landing.Layouts.Default" with { 'reverse': true } %}
+    {% elseif blogLayout == 'modern' %}
+        {% include "Blog::Landing.Layouts.Modern" %}
+    {% elseif blogLayout == 'modernreverse' %}
+        {% include "Blog::Landing.Layouts.Modern" with { 'reverse': true } %}
+    {% endif %}
 
-            <div class="container-max">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h1 class="blog-category-name">
-                            {{ trans("Blog::Landing.landingTitle") }}
-                        </h1>
-
-                        {#{% include "Blog::Category.Blog.Partials.Breadcrumbs" with { 'blogCategoryId': 0 } %}#}
-
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-        <div class="container-max blog-container">
-
-            <div class="row">
-                <div class="col-md-8">
-
-                    <blog-list filters="{{ blogData.filters | json_encode }}"></blog-list>
-
-                </div>
-
-                <div class="col-md-4 blog-sidebar">
-                    {% include "Blog::Sidebar.Sidebar" %}
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock %}

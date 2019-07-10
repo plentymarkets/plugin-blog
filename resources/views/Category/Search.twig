@@ -27,9 +27,7 @@
                             </h1>
                         {% endif %}
 
-                        {% if page.type == 'search' %}
-                            <blog-search is-search-page initial-search-string="{{ filters.search }}"></blog-search>
-                        {% endif %}
+                        <blog-search is-search-page initial-search-string="{{ filters.search }}"></blog-search>
                     </div>
                 </div>
 
@@ -40,13 +38,13 @@
         <div class="container-max blog-container">
 
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-9">
 
-                    <blog-list {{ page.type == 'search' ? 'is-search-page' : '' }} filters ="{{ filters | json_encode }}"></blog-list>
+                    <blog-list is-search-page :filters="{{ filters | json_encode }}" show-loader show-load-more show-dummy></blog-list>
 
                 </div>
 
-                <div class="col-lg-4 blog-sidebar">
+                <div class="col-lg-3 blog-sidebar">
                     {% include "Blog::Sidebar.Sidebar" with { 'isSearchPage': true } %}
                 </div>
             </div>

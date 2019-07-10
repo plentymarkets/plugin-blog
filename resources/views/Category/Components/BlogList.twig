@@ -48,7 +48,11 @@
                 required: false,
                 default: 0
             },
-            filters: String,
+            filters: {
+                type: Object,
+                required: false,
+                default: {}
+            },
             layout: {
                 type: String,
                 required: false,
@@ -173,10 +177,10 @@
                 }
 
                 if(this.isSearchPage) {
-                    this.searchString = JSON.parse(this.filters).search;
+                    this.searchString = this.filters.search;
                 }
 
-                $.each( JSON.parse(this.filters), function( key, value ) {
+                $.each( this.filters, function( key, value ) {
                     _this.filtersString += '&' + key + '=' + value;
                 });
             },

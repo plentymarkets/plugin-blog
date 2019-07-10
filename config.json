@@ -109,6 +109,32 @@
                             }
                         ]
                     }
+                },
+                "layouts.landing": {
+                    "type": "selectBox",
+                    "required": false,
+                    "label": "Config.labelLandingLayout",
+                    "options": {
+                        "defaultValue": "default",
+                        "selectBoxValues": [
+                            {
+                                "value": "default",
+                                "caption": "Config.labelLandingLayoutRightSidebar"
+                            },
+                            {
+                                "value": "defaultreverse",
+                                "caption": "Config.labelLandingLayoutLeftSidebar"
+                            },
+                            {
+                                "value": "modern",
+                                "caption": "Config.labelLandingLayoutModern"
+                            },
+                            {
+                                "value": "modernreverse",
+                                "caption": "Config.labelLandingLayoutModernLeftSidebar"
+                            }
+                        ]
+                    }
                 }
             }
         }
