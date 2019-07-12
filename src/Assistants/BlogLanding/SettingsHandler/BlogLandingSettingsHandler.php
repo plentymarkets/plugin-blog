@@ -57,9 +57,9 @@ class BlogLandingSettingsHandler implements WizardSettingsHandler
 
         foreach($fillables as $fillable) {
 
-            // If the key is supposed to be reset if empty -- AND it's empty. Shocking
+            // If the key is supposed to be reset and it's empty
             if(in_array($fillable, $resetIfEmpty) && empty($data[$fillable])) {
-                // We can't use collections in plugins.. yet
+                // We can't yet use collections in plugins
                 foreach($existingTranslations as $translation) {
                     if($translation['key'] == $fillable) {
                         $translationIdsForDeletion[] = $translation['id'];

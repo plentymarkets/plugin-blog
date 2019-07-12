@@ -140,6 +140,10 @@
                             {
                                 "value": "modernreverse",
                                 "caption": "Config.labelLandingLayoutModernLeftSidebar"
+                            },
+                            {
+                                "value": "fourfeatured",
+                                "caption": "Config.labelLandingLayoutFourFeatured"
                             }
                         ]
                     }

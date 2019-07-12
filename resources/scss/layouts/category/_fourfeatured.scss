@@ -1,0 +1,80 @@
+.blog-four-featured {
+    .blog-four-featured-banner {
+
+        .blog-posts {
+            padding:3px;
+
+            article {
+                float:left;
+                padding:3px;
+
+                .blog-post-featured-1 {
+                    height:100%;
+
+                    .blog-post-content {
+                        width:100%;
+                        padding:17px 20px;
+                        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+                        background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+                        background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+                        background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+
+                        .blog-post-header {
+
+                            .blog-post-title {
+                                margin-bottom:0;
+                            }
+
+                            .blog-details {
+                                display:none;
+                            }
+
+                            a {
+                                color:white;
+                            }
+                        }
+
+                    }
+
+                    .blog-post-image-wrap {
+                        height:100%;
+
+                        .blog-post-image {
+                            height:100%;
+                        }
+                    }
+
+                }
+
+
+                &:nth-child(1) {
+                    width:50%;
+                    height:450px;
+
+                    .blog-post-title {
+                        font-size:27px;
+                    }
+                }
+
+                &:nth-child(2) {
+                    width:50%;
+                    height:225px;
+
+                    .blog-post-title {
+                        font-size:23px;
+                    }
+                }
+
+                &:nth-child(n+3) {
+                    width:25%;
+                    height:225px;
+
+                    .blog-post-title {
+                        font-size:17px;
+                    }
+                }
+            }
+        }
+    }
+}

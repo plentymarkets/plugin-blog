@@ -28,6 +28,8 @@
         {% include "Blog::Landing.Layouts.Modern" %}
     {% elseif blogLayout == 'modernreverse' %}
         {% include "Blog::Landing.Layouts.Modern" with { 'reverse': true } %}
+    {% elseif blogLayout == 'fourfeatured' %}
+        {% include "Blog::Landing.Layouts.FourFeatured" %}
     {% endif %}
 
 {% endblock %}

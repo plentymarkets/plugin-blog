@@ -154,7 +154,7 @@ class BlogController extends LayoutController
                 $categoryUrl = $landingUrl;
             }
 
-            // Yes, the config stores a string with the text 'false', not a boolean
+            // The config stores a string 'false', not a boolean
             if($config->get('Blog.general.list.showAuthor') === 'false') {
                 // Can't unset $post->data['user']
                 $temporaryData = $post->data;
@@ -227,7 +227,7 @@ class BlogController extends LayoutController
         $lastPart = '';
         $landingUrlName = $translator->trans('Blog::Landing.urlName');
 
-        // omg we can't use dynamic variables
+        // We can't use dynamic variables
         if($part1) {
             $lastPart = $part1;
             if($part2) {

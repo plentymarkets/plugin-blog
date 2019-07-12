@@ -139,7 +139,7 @@ class BlogServiceProvider extends ServiceProvider
             $container->addContent($twig->render('Blog::content.Scripts'));
         });
 
-        // Config bools are strings...
+        // Config bools are strings
         if($config->get('Blog.general.entrypoint.automaticLink') === 'true') {
             $eventDispatcher->listen("Ceres.LayoutContainer.Header.LeftSide", function(LayoutContainer $container) use ($twig) {
                 $service = pluginApp(BlogService::class);
