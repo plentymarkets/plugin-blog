@@ -20,6 +20,7 @@ use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
 use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
 use Plenty\Plugin\Application;
+use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Http\Response;
 use Plenty\Plugin\Translation\Translator;
@@ -105,9 +106,12 @@ class BlogController extends LayoutController
 
     /**
      * @param Request $request
+     * @param BlogService $blogService
+     * @param CategoryService $categoryService
+     * @param ConfigRepository $config
      * @return mixed
      */
-    public function listArticles(Request $request, BlogService $blogService, CategoryService $categoryService)
+    public function listArticles(Request $request, BlogService $blogService, CategoryService $categoryService, ConfigRepository $config)
     {
         $navigationList = $blogService->getNavigationList();
         $lang = pluginApp(SessionStorageService::class)->getLang();
@@ -148,6 +152,14 @@ class BlogController extends LayoutController
                 $categoryUrl = $landingUrl . $categoryUrl;
             }else{
                 $categoryUrl = $landingUrl;
+            }
+
+            // Yes, the config stores a string with the text 'false', not a boolean
+            if($config->get('Blog.general.list.showAuthor') === 'false') {
+                // Can't unset $post->data['user']
+                $temporaryData = $post->data;
+                unset($temporaryData['user']);
+                $post->data = $temporaryData;
             }
 
             $post->urls = [
