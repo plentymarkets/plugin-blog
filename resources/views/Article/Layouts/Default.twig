@@ -1,3 +1,6 @@
+{% set truncatedBlogTitle = blogPost.data.post.title|length > 50 ? blogPost.data.post.title|slice(0, 50) ~ '...' : blogPost.data.post.title %}
+{% set blogShowAuthor = config('Blog.general.list.showAuthor') %}
+
 <div class="blog-wrapper {{ reverse ? 'blog-layout-default-reverse' : 'blog-layout-default' }}">
 
     <section class="blog-header"
@@ -12,7 +15,6 @@
                 {{ category.details[0].name }}
             </h2>
 
-            {% set truncatedBlogTitle = blogPost.data.post.title|length > 50 ? blogPost.data.post.title|slice(0, 50) ~ '...' : blogPost.data.post.title %}
             {% include "Blog::Other.Breadcrumbs" with { 'blogCategoryId': category.id, 'extra': truncatedBlogTitle } %}
 
         </div>
@@ -30,14 +32,17 @@
                             <h1 class="blog-post-title">{{ blogPost.data.post.title }}</h1>
 
                             <p class="blog-details">
-                                        <span class="blog-detail blog-detail-author">
-                                            {% if blogPost.data.user.image is not empty %}
-                                                <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-md">{#
-                                            #}{% else %}{#
-                                                #}{{ trans('Blog::Template.createdBy') }} {#
-                                            #}{% endif %}{#
-                                            #}<a href="/{{ trans('Blog::Landing.urlName') }}/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a> -
-                                        </span>
+                                {% if blogShowAuthor == 'true' %}
+                                    <span class="blog-detail blog-detail-author">
+                                    {% if blogPost.data.user.image is not empty %}
+                                        <img src="{{ blogPost.data.user.image }}" alt="{{ blogPost.data.user.realName }}" class="blog-avatar blog-avatar-sm">{#
+                                    #}{% else %}{#
+                                        #}{{ trans('Blog::Template.createdBy') }} {#
+                                    #}{% endif %}{#
+                                    #}<a href="/{{ trans('Blog::Landing.urlName') }}/search/{{ blogPost.data.user.realName }}">{{ blogPost.data.user.realName }}</a>
+                                    -
+                                </span>
+                                {% endif %}
                                 <span class="blog-detail blog-detail-date">{{ blogPost.data.post.publishedAt | date("j M, Y")}}</span>
                             </p>
                         </div>

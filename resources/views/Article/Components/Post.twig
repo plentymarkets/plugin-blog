@@ -1,11 +1,13 @@
+{% set blogShowAuthor = config('Blog.general.list.showAuthor') %}
+
 <script type="x/template" id="vue-blog-post">
 
     <article>
-        <blog-post-featured-1 v-if="layout === 'featured-1'" :article="article"></blog-post-featured-1>
-        <blog-post-horizontal-MD v-else-if="layout === 'horizontal-MD'" :article="article"></blog-post-horizontal-MD>
-        <blog-post-horizontal-LG v-else-if="layout === 'horizontal-LG'" :article="article"></blog-post-horizontal-LG>
-        <blog-post-vertical-XL v-else-if="layout === 'vertical-XL'" :article="article"></blog-post-vertical-XL>
-        <blog-post-vertical-SM v-else-if="layout === 'vertical-SM'" :article="article"></blog-post-vertical-SM>
+        <blog-post-featured-1         v-if="layout === 'featured-1'"    :article="article" :show-author="{{ blogShowAuthor }}"></blog-post-featured-1>
+        <blog-post-horizontal-MD v-else-if="layout === 'horizontal-MD'" :article="article" :show-author="{{ blogShowAuthor }}"></blog-post-horizontal-MD>
+        <blog-post-horizontal-LG v-else-if="layout === 'horizontal-LG'" :article="article" :show-author="{{ blogShowAuthor }}"></blog-post-horizontal-LG>
+        <blog-post-vertical-XL   v-else-if="layout === 'vertical-XL'"   :article="article" :show-author="{{ blogShowAuthor }}"></blog-post-vertical-XL>
+        <blog-post-vertical-SM   v-else-if="layout === 'vertical-SM'"   :article="article" :show-author="{{ blogShowAuthor }}"></blog-post-vertical-SM>
     </article>
 
 </script>
@@ -27,7 +29,6 @@
         },
 
         created: function() {
-            var _this = this;
             this.$options.template = '#vue-blog-post';
         },
 

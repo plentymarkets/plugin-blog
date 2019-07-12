@@ -16,6 +16,14 @@
                         "defaultValue": "false"
                     }
                 },
+                "general.list.showAuthor": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.blogShowAuthor",
+                    "options": {
+                        "defaultValue": "true"
+                    }
+                },
                 "general.entrypoint.automaticLink": {
                     "type": "checkBox",
                     "required": false,

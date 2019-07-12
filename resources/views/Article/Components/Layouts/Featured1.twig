@@ -17,18 +17,19 @@
                 </h2>
 
                 <p class="blog-details">
-                    <a :href="article.urls.landingUrl + '/search/' + article.data.user.realName">
+                    <a v-if="showAuthor" :href="article.urls.landingUrl + '/search/' + article.data.user.realName">
                             <span class="blog-detail blog-detail-author">
                                 <img v-if="article.data.user.image"
                                      :src="article.data.user.image"
                                      :alt="article.data.user.realName"
-                                     class="blog-avatar blog-avatar-sm">{#
+                                     class="blog-avatar blog-avatar-md">{#
                                 #}<span v-else >{{ trans('Blog::Template.createdBy') }} </span>{#
 
                                 #}<span class="blog-detail-author-name">${ article.data.user.realName }</span>
                             </span>
                     </a>
-                    - <span class="blog-detail blog-detail-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</span>
+                    <span v-if="showAuthor">-</span>
+                    <span class="blog-detail blog-detail-date">${ article.data.post.publishedAt | moment("DD MMM, YYYY") }</span>
                 </p>
             </div>
         </div>
@@ -45,6 +46,11 @@
             article: {
                 type: Object,
                 required: true
+            },
+            showAuthor: {
+                type: Boolean,
+                required: false,
+                default: true
             }
         },
 
