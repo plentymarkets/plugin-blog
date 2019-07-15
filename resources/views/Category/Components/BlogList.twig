@@ -5,7 +5,7 @@
         <div class="blog-posts">
 
             <h3 v-if="isSearchPage" class="blog-heading"><span>{{ trans('Blog::Template.searchResultsFor') }} ${ searchString }</span></h3>
-            <h3 v-if="headingText" class="blog-heading">${ headingText }</h3>
+            <h3 v-if="headingText && articleList.length !== 0" class="blog-heading">${ headingText }</h3>
 
             <div v-if="horizontal" class="row">
                 <div v-for="(article,index) in articleList" v-if="index >= skip" :class="horizontalClasses">
@@ -96,6 +96,10 @@
                 type: Number,
                 required: false,
                 default: 0
+            },
+            ignorePost: {
+                type: String,
+                required: false
             }
         },
 
@@ -149,7 +153,9 @@
                     success: function(data)
                     {
                         $.each(data.entries, function(key,value) {
-                            _this.articleList.push(value);
+                            if(_this.ignorePost !== value.data.post.urlName) {
+                                _this.articleList.push(value);
+                            }
                         });
 
                         if(data.entries.length === 0){

@@ -81,6 +81,7 @@
                                    horizontal
                                    horizontal-classes="col-md-4 col-sm-6 mb-3"
                                    layout="horizontal-MD"
+                                   ignore-post="{{ blogPost.data.post.urlName }}"
                                    :category-id="{{ blogPost.data.category.id }}"
                                    :filters="{'itemsPerPage':6}"
                                    show-loader></blog-list>
