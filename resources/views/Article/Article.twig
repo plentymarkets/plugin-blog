@@ -17,14 +17,14 @@
     <meta name="title" content="{{ blogPost.data.metaData.title }}">
     <meta name="description" content="{{ blogPost.data.metaData.description }}">
 
-    <meta name="og:title" content="{{ blogPost.data.metaData.title }}">
-    <meta name="og:description" content="{{ blogPost.data.metaData.description }}">
-    <meta name="og:url" content="{{ blogPost.urls.postUrl }}">
+    <meta property="og:title" content="{{ blogPost.data.metaData.title }}">
+    <meta property="og:description" content="{{ blogPost.data.metaData.description }}">
+    <meta property="og:url" content="{{ blogPost.urls.postUrl }}">
 
     {% if blogPost.data.images.title.path is not empty %}
-        <meta name="og:image" content="{{ blogPost.data.images.title.path }}">
+        <meta property="og:image" content="{{ blogPost.data.images.title.path }}">
     {% elseif blogPost.data.images.preview.path is not empty %}
-        <meta name="og:image" content="{{ blogPost.data.images.preview.path }}">
+        <meta property="og:image" content="{{ blogPost.data.images.preview.path }}">
     {% endif %}
 
     <meta name="keywords" content="{{ blogPost.data.metaData.keywords }}">
