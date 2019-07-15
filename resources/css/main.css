@@ -605,6 +605,9 @@
 .blog-four-featured .blog-four-featured-banner .blog-posts article .blog-post-featured-1 .blog-post-content {
   width: 100%;
   padding: 17px 20px;
+  position: absolute !important;
+  bottom: 0;
+  right: 0;
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
   background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
   /* FF3.6-15 */
@@ -616,62 +619,81 @@
   /* IE6-9 */
 }
 
-/* line 25, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 28, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article .blog-post-featured-1 .blog-post-content .blog-post-header .blog-post-title {
   margin-bottom: 0;
 }
 
-/* line 29, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 32, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article .blog-post-featured-1 .blog-post-content .blog-post-header .blog-details {
   display: none;
 }
 
-/* line 33, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 36, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article .blog-post-featured-1 .blog-post-content .blog-post-header a {
   color: white;
 }
 
-/* line 40, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 43, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article .blog-post-featured-1 .blog-post-image-wrap {
   height: 100%;
 }
 
-/* line 43, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 46, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article .blog-post-featured-1 .blog-post-image-wrap .blog-post-image {
   height: 100%;
 }
 
-/* line 51, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 54, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article:nth-child(1) {
   width: 50%;
   height: 450px;
 }
 
-/* line 55, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 58, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article:nth-child(1) .blog-post-title {
   font-size: 27px;
 }
 
-/* line 60, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 63, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article:nth-child(2) {
   width: 50%;
   height: 225px;
 }
 
-/* line 64, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 67, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article:nth-child(2) .blog-post-title {
   font-size: 23px;
 }
 
-/* line 69, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 72, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article:nth-child(n+3) {
   width: 25%;
   height: 225px;
 }
 
-/* line 73, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+/* line 76, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
 .blog-four-featured .blog-four-featured-banner .blog-posts article:nth-child(n+3) .blog-post-title {
   font-size: 17px;
+}
+
+@media (max-width: 991px) {
+  /* line 82, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+  .blog-four-featured .blog-four-featured-banner .blog-posts article {
+    width: 50% !important;
+    height: 225px !important;
+  }
+  /* line 86, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+  .blog-four-featured .blog-four-featured-banner .blog-posts article .blog-post-title {
+    font-size: 23px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* line 93, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/category/_fourfeatured.scss */
+  .blog-four-featured .blog-four-featured-banner .blog-posts article {
+    width: 100% !important;
+  }
 }
 
 /* line 1, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/components/_blog-post-featured-1.scss */
