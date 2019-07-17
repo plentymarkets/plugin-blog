@@ -1,5 +1,20 @@
 # Release notes for Blog plugin
 
+## v1.1.0 (2019-07-17)
+
+### NEW: Layouts
+We added several layout options for articles, category pages and the landingpage. Please refer to the plugin guide for details.
+
+### NEW in UI
+- Added related posts at the bottom of the article in single article page that show posts from the same category as the opened article
+- Added categories menu in sidebar
+
+### CHANGES in UI
+- Sidebar is narrower, main page content is wider to focus on the main content more than on the sidebar
+- Sidebar latest posts title is no longer truncated and limited to 2 lines, it shows full title now
+
+### CHANGE/FIX Open Graph meta are now properties
+
 ## v1.0.2 (2019-06-27)
 
 ### NEW: OG Tags added
