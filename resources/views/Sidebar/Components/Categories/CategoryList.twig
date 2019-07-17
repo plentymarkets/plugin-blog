@@ -11,26 +11,29 @@
             {% set blogCategoryIsActive = true %}
         {% endfor %}
 
-        <li>
-        <span class="blog-name-row-wrap">
-            <a class="blog-sidebar-category-name {{ blogCategoryIsActive ? 'active' : '' }}" href="{{ blogCategoryURL }}">{{ blogCategory.details[0].name }}</a>
+        {% if blogCategory.details is not empty %}
+            <li>
+                <span class="blog-name-row-wrap">
+                    <a class="blog-sidebar-category-name {{ blogCategoryIsActive ? 'active' : '' }}" href="{{ blogCategoryURL }}">{{ blogCategory.details[0].name }}</a>
 
-            {% if blogCategory.children is not empty  %}
-            <a class="blog-sidebar-category-toggler {{ blogCategoryIsActive ? '' : 'collapsed' }}"
-                   data-toggle="collapse"
-                   href="#bt-sidebar-category-{{ blogCategory.id }}"
-                   aria-controls="bt-sidebar-category-{{ blogCategory.id }}">
-                <i class="blog-hide-icon fa fa-angle-up"></i>
-                <i class="blog-show-icon fa fa-angle-down"></i>
-            </a>
-            {% endif %}
+                    {% if blogCategory.children is not empty  %}
+                        <a class="blog-sidebar-category-toggler {{ blogCategoryIsActive ? '' : 'collapsed' }}"
+                           data-toggle="collapse"
+                           href="#bt-sidebar-category-{{ blogCategory.id }}"
+                           aria-controls="bt-sidebar-category-{{ blogCategory.id }}">
+                                <i class="blog-hide-icon fa fa-angle-up"></i>
+                                <i class="blog-show-icon fa fa-angle-down"></i>
+                        </a>
+                    {% endif %}
 
-        </span>
+                </span>
 
-        {% if blogCategory.children is not empty  %}
-            {% include "Blog::Sidebar.Components.Categories.CategoryList" with { 'blogCategoryTree': blogCategory.children, 'blogUrlTree' : blogCategoryURL, 'blogTreeId' : blogCategory.id, 'blogCategoryIsActive' : blogCategoryIsActive }  %}
+                {% if blogCategory.children is not empty  %}
+                    {% include "Blog::Sidebar.Components.Categories.CategoryList" with { 'blogCategoryTree': blogCategory.children, 'blogUrlTree' : blogCategoryURL, 'blogTreeId' : blogCategory.id, 'blogCategoryIsActive' : blogCategoryIsActive }  %}
+                {% endif %}
+
+            </li>
         {% endif %}
 
-    </li>
     {% endfor %}
 </ul>
