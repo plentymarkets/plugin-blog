@@ -17,7 +17,7 @@ Setting | Description
 ----|-----
 Default image to display in the blog header | Select the image file which is displayed as the default image in the blog header. On category pages, **Category image 1**, which is stored in the **Item » Categories** menu, is displayed in the blog header. If no category image has been stored, the default image is displayed instead. If no default image has been specified, a grey placeholder is used. The default image is also used in the blog header of the search pages. The image should have a width of at least 800px.
 Display a "Read more" button on listed articles | Activate checkbox to display a "Read more" button for articles in the blog overview.
-Display author | Activate checkbox to show authors for all blog posts. Leave it unchecked to hide authors.
+Display author | Deactivate the checkbox to hide authors for all blog posts. Leave it checked if you want authors to be displayed.
 Automatic link to blog in header on the left | Activate checkbox to show a link to the blog on the left hand side of your store header.
 
 ### Sidebar settings
