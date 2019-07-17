@@ -25,7 +25,7 @@
                 {% include "Blog::Other.Loading" %}
             </div>
 
-            <div v-if="!listIsLoading && articleList.length === 0">
+            <div v-if="!listIsLoading && articleList.length === 0 && showNoResultsText">
                 <h5 class="text-center h1 py-3">{{ trans('Blog::Template.noBlogPostResults') }}</h5>
             </div>
 
@@ -72,6 +72,11 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            showNoResultsText: {
+                type: Boolean,
+                required: false,
+                default: true
             },
             showDummy: {
                 type: Boolean,
