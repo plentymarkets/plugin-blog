@@ -61,6 +61,11 @@
     }
 
 
+    .blog-post-image-wrap {
+        background: $light-bg-color;
+        min-height: 300px;
+    }
+
     .blog-post-image {
         &.blog-post-image-fullwidth {
             width:100%;
