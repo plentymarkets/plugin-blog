@@ -5,9 +5,12 @@
 ### NEW: Layouts
 Verschiedene Layout-Optionen für Beitragsseiten, Kategorieseiten und die Blog-Landingpage wurden hinzugefügt. Mehr Details findest du im Plugin-Guide.
 
-### NEW in UI
+### NEW in Frontend UI
 - Ähnliche Beiträge unterhalb von Blogbeiträgen wurden hinzugefügt. Ähnliche Beiträge stammen aus der selben Kategorie wie der angezeigte Beitrag.
 - Kategoriebaum wurde der Seitenleiste hinzugefügt
+
+## NEW in Backend
+- Ein neuer Editor wurde hinzugefügt.
 
 ### CHANGES in UI
 - Die Seitenleiste wurde verschmälert. Der Hauptcontent der Seite fällt so mehr ins Gewicht und rückt mehr in den Fokus.
