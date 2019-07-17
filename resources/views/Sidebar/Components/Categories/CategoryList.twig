@@ -4,12 +4,12 @@
 <ul>
 {% endif %}
     {% for blogCategory in blogCategoryTree %}
-    {% set blogCategoryURL = blogUrlTree ~ '/' ~ blogCategory.details[0].nameUrl %}
+        {% set blogCategoryURL = blogUrlTree ~ '/' ~ blogCategory.details[0].nameUrl %}
+        {% set blogCategoryIsActive = false %}
 
-    {% set blogCategoryIsActive = false %}
-    {% for blogSingleCategory in blogCategoryHierarchy if blogCategory.id == blogSingleCategory.id %}
-        {% set blogCategoryIsActive = true %}
-    {% endfor %}
+        {% for blogSingleCategory in blogCategoryHierarchy if blogCategory.id == blogSingleCategory.id %}
+            {% set blogCategoryIsActive = true %}
+        {% endfor %}
 
         <li>
         <span class="blog-name-row-wrap">
