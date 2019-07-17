@@ -17,7 +17,7 @@ Einstellung | Beschreibung
 ----|-----
 Im Blog-Header angezeigtes Standardbild | Bilddatei auswählen, welche im Blog-Header standardmäßig angezeigt wird. Auf Blog-Kategorieseiten wird das im Menü **Artikel » Kategorien** hinterlegte Kategoriebild 1 im Header angezeigt. Ist dort kein Kategoriebild hinterlegt, wird das Standardbild angezeigt. Ist kein Standardbild hinterlegt, wird ein grauer Platzhalter verwendet. Das Standardbild wird ebenfalls im Blog-Header der Suchseiten angezeigt. Die Bilddatei sollte mindestens eine Breite von 800px haben.
 "Weiterlesen" Button für gelistete Beiträge anzeigen | Checkbox aktivieren, um den "Weiterlesen"-Button für Blog-Beiträge in der Blog-Übersicht anzuzeigen.
-Autor anzeigen | Zeigt Autoren global für Blogbeiträge an oder blendet diese aus.
+Autor anzeigen | Checkbox deaktivieren, um Autoren global auszublenden.
 Automatischer Link zum Blog links im Header | Checkbox aktivieren, um den automatischen Link zum Blog links im Shop-Header anzuzeigen.
 
 ### Seitenleiste Einstellungen
