@@ -40,7 +40,7 @@
                 "sidebar.categories.display": {
                     "type": "checkBox",
                     "required": false,
-                    "label": "Config.categoriesDisplay",
+                    "label": "Config.sidebarShowCategories",
                     "options": {
                         "defaultValue": "true"
                     }
@@ -79,11 +79,11 @@
                         "selectBoxValues": [
                             {
                                 "value": "default",
-                                "caption": "Config.labelArticleLayoutRightSidebar"
+                                "caption": "Config.labelLayoutDefaultRightSidebar"
                             },
                             {
                                 "value": "defaultreverse",
-                                "caption": "Config.labelArticleLayoutLeftSidebar"
+                                "caption": "Config.labelLayoutDefaultLeftSidebar"
                             },
                             {
                                 "value": "center",
@@ -101,19 +101,19 @@
                         "selectBoxValues": [
                             {
                                 "value": "default",
-                                "caption": "Config.labelCategoryLayoutRightSidebar"
+                                "caption": "Config.labelLayoutDefaultRightSidebar"
                             },
                             {
                                 "value": "defaultreverse",
-                                "caption": "Config.labelCategoryLayoutLeftSidebar"
+                                "caption": "Config.labelLayoutDefaultLeftSidebar"
                             },
                             {
                                 "value": "modern",
-                                "caption": "Config.labelCategoryLayoutModern"
+                                "caption": "Config.labelLayoutModernRightSidebar"
                             },
                             {
                                 "value": "modernreverse",
-                                "caption": "Config.labelCategoryLayoutModernLeftSidebar"
+                                "caption": "Config.labelLayoutModernLeftSidebar"
                             }
                         ]
                     }
@@ -127,19 +127,19 @@
                         "selectBoxValues": [
                             {
                                 "value": "default",
-                                "caption": "Config.labelLandingLayoutRightSidebar"
+                                "caption": "Config.labelLayoutDefaultRightSidebar"
                             },
                             {
                                 "value": "defaultreverse",
-                                "caption": "Config.labelLandingLayoutLeftSidebar"
+                                "caption": "Config.labelLayoutDefaultLeftSidebar"
                             },
                             {
                                 "value": "modern",
-                                "caption": "Config.labelLandingLayoutModern"
+                                "caption": "Config.labelLayoutModernRightSidebar"
                             },
                             {
                                 "value": "modernreverse",
-                                "caption": "Config.labelLandingLayoutModernLeftSidebar"
+                                "caption": "Config.labelLayoutModernLeftSidebar"
                             },
                             {
                                 "value": "fourfeatured",
