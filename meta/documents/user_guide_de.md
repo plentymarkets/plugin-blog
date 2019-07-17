@@ -41,4 +41,4 @@ Ein hervorgehobener Beitrag (Seitenleiste links) | Auf Kategorieseiten wird im H
 Vier hervorgehobene Beiträge | Die vier letzten veröffentlichten Beiträge werden im oberen Bereich des Blogs hervorgehoben. Die Liste aller weiteren Blogs erfolgt stilistisch als Karten, nicht als Liste. Nur verfügbar für die Blog-Landingpage.
 
 ## Blog-Einstiegsseite im Assistenten einrichten
-Durchlaufe den Blog-Assistenten, um einige grundlegende Einstellungen zu deinem Blog vorzunehmen. Unter anderem legst du hier den URL-Teil fest, der dauerhaft zu deinem Blog führt, wie die Verlinkung zwischen Blog und Shop lauten soll und wichtige SEO-Einstellung zur Seite selbst, wie Titel, Metadaten und robots. Du findest ihn im Menü **System » Assistenten**.
+Durchlaufe den Blog-Assistenten, um einige grundlegende Einstellungen zu deinem Blog vorzunehmen. Unter anderem legst du hier den URL-Teil fest, der dauerhaft zu deinem Blog führt, wie die Verlinkung zwischen Blog und Shop lauten soll und wichtige SEO-Einstellung zur Seite selbst, wie Titel, Metadaten und robots. Du findest ihn im Menü **System » Assistenten » Omni-Channel**.
