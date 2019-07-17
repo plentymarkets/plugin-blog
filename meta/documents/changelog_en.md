@@ -5,9 +5,12 @@
 ### NEW: Layouts
 We added several layout options for articles, category pages and the landingpage. Please refer to the plugin guide for details.
 
-### NEW in UI
+### NEW in frontend UI
 - Added related posts at the bottom of the article in single article page that show posts from the same category as the opened article
 - Added categories menu in sidebar
+
+### NEW in backend UI
+- New editor was added.
 
 ### CHANGES in UI
 - Sidebar is narrower, main page content is wider to focus on the main content more than on the sidebar
