@@ -1,4 +1,19 @@
-# Release notes for Blog plugin
+# Release notes für das Blog plugin
+
+## v1.1.0 (2019-07-17)
+
+### NEW: Layouts
+Verschiedene Layout-Optionen für Beitragsseiten, Kategorieseiten und die Blog-Landingpage wurden hinzugefügt. Mehr Details findest du im Plugin-Guide.
+
+### NEW in UI
+- Ähnliche Beiträge unterhalb von Blogbeiträgen wurden hinzugefügt. Ähnliche Beiträge stammen aus der selben Kategorie wie der angezeigte Beitrag.
+- Kategoriebaum wurde der Seitenleiste hinzugefügt
+
+### CHANGES in UI
+- Die Seitenleiste wurde verschmälert. Der Hauptcontent der Seite fällt so mehr ins Gewicht und rückt mehr in den Fokus.
+- Der Titel von "Neuesten Beiträgen" in der Seitenleiste wird nicht länger abgeschnitten. 
+
+### CHANGE/FIX Open Graph Metadaten sind nun Properties
 
 ## v1.0.2 (2019-06-27)
 
