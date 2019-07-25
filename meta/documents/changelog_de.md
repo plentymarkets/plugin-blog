@@ -1,5 +1,16 @@
 # Release notes für das Blog plugin
 
+## v1.1.1 (2019-07-25)
+
+### Assistent
+- Im Landingpage Assistenten erstellte multilinguale Texte können nicht länger im Menü Mehrsprächigkeit bearbeitet werden
+
+### FIX: Layout
+- Clear floats werden fur Beitragsseiten eingesetzt 
+
+### CHANGE: Layout
+- 300px Höhenlimitierung für Titelbilder auf Beitragsseiten wurde entfernt. Warnung: Da die Höhe kein mehr Limit hat, können hohe Bilder die den Headerbereich stark in die Länge ziehen. Wir empfehlen, stattdessen breitere Bilder zu verwenden
+
 ## v1.1.0 (2019-07-17)
 
 ### NEW: Layouts

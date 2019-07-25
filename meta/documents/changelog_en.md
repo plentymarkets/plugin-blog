@@ -1,5 +1,16 @@
 # Release notes for Blog plugin
 
+## v1.1.1 (2019-07-25)
+
+### Assistant
+- Landing page assistant multilingualism texts are no longer editable in the multilingualism menu
+
+### FIX: Layout
+- Single post page: article body will now clear floats
+
+### CHANGE: Layout
+- Single post page: title image is no longer limited to 300px height - Warning: Since we're no longer limiting the height, tall images will fill a lot more area. Make sure you use wide images instead.
+
 ## v1.1.0 (2019-07-17)
 
 ### NEW: Layouts
