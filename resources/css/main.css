@@ -392,28 +392,22 @@
 }
 
 /* line 8, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
-.blog-single-post .blog-post-image-fullwidth {
-  max-height: 300px;
-  object-fit: cover;
-}
-
-/* line 13, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-header {
   padding-bottom: 10px;
 }
 
-/* line 16, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 11, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-header .blog-category-name, .blog-single-post .blog-post-header .blog-details .blog-detail {
   color: #7e93a9;
 }
 
-/* line 20, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 15, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-header .blog-category-name {
   color: var(--primary);
   font-size: 13px;
 }
 
-/* line 25, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 20, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-header .blog-post-title {
   font-weight: bold;
   font-size: 30px;
@@ -421,27 +415,27 @@
   margin-bottom: 20px;
 }
 
-/* line 31, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 26, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-header .blog-post-title a {
   color: #4d4f4d;
 }
 
-/* line 37, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 32, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-header .blog-details .blog-detail {
   font-size: 13px;
 }
 
-/* line 41, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 36, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-header .blog-details .blog-detail.blog-detail-author .blog-avatar {
   margin-right: 10px;
 }
 
-/* line 45, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 40, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-header .blog-details .blog-detail.blog-detail-author .blog-detail-author-name {
   color: var(--primary);
 }
 
-/* line 53, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 48, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-image {
   margin-bottom: 20px;
   -webkit-border-radius: 3px;
@@ -449,28 +443,35 @@
   border-radius: 3px;
 }
 
-/* line 57, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 52, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-post-image.blog-post-image-fullwidth {
   width: 100%;
 }
 
-/* line 62, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 57, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-body {
   margin-bottom: 20px;
 }
 
-/* line 65, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 61, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+.blog-single-post .blog-body:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+/* line 67, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-body p {
   margin-bottom: 1.5em;
 }
 
-/* line 69, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 71, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-body h1, .blog-single-post .blog-body h2, .blog-single-post .blog-body h3, .blog-single-post .blog-body h4, .blog-single-post .blog-body h5, .blog-single-post .blog-body h6 {
   line-height: 1.46em;
   font-weight: bold;
 }
 
-/* line 74, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 76, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-body img {
   max-width: 100%;
   height: auto;
@@ -479,7 +480,7 @@
   border-radius: 3px;
 }
 
-/* line 80, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 82, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-body blockquote {
   position: relative;
   font-size: 25px;
@@ -487,12 +488,12 @@
   text-align: center;
 }
 
-/* line 86, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 88, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-body blockquote p {
   margin-bottom: 0;
 }
 
-/* line 90, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 92, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-body blockquote:before {
   content: "\201c";
   position: absolute;
@@ -507,12 +508,12 @@
   font-size: 120px;
 }
 
-/* line 105, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 107, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-body hr {
   border-top-color: #f1f1f1;
 }
 
-/* line 110, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
+/* line 112, /workspace/localsystem/plugins/inbox/plugins/Blog/resources/scss/layouts/article/_articleDefault.scss */
 .blog-single-post .blog-tags {
   margin-bottom: 0;
   padding: 15px 0;

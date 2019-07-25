@@ -5,11 +5,6 @@
         padding-bottom:20px;
     }
 
-    .blog-post-image-fullwidth {
-        max-height:300px;
-        object-fit:cover;
-    }
-
     .blog-post-header {
         padding-bottom:10px;
 
@@ -61,6 +56,13 @@
 
     .blog-body {
         margin-bottom:20px;
+
+        // Clearfix
+        &:after {
+            display: block;
+            clear: both;
+            content: "";
+        }
 
         p {
             margin-bottom:1.5em;

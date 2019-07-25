@@ -4,6 +4,7 @@
   [
     "Config.properties",
     "Languages.properties",
-    "Assistant.properties"
+    "Assistant.properties",
+    "Landing.properties"
   ]
 }
