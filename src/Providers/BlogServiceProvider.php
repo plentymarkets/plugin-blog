@@ -49,6 +49,7 @@ class BlogServiceProvider extends ServiceProvider
         $eventDispatcher->listen('IO.Resources.Import',
             function (ResourceContainer $container) {
                 $container->addScriptTemplate('Blog::Category.Components.BlogList');
+                $container->addScriptTemplate('Blog::Category.Components.BlogUpdateCategoryUrl');
                 $container->addScriptTemplate('Blog::Sidebar.Components.Search');
                 $container->addScriptTemplate('Blog::Sidebar.Components.LatestPosts');
                 $container->addScriptTemplate('Blog::Article.Components.Post');
@@ -66,9 +67,9 @@ class BlogServiceProvider extends ServiceProvider
         // 90 priority, 100 is Ceres, themes typically use "0" because that's how theme creators are instructed in the theme creation guide
         $eventDispatcher->listen('IO.tpl.category.blog', function(TemplateContainer $container, $data) use ($request)
         {
-            // TODO This will redirect users to the /custom/ url
             $blogData = [
-                'filters' => $request->except(['plentyMarkets'])
+                'filters' => $request->except(['plentyMarkets']),
+                'updateBlogUrl' => true
             ];
 
             $container->setTemplate('Blog::Category.CategoryBlog')->withData($blogData, 'blogData');
@@ -79,7 +80,8 @@ class BlogServiceProvider extends ServiceProvider
         $eventDispatcher->listen('IO.tpl.blog.category', function(TemplateContainer $container, $data) use ($request)
         {
             $blogData = [
-                'filters' => $request->except(['plentyMarkets'])
+                'filters' => $request->except(['plentyMarkets']),
+                'updateBlogUrl' => false
             ];
 
             $container->setTemplate('Blog::Category.CategoryBlog')->withData($blogData, 'blogData');

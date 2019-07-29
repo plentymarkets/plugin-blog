@@ -4,6 +4,24 @@
         "Config.tabGeneral": {
             "label": "Config.tabGeneral",
             "formFields": {
+                "general.header.categories": {
+                    "type": "selectBox",
+                    "required": false,
+                    "label": "Config.blogHeaderCategoriesLabel",
+                    "options": {
+                        "defaultValue": "blog",
+                        "selectBoxValues": [
+                            {
+                                "value": "blog",
+                                "caption": "Config.blogHeaderCategoriesBlog"
+                            },
+                            {
+                                "value": "ceres",
+                                "caption": "Config.blogHeaderCategoriesCeres"
+                            }
+                        ]
+                    }
+                },
                 "general.header.default_image": {
                     "type": "inputFile",
                     "label": "Config.blogHeaderDefaultImage"

@@ -36,14 +36,15 @@
         data: function () {
             return {
                 searchString: '',
-                landingUrl: '{{ trans('Blog::Landing.urlName') }}'
+                landingUrl: '{{ trans('Blog::Landing.urlName') }}',
+                languagePrefix: '{{ services.url.getHomepageURL() }}'
             };
         },
 
         methods: {
             search: function() {
                 if(this.searchString) {
-                    let newUrl = '/' + this.landingUrl + '/search/' + encodeURIComponent(this.searchString);
+                    let newUrl = this.languagePrefix + (this.languagePrefix !== '/' ? '/' : '') + this.landingUrl + '/search/' + encodeURIComponent(this.searchString);
 
                     if(this.isSearchPage) {
                         vueEventHub.$emit('blog-search', {
@@ -51,6 +52,7 @@
                         });
 
                         history.pushState({}, null, newUrl);
+
                     }else{
                         window.location.href = newUrl;
                     }

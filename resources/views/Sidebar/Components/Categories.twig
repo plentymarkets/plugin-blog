@@ -1,9 +1,10 @@
 {% set blogCategoryHierarchy = services.category.getHierarchy() %}
+{% set blogHomepageUrl = services.url.getHomepageURL() %}
 
 <div class="blog-sidebar-categories">
-    <h3 class="blog-heading"><span>Categories</span></h3>
+    <h3 class="blog-heading"><span>{{ trans('Blog::Template.categories') }}</span></h3>
 
-    {% include "Blog::Sidebar.Components.Categories.CategoryList" with { 'blogCategoryTree': categories, 'blogUrlTree' : '' }  %}
+    {% include "Blog::Sidebar.Components.Categories.CategoryList" with { 'blogCategoryTree': blogCategories, 'blogUrlTree' : blogHomepageUrl }  %}
 
 </div>
 

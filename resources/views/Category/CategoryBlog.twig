@@ -20,6 +20,8 @@
 
 {% block PageBody %}
 
+    {% if blogData.updateBlogUrl %}<blog-update-category-url category-url="{{ categoryUrl }}"></blog-update-category-url>{% endif %}
+
     {% if blogLayout == 'default' %}
         {% include "Blog::Category.Layouts.Default" %}
     {% elseif blogLayout == 'defaultreverse' %}

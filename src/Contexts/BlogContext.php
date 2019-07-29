@@ -5,32 +5,45 @@ namespace Blog\Contexts;
 use Ceres\Contexts\GlobalContext;
 use IO\Helper\ContextInterface;
 use IO\Services\CategoryService;
+use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Translation\Translator;
 
 class BlogContext extends GlobalContext implements ContextInterface
 {
 
+    public $blogCategories;
+
     public function init($params)
     {
         parent::init($params);
 
+        $config = pluginApp(ConfigRepository::class);
         $landingUrl = pluginApp(Translator::class)->trans('Blog::Landing.urlName');
+        $this->blogCategories = pluginApp(CategoryService::class)->getNavigationTree('blog', null, 6);
 
-        $this->categories = pluginApp(CategoryService::class)->getNavigationTree('blog', null, 6);
+        $this->prefixBlogCategories($this->blogCategories, $landingUrl);
 
-        $this->updateCategoryTree($this->categories, $landingUrl);
+        // If we only display categories of type blog in the header
+        if($config->get('Blog.general.header.categories') === 'blog') {
+            $this->categories = $this->blogCategories;
+        }else{
+            $this->prefixBlogCategories($this->categories, $landingUrl);
+        }
+
 
     }
 
     /**
-     * Update category urls ( and maybe more than that in the future )
+     * Prefix blog categories url ( and maybe more than that in the future )
      *
      * @param $categories
      * @param $landingUrl
      */
-    private function updateCategoryTree(&$categories, $landingUrl)
+    private function prefixBlogCategories(&$categories, $landingUrl)
     {
         foreach($categories as &$category) {
+            if($category['type'] != 'blog') continue;
+
             if(!empty($category['details'])) {
                 $category['details'][0]['nameUrl'] = "$landingUrl/" . $category['details'][0]['nameUrl'];
             }

@@ -1,0 +1,33 @@
+<script type="x/template" id="vue-blog-update-category-url">
+
+    <div></div>
+
+</script>
+<script type="text/javascript">
+    Vue.component('blog-update-category-url', {
+
+        delimiters: ['${', '}'],
+
+        props: {
+            categoryUrl: {
+                type: String,
+                required: true
+            }
+        },
+
+        created: function() {
+            this.$options.template = '#vue-blog-update-category-url';
+            this.init();
+        },
+
+        data: function () {
+            return {}
+        },
+
+        methods: {
+            init: function() {
+                history.replaceState({}, null, this.categoryUrl);
+            }
+        }
+    });
+</script>
