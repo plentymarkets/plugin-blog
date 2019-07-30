@@ -15,6 +15,7 @@ The **Blog** plugin serves to publish blog articles in your Ceres online store. 
 
 Setting | Description
 ----|-----
+Categories in the blog header navigation | Select whether you want blog categories only to be displayed in the header navigation or all categories as in the rest of your online store (as you decided in the Ceres settings). For the latter, blog categories will only be accessible in the sidebar.
 Default image to display in the blog header | Select the image file which is displayed as the default image in the blog header. On category pages, **Category image 1**, which is stored in the **Item » Categories** menu, is displayed in the blog header. If no category image has been stored, the default image is displayed instead. If no default image has been specified, a grey placeholder is used. The default image is also used in the blog header of the search pages. The image should have a width of at least 800px.
 Display a "Read more" button on listed articles | Activate checkbox to display a "Read more" button for articles in the blog overview.
 Display author | Deactivate the checkbox to hide authors for all blog posts. Leave it checked if you want authors to be displayed.
