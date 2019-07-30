@@ -1,5 +1,18 @@
 # Release notes for Blog plugin
 
+## v1.1.2 (2019-07-30)
+
+### Feature
+- You can now select which category type should be displayed in the blog header navigation 
+    + Only categories of type blog (default)
+    + Same categories as in the rest of the shop
+
+### FIX
+- Categories title in sidebar is now translated
+- Categories in sidebar will now use the correct language prefix in their urls
+- Using search on a different language than the shop default will no longer reset the language
+
+
 ## v1.1.1 (2019-07-25)
 
 ### Assistant

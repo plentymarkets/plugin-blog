@@ -1,5 +1,17 @@
 # Release notes für das Blog plugin
 
+## v1.1.2 (2019-07-30)
+
+### Feature
+- Welche Kategorien in der Header-Navigation angezeigt werden sollen, kann nun gewählt werden
+    + Nur Blog-Kategorien (default)
+    + Kategorien wie im Rest des Shops
+
+### FIX
+- "Categories" in der Seitenleiste ist nun in "Kategorien" übersetzt
+- Kategorien in der Seitenleiste nutzen nun das korrekte Sprach-URL-Präfix
+- Die Benutzung der Suche in einer anderen Sprache als die aktuelle Shop-Einstellung wird nicht länger die Sprache zurücksetzen
+
 ## v1.1.1 (2019-07-25)
 
 ### Assistent
