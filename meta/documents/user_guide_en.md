@@ -2,6 +2,8 @@
 
 The **Blog** plugin serves to publish blog articles in your Ceres online store. Blogs are a great communication tool for informing your customers about news, issues or other interesting content. This user guide takes you through each step of the blog setup.
 
+**Note:** The blog plugin should have a position **between** Ceres and IO in the Plugins >> Plugin overview menu in order to work properly.
+
 ## Setting up the blog in your Ceres online store
 
 1. Purchase the **Blog** plugin in the plentyMarketplace and install it in your plentymarkets backend.
