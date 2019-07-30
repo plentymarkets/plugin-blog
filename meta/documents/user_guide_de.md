@@ -2,6 +2,8 @@
 
 Das **Blog**-Plugin dient der Veröffentlichung von Text- und Bildbeiträgen in deinem Webshop. Blogbeiträge sind ein hilfreiches Mittel zur Kommunikation mit deinen Kunden, um diese über Neuheiten, Probleme oder andere interessante Inhalte zu informieren. Diese Anleitung führt dich Schritt für Schritt durch die Einrichtung des Blogs.
 
+**Hinweis:** Das Blog-Plugin benötigt eine Position **zwischen** Ceres und IO in der Plugins >> Plugin-Übersicht, um reibungslos zu funktionieren.
+
 ## Blog in Ceres Webshops einrichten
 
 1. Kaufe das Blog-Plugin im plentyMarketplace und installiere es.
@@ -15,6 +17,7 @@ Das **Blog**-Plugin dient der Veröffentlichung von Text- und Bildbeiträgen in 
 
 Einstellung | Beschreibung
 ----|-----
+Kategorien in der Headernavigation des Blogs | Wählen, ob in der Headernavigation des Blogs nur Blog-Kategorien angezeigt werden sollen, oder alle Kategorien wie im Rest des Online-Shops (wie in den Ceres-Einstellungen ausgewählt.) Bei weiterem werden die Blog-Kategorien lediglich über die Seitenleiste zugänglich sein.
 Im Blog-Header angezeigtes Standardbild | Bilddatei auswählen, welche im Blog-Header standardmäßig angezeigt wird. Auf Blog-Kategorieseiten wird das im Menü **Artikel » Kategorien** hinterlegte Kategoriebild 1 im Header angezeigt. Ist dort kein Kategoriebild hinterlegt, wird das Standardbild angezeigt. Ist kein Standardbild hinterlegt, wird ein grauer Platzhalter verwendet. Das Standardbild wird ebenfalls im Blog-Header der Suchseiten angezeigt. Die Bilddatei sollte mindestens eine Breite von 800px haben.
 "Weiterlesen" Button für gelistete Beiträge anzeigen | Checkbox aktivieren, um den "Weiterlesen"-Button für Blog-Beiträge in der Blog-Übersicht anzuzeigen.
 Autor anzeigen | Checkbox deaktivieren, um Autoren global auszublenden.
