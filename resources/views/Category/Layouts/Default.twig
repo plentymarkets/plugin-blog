@@ -22,7 +22,7 @@
 
         <div class="row {{ reverse ? 'flex-row-reverse' : '' }}">
             <div class="col-lg-9">
-                <blog-list :category-id="{{ category.id }}" :filters="{{ blogData.filters ? blogData.filters | json_encode : '{}' }}"></blog-list>
+                <blog-list :category-id="{{ category.id }}" :filters="{{ blogData.filters ? blogData.filters | json_encode : '{}' }}"show-loader show-load-more show-dummy></blog-list>
             </div>
 
             <div class="col-lg-3 blog-sidebar">
