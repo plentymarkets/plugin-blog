@@ -1,5 +1,9 @@
 # Release notes for Blog plugin
 
+## v1.1.3 (2019-08-20)
+
+- FIX - Added load more button on the default view in the category list
+
 ## v1.1.2 (2019-07-30)
 
 ### Feature

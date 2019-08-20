@@ -1,5 +1,9 @@
 # Release notes für das Blog plugin
 
+## v1.1.3 (2019-08-20)
+
+- FIX - Knopf:Mehr anzeigen,  auf der Standardansicht der Kategorieliste hinzugefügt
+
 ## v1.1.2 (2019-07-30)
 
 ### Feature
