@@ -167,6 +167,20 @@
                     }
                 }
             }
+        },
+        "Config.tabOther": {
+            "label": "Config.tabOther",
+            "formFields": {
+                "other.debug": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.blogEnableDebugLabel",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                }
+
+            }
         }
     }
 }

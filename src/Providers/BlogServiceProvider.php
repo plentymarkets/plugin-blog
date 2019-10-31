@@ -3,6 +3,9 @@
 namespace Blog\Providers;
 
 use Blog\Assistants\BlogLanding\BlogLandingAssistant;
+use Blog\Assistants\DuplicatedPosts\DuplicatedPostsAssistant;
+use Blog\Assistants\Folders\BlogFolder;
+use Blog\Assistants\IncompletePosts\IncompletePostsAssistant;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
 use Blog\Services\BlogService;
@@ -41,6 +44,12 @@ class BlogServiceProvider extends ServiceProvider
     public function boot(Twig $twig, Dispatcher $eventDispatcher, Request $request, ConfigRepository $config)
     {
         pluginApp(WizardContainerContract::class)->register('blog-landing-page', BlogLandingAssistant::class);
+        if($config->get('Blog.other.debug') == 'true') {
+            pluginApp(WizardContainerContract::class)->registerFolders(BlogFolder::class);
+
+            pluginApp(WizardContainerContract::class)->register('blog-fix-duplicates', DuplicatedPostsAssistant::class);
+            pluginApp(WizardContainerContract::class)->register('blog-fix-incomplete-posts', IncompletePostsAssistant::class);
+        }
 
         $twig->addExtension(Links::class);
         $twig->addExtension(CategoryTree::class);
@@ -60,8 +69,6 @@ class BlogServiceProvider extends ServiceProvider
                 $container->addScriptTemplate('Blog::Article.Components.Layouts.VerticalXL');
             }
         );
-
-
 
         // Category Blog page
         // 90 priority, 100 is Ceres, themes typically use "0" because that's how theme creators are instructed in the theme creation guide
