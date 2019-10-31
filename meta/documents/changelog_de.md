@@ -1,5 +1,10 @@
 # Release notes für das Blog plugin
 
+## v1.1.4 (2019-10-31)
+
+- NEW - Debug Assistenten um übliche Probleme in den Blog Beiträgen zu beheben.
+- FIX - Layout der Such-Seite
+
 ## v1.1.3 (2019-08-20)
 
 - FIX - Knopf:Mehr anzeigen,  auf der Standardansicht der Kategorieliste hinzugefügt

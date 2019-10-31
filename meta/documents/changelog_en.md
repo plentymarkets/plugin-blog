@@ -1,5 +1,10 @@
 # Release notes for Blog plugin
 
+## v1.1.4 (2019-10-31)
+
+- NEW - Debug assistants to fix common issues in your blog posts. These assistants can be enabled in Blog plugin settings.
+- FIX - Search page layout
+
 ## v1.1.3 (2019-08-20)
 
 - FIX - Added load more button on the default view in the category list
