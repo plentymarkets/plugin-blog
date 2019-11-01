@@ -120,23 +120,19 @@ class DuplicatedPostsDataSource extends BaseWizardDataSource
 
                 // Broken posts often can't be updated so their preview is "Preview"
                 // Older broken posts did not have any shortDescription ( preview ) at all so we're fixing those too
-                if($post['data']['post']['shortDescription'] === 'Preview' || empty($post['data']['post']['shortDescription'])) {
+                $data = [
+                    'post' => [
+                        'active' => 'false',
+                        'title' => 'DEACTIVATED ' . $post['data']['post']['title'],
+                        'urlName' => $post['data']['post']['urlName'] .'-deactivated-' . $count
+                    ]
+                ];
 
-
-                    $data = [
-                        'post' => [
-                            'active' => 'false',
-                            'title' => 'DEACTIVATED ' . $post['data']['post']['title'],
-                            'urlName' => $post['data']['post']['urlName'] .'-deactivated-' . $count
-                        ]
-                    ];
-
-                    if(empty($post['data']['post']['shortDescription'])){
-                        $data['post']['shortDescription'] = 'Preview';
-                    }
-
-                    $repository->updatePost($data, $post['id']);
+                if(empty($post['data']['post']['shortDescription'])){
+                    $data['post']['shortDescription'] = 'Preview';
                 }
+
+                $repository->updatePost($data, $post['id']);
 
             }
         }catch(\Exception $exception){
