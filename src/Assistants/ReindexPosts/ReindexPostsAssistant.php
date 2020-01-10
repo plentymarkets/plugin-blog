@@ -6,17 +6,17 @@
  * Time: 10:18
  */
 
-namespace Blog\Assistants\DuplicatedPosts;
+namespace Blog\Assistants\ReindexPosts;
 
 use Blog\Services\BlogService;
 use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
 use Plenty\Modules\Wizard\Services\WizardProvider;
 
 /**
- * Class DuplicatedPosts
- * @package Blog\Assistants\DuplicatedPosts
+ * Class ReindexPostsAssistant
+ * @package Blog\Assistants\ReindexPosts
  */
-class DuplicatedPostsAssistant extends WizardProvider
+class ReindexPostsAssistant extends WizardProvider
 {
 
     /**
@@ -27,23 +27,18 @@ class DuplicatedPostsAssistant extends WizardProvider
     protected function structure() {
 
         return [
-            'title' => '1. Duplicated Posts',
-            'key' => 'blog-fix-duplicates',
+            'title' => '3. Reindex posts',
+            'key' => 'blog-reindex-posts',
             'translationNamespace' => 'Blog',
-            'dataSource' => 'Blog\Assistants\DuplicatedPosts\DataSource\DuplicatedPostsDataSource',
-            'settingsHandlerClass' => 'Blog\Assistants\DuplicatedPosts\SettingsHandler\DuplicatedPostsSettingsHandler',
+            'dataSource' => 'Blog\Assistants\ReindexPosts\DataSource\ReindexPostsDataSource',
+            'settingsHandlerClass' => 'Blog\Assistants\ReindexPosts\SettingsHandler\ReindexPostsSettingsHandler',
             'reloadStructure' => true,
-            "priority" => 850,
-            'shortDescription' => 'This assistant fixes duplicated blog posts.',
+            "priority" => 810,
+            'shortDescription' => 'This assistant re-indexes all posts',
             'topics' => [
                 'omni-channel.blog.blog-debug',
             ],
-            'options' => [
-                'data' => [
-                    'count',
-                    'urlName'
-                ]
-            ],
+//            'options' => [],
 
             'steps' => [
                 'step1' => [
@@ -52,7 +47,7 @@ class DuplicatedPostsAssistant extends WizardProvider
                     'sections' => [
                         [
                             'title' => 'Fix posts',
-                            'description' => 'Fix duplicated posts',
+                            'description' => 'Reindex all posts',
                             'form' => [
                                 'agreement' => [
                                     'type' => 'checkbox',

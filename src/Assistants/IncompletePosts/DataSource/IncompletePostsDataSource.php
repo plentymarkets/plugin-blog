@@ -2,6 +2,7 @@
 
 namespace Blog\Assistants\IncompletePosts\DataSource;
 
+use Blog\AssistantServices\AssistantsService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Models\BlogPost;
 use Plenty\Modules\Wizard\Services\DataSources\BaseWizardDataSource;
@@ -19,13 +20,13 @@ class IncompletePostsDataSource extends BaseWizardDataSource
     private function getEntities()
     {
         $entities = [];
-        /** @var BlogPostRepositoryContract $repository */
-        $repository = pluginApp(BlogPostRepositoryContract::class);
+        /** @var AssistantsService $assistantsService */
+        $assistantsService = pluginApp(AssistantsService::class);
 
-        $posts = $repository->listPosts(1,9999);
+        $posts = $assistantsService->getDynamoDbPosts();
 
         // Create a list of posts with their count
-        foreach($posts['entries'] as $post) {
+        foreach($posts as $post) {
             $preview = $post['data']['post']['shortDescription'];
 
             if(empty($preview)){
@@ -78,7 +79,6 @@ class IncompletePostsDataSource extends BaseWizardDataSource
                 $data['post']['shortDescription'] = 'Preview';
                 $repository->updatePost($data, $optionId);
             }
-
 
         }catch(\Exception $exception){
             throw $exception;

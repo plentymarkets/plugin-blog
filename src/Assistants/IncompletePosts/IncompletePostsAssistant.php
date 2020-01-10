@@ -25,12 +25,13 @@ class IncompletePostsAssistant extends WizardProvider
     protected function structure() {
 
         return [
-            'title' => 'Incomplete Posts',
+            'title' => '2. Incomplete Posts',
             'key' => 'blog-fix-incomplete-posts',
             'translationNamespace' => 'Blog',
             'dataSource' => 'Blog\Assistants\IncompletePosts\DataSource\IncompletePostsDataSource',
             'settingsHandlerClass' => 'Blog\Assistants\IncompletePosts\SettingsHandler\IncompletePostsSettingsHandler',
             'reloadStructure' => true,
+            "priority" => 830,
             'shortDescription' => 'This assistant fixes incomplete posts.',
             'topics' => [
                 'omni-channel.blog.blog-debug',
