@@ -6,6 +6,7 @@ use Blog\Assistants\BlogLanding\BlogLandingAssistant;
 use Blog\Assistants\DuplicatedPosts\DuplicatedPostsAssistant;
 use Blog\Assistants\Folders\BlogFolder;
 use Blog\Assistants\IncompletePosts\IncompletePostsAssistant;
+use Blog\Assistants\IndexCheck\IndexCheckAssistant;
 use Blog\Assistants\ReindexPosts\ReindexPostsAssistant;
 use Blog\AssistantServices\AssistantsService;
 use Blog\Contexts\BlogCategoryContext;
@@ -53,6 +54,7 @@ class BlogServiceProvider extends ServiceProvider
             pluginApp(WizardContainerContract::class)->register('blog-fix-duplicates', DuplicatedPostsAssistant::class);
             pluginApp(WizardContainerContract::class)->register('blog-fix-incomplete-posts', IncompletePostsAssistant::class);
             pluginApp(WizardContainerContract::class)->register('blog-reindex-posts', ReindexPostsAssistant::class);
+            pluginApp(WizardContainerContract::class)->register('blog-check-index', IndexCheckAssistant::class);
         }
 
         $twig->addExtension(Links::class);

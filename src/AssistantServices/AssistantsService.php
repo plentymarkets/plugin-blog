@@ -32,6 +32,7 @@ class AssistantsService
      */
     protected $elasticSearchIsPopulated = false;
 
+
     /**
      * @return mixed
      */
@@ -44,6 +45,20 @@ class AssistantsService
         return $this->dynamoDbPosts;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getElasticSearchPosts()
+    {
+        if (!$this->elasticSearchIsPopulated) {
+            $this->populateElasticSearchList();
+        }
+
+        return $this->elasticSearchPosts;
+    }
+
+    
     /**
      * Populates Dynamo DB list
      */
@@ -51,10 +66,26 @@ class AssistantsService
     {
         $this->dynamoDbIsPopulated = true;
 
+        /** @var BlogPostRepositoryContract $repository */
         $repository = pluginApp(BlogPostRepositoryContract::class);
 
         $posts = $repository->listPosts(1, 9999);
         $this->dynamoDbPosts = $posts['entries'];
+    }
+
+
+    /**
+     * Populates Elastic Search list
+     */
+    private function populateElasticSearchList()
+    {
+        $this->elasticSearchIsPopulated = true;
+
+        /** @var BlogPostRepositoryContract $repository */
+        $repository = pluginApp(BlogPostRepositoryContract::class);
+
+        $posts = $repository->listPosts(1, 9999, ['rawElasticSearch' => true]);
+        $this->elasticSearchPosts = $posts;
     }
 
 }

@@ -6,17 +6,17 @@
  * Time: 10:18
  */
 
-namespace Blog\Assistants\ReindexPosts;
+namespace Blog\Assistants\IndexCheck;
 
 use Blog\Services\BlogService;
 use Plenty\Modules\Plugin\PluginSet\Contracts\PluginSetRepositoryContract;
 use Plenty\Modules\Wizard\Services\WizardProvider;
 
 /**
- * Class ReindexPostsAssistant
- * @package Blog\Assistants\ReindexPosts
+ * Class IndexCheck
+ * @package Blog\Assistants\IndexCheck
  */
-class ReindexPostsAssistant extends WizardProvider
+class IndexCheckAssistant extends WizardProvider
 {
 
     /**
@@ -27,18 +27,23 @@ class ReindexPostsAssistant extends WizardProvider
     protected function structure() {
 
         return [
-            'title' => '4. Reindex posts',
-            'key' => 'blog-reindex-posts',
+            'title' => '3. Check Index',
+            'key' => 'blog-check-index',
             'translationNamespace' => 'Blog',
-            'dataSource' => 'Blog\Assistants\ReindexPosts\DataSource\ReindexPostsDataSource',
-            'settingsHandlerClass' => 'Blog\Assistants\ReindexPosts\SettingsHandler\ReindexPostsSettingsHandler',
+            'dataSource' => 'Blog\Assistants\IndexCheck\DataSource\IndexCheckDataSource',
+            'settingsHandlerClass' => 'Blog\Assistants\IndexCheck\SettingsHandler\IndexCheckSettingsHandler',
             'reloadStructure' => true,
-            "priority" => 800,
-            'shortDescription' => 'This assistant re-indexes all posts',
+            "priority" => 810,
+            'shortDescription' => 'This assistant checks Elastic Search index.',
             'topics' => [
                 'omni-channel.blog.blog-debug',
             ],
-//            'options' => [],
+            'options' => [
+                'data' => [
+                    'issue',
+                    'id'
+                ]
+            ],
 
             'steps' => [
                 'step1' => [
@@ -46,14 +51,14 @@ class ReindexPostsAssistant extends WizardProvider
                     'description' => 'This is a debug assistant, do not use it if you do not know what you\'re doing',
                     'sections' => [
                         [
-                            'title' => 'Fix posts',
-                            'description' => 'Reindex all posts',
+                            'title' => 'This assistant should not be finalised, it only checks your posts',
+                            'description' => 'Proceeding will not do anything, this assistant\'s only purpose is to verify posts',
                             'form' => [
                                 'agreement' => [
                                     'type' => 'checkbox',
                                     'options' => [
                                         'required' => true,
-                                        'name' => 'I know what I\'m doing',
+                                        'name' => 'I understand that finalising this assistant does nothing',
                                     ]
                                 ]
                             ]
