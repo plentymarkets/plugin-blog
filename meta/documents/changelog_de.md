@@ -1,5 +1,9 @@
 # Release notes für das Blog plugin
 
+## v1.1.7 (2020-01-15)
+
+- Funktionalität des Debug-Assistenten erweitert.
+
 ## v1.1.6 (2020-01-10)
 
 - Funktionalität des Debug-Assistenten erweitert.
