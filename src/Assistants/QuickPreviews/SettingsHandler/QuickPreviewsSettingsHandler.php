@@ -25,13 +25,15 @@ class QuickPreviewsSettingsHandler implements WizardSettingsHandler
     public function handle(array $parameters)
     {
         /** @var BlogPostRepositoryContract $repository */
-        $repository = app(BlogPostRepositoryContract::class);
+        $repository = pluginApp(BlogPostRepositoryContract::class);
 
         $posts = $parameters['data'];
         unset($posts['from'], $posts['to']);
 
         foreach($posts as $post) {
             if(empty($post['id'])) continue;
+
+            $this->avoidEmptyValues($post);
 
             $updatedPostData = [
                 'post' => [
@@ -45,5 +47,14 @@ class QuickPreviewsSettingsHandler implements WizardSettingsHandler
         }
 
         return true;
+    }
+
+    /**
+     * @param $post
+     */
+    private function avoidEmptyValues(&$post)
+    {
+        if(empty($post['preview'])) $post['preview'] = 'Debug assistant - Previews can not be empty so we fill this one automatically with this message';
+        if(empty($post['title'])) $post['title'] = 'Debug assistant - Titles can not be empty so we fill this one automatically with this message';
     }
 }
