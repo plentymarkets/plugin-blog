@@ -91,8 +91,7 @@ class QuickPreviewsAssistant extends WizardProvider
                                 "type" => "text",
                                 "width" => "col-12",
                                 "options" => [
-                                    "name" => "Title",
-                                    'required' => true,
+                                    "name" => "Title"
                                 ]
                             ],
                             "urlName" => [
@@ -115,8 +114,7 @@ class QuickPreviewsAssistant extends WizardProvider
                                 "type" => "textarea",
                                 "options" => [
                                     "name" => "Preview",
-                                    "maxRows" => 10,
-                                    'required' => true,
+                                    "maxRows" => 10
                                 ]
                             ],
                             "body" => [
