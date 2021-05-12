@@ -20,7 +20,11 @@
 
 {% block PageBody %}
 
-    {% if blogData.updateBlogUrl %}<blog-update-category-url category-url="{{ categoryUrl }}"></blog-update-category-url>{% endif %}
+    {% if blogData.updateBlogUrl %}
+        <client-only>
+            <blog-update-category-url category-url="{{ categoryUrl }}"></blog-update-category-url>
+        </client-only>
+    {% endif %}
 
     {% if blogLayout == 'default' %}
         {% include "Blog::Category.Layouts.Default" %}

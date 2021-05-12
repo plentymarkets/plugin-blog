@@ -4,7 +4,9 @@
 
 {% if not isSearchPage %}
     <div class="blog-sidebar-section">
-        <blog-search></blog-search>
+        <client-only>
+            <blog-search></blog-search>
+        </client-only>
     </div>
 {% endif %}
 
@@ -16,6 +18,8 @@
 
 {% if showSidebarLatestPosts == "true" %}
     <div class="blog-sidebar-section">
-        <blog-latest-posts></blog-latest-posts>
+        <client-only>
+            <blog-latest-posts></blog-latest-posts>
+        </client-only>
     </div>
 {% endif %}

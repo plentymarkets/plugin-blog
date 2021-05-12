@@ -75,14 +75,17 @@
                     </article>
 
                     <div class="blog-related-posts mb-4">
-                        <blog-list heading-text="{{ trans('Blog::Template.relatedPosts') }}"
-                                   horizontal
-                                   horizontal-classes="col-md-4 col-sm-6 mb-3"
-                                   layout="horizontal-MD"
-                                   ignore-post="{{ blogPost.data.post.urlName }}"
-                                   :category-id="{{ blogPost.data.category.id }}"
-                                   :filters="{'itemsPerPage':6}"
-                                   show-loader :show-no-results-text="false"></blog-list>
+                        <client-only>
+                            <blog-list heading-text="{{ trans('Blog::Template.relatedPosts') }}"
+                                       horizontal
+                                       horizontal-classes="col-md-4 col-sm-6 mb-3"
+                                       layout="horizontal-MD"
+                                       ignore-post="{{ blogPost.data.post.urlName }}"
+                                       :category-id="{{ blogPost.data.category.id }}"
+                                       :filters="{'itemsPerPage':6}"
+                                       show-loader :show-no-results-text="false">
+                            </blog-list>
+                        </client-only>
                     </div>
 
                 </div>

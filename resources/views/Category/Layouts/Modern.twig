@@ -1,14 +1,18 @@
 <div class="blog-wrapper {{ reverse ? 'blog-layout-default-reverse' : 'blog-layout-default' }}">
 
     <div class="container-fluid mx-0 px-0">
-        <blog-list layout="featured-1" :category-id="{{ category.id }}" :filters="{{ blogData.filters | merge({'itemsPerPage':1}) | json_encode }}" show-loader></blog-list>
+        <client-only>
+            <blog-list layout="featured-1" :category-id="{{ category.id }}" :filters="{{ blogData.filters | merge({'itemsPerPage':1}) | json_encode }}" show-loader></blog-list>
+        </client-only>
     </div>
 
     <div class="container-max blog-container">
 
         <div class="row {{ reverse ? 'flex-row-reverse' : '' }}">
             <div class="col-lg-9">
-                <blog-list :category-id="{{ category.id }}" :skip="1" :filters="{{ blogData.filters ? blogData.filters | json_encode : '{}' }}" show-loader show-load-more show-dummy></blog-list>
+                <client-only>
+                    <blog-list :category-id="{{ category.id }}" :skip="1" :filters="{{ blogData.filters ? blogData.filters | json_encode : '{}' }}" show-loader show-load-more show-dummy></blog-list>
+                </client-only>
             </div>
 
             <div class="col-lg-3 blog-sidebar">
