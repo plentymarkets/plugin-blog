@@ -112,10 +112,6 @@
             var _this = this;
             this.$options.template = '#vue-blog-list';
 
-            vueEventHub.$on("blog-search", function (searchData) {
-                return _this.handleSearch(searchData);
-            });
-
             this.setFilters();
             this.loadFirstPage();
         },

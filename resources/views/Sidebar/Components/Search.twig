@@ -47,12 +47,7 @@
                     let newUrl = this.languagePrefix + (this.languagePrefix !== '/' ? '/' : '') + this.landingUrl + '/search/' + encodeURIComponent(this.searchString);
 
                     if(this.isSearchPage) {
-                        vueEventHub.$emit('blog-search', {
-                            'searchString': this.searchString
-                        });
-
                         history.pushState({}, null, newUrl);
-
                     }else{
                         window.location.href = newUrl;
                     }
