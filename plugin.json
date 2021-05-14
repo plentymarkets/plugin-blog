@@ -1,5 +1,5 @@
 {
-  "version": "1.1.9",
+  "version": "2.0.0",
   "name": "Blog",
   "marketplaceName" : {"de": "Blog","en": "Blog"},
   "description": "This is the official blog developed by plentymarkets.",
@@ -27,7 +27,7 @@
     "blog", "blog post", "blogpost", "post", "article", "artikel", "blog artikel"
   ],
   "require": {
-    "Ceres":">=2.0"
+    "Ceres":">=5.0.30"
   },
   "containers": [],
   "dataProviders": [

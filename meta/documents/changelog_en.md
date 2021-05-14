@@ -1,5 +1,11 @@
 # Release notes for Blog plugin
 
+## v.2.0.0 (2021-05-14)
+
+### Feature 
+
+- The blog plugin is now compatible with Vue Server-Side Rendering (SSR).
+
 ## v1.1.9 (2020-02-27)
 
 - Extend debug assistant's functionality
