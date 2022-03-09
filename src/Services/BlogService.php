@@ -8,6 +8,7 @@
 
 namespace Blog\Services;
 
+use IO\Helper\Utils;
 use IO\Services\CategoryService;
 use IO\Services\SessionStorageService;
 use IO\Services\UrlBuilder\UrlQuery;
@@ -268,7 +269,7 @@ class BlogService
     public function getNavigationList()
     {
         $categoryRepositoryContract = pluginApp(CategoryRepositoryContract::class);
-        $arrayTree = $categoryRepositoryContract->getArrayTree("blog");
+        $arrayTree = $categoryRepositoryContract->getArrayTree("blog", Utils::getLang(), Utils::getWebstoreId());
 
         return $this->buildCategoryNavigationList($arrayTree);
     }
