@@ -25,7 +25,7 @@ class BlogContext extends GlobalContext implements ContextInterface
         $cacheTagRepository = pluginApp(CacheTagRepositoryContract::class);
     
         $this->blogCategories = $cacheTagRepository->makeTaggable(
-            'categories',
+            'blogCategories',
             function() {
                 return pluginApp(CategoryService::class)->getNavigationTree('blog', null, 6);
             }
