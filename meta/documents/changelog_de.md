@@ -1,5 +1,12 @@
 # Release notes für das Blog plugin
 
+## v.2.0.1 (2022-04-07)
+
+### Behoben: 
+
+- Das Plugin ist nun kompatibel mit den Cacheblocks.
+- Ein Fehler beim Laden des Kategoriebaums wurde behoben.
+
 ## v.2.0.0 (2021-05-14)
 
 ### Feature 
