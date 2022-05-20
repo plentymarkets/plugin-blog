@@ -19,6 +19,7 @@ use IO\Services\UrlService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
 use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
+use Plenty\Modules\Webshop\Helpers\UrlQuery;
 use Plenty\Plugin\Application;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request;
@@ -265,7 +266,7 @@ class BlogController extends LayoutController
         // --------
         $blogPost = pluginApp(BlogService::class)->getBlogPost($lastPart);
         if($blogPost) {
-            return $this->showArticle($lastPart);
+            return $this->showArticle($lastPart . UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
         }
 
         // --------
