@@ -151,6 +151,7 @@ class BlogController extends LayoutController
                 }
                 // prefix it with the landing url
                 $categoryUrl = $landingUrl . $categoryUrl;
+                $categoryUrl = str_replace('//','/', $categoryUrl);
             }else{
                 $categoryUrl = $landingUrl;
             }
@@ -163,8 +164,11 @@ class BlogController extends LayoutController
                 $post->data = $temporaryData;
             }
 
+            $postUrl = $categoryUrl . '/' . $post['data']['post']['urlName'] . (UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
+            $postUrl = str_replace('//','/', $postUrl);
+
             $post->urls = [
-                'postUrl' => $categoryUrl . '/' . $post['data']['post']['urlName'],
+                'postUrl' => $postUrl,
                 'landingUrl' => $landingUrl,
                 'categoryUrl' => $categoryUrl
             ];
@@ -264,7 +268,7 @@ class BlogController extends LayoutController
         // --------
         // New post
         // --------
-        $blogPost = pluginApp(BlogService::class)->getBlogPost($lastPart);
+        $blogPost = pluginApp(BlogService::class)->getBlogPost($lastPart . UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
         if($blogPost) {
             return $this->showArticle($lastPart . UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
         }

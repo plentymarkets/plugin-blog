@@ -4,7 +4,7 @@
 <ul>
 {% endif %}
     {% for blogCategory in blogCategoryTree %}
-        {% set blogCategoryURL = blogUrlTree ~ (blogUrlTree != '/' ? '/' : '') ~ blogCategory.details[0].nameUrl %}
+        {% set blogCategoryURL = blogUrlTree ~ (blogUrlTree != '/' ? '/' : '') ~ blogCategory.details[0].nameUrl ~ urls.trailingSlashSuffix %}
         {% set blogCategoryIsActive = false %}
 
         {% for blogSingleCategory in blogCategoryHierarchy if blogCategory.id == blogSingleCategory.id %}
