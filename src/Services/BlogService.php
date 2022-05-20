@@ -209,7 +209,7 @@ class BlogService
     public function buildPostUrl(string $urlName)
     {
         // TODO this should include the category names in the url, sometime in the future
-        return $this->buildLandingUrl() . '/$urlName' . \Plenty\Modules\Webshop\Helpers\UrlQuery::shouldAppendTrailingSlash() ? '/' : '';
+        return $this->buildLandingUrl() . "/$urlName" . \Plenty\Modules\Webshop\Helpers\UrlQuery::shouldAppendTrailingSlash() ? '/' : '';
     }
 
     /**
