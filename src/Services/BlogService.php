@@ -237,7 +237,7 @@ class BlogService
             }
 
             return [
-                'postUrl' => $categoryUrl . '/' . $post['data']['post']['urlName'],
+                'postUrl' => $categoryUrl . '/' . $post['data']['post']['urlName'].\Plenty\Modules\Webshop\Helpers\UrlQuery::shouldAppendTrailingSlash(),
                 'landingUrl' => $landingUrl,
                 'categoryUrl' => $categoryUrl
             ];
