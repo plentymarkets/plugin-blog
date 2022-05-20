@@ -67,7 +67,7 @@ class Links extends Twig_Extension
         if($link === '/') $link = '';
 
         foreach($hierarchy as $key => $category) {
-            $link .= '/'.$category['details'][0]['nameUrl'] . UrlQuery::shouldAppendTrailingSlash() ? '/' : '';
+            $link .= '/'.$category['details'][0]['nameUrl'] . (UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
         }
 
         return $link;
