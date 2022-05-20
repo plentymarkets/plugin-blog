@@ -268,9 +268,9 @@ class BlogController extends LayoutController
         // --------
         // New post
         // --------
-        $blogPost = pluginApp(BlogService::class)->getBlogPost($lastPart . UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
+        $blogPost = pluginApp(BlogService::class)->getBlogPost($lastPart);
         if($blogPost) {
-            return $this->showArticle($lastPart . UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
+            return $this->showArticle($lastPart);
         }
 
         // --------
