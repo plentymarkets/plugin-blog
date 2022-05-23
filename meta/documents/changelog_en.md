@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- The setting for slashes at the end of URLs is now correctly taken into account in all places.
+- The setting for trailing slashes is now correctly taken into account in all places.
 
 ## v.2.0.2 (2022-05-05)
 
