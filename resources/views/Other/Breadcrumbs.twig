@@ -25,7 +25,7 @@
                 {% for category in blogCategoryBreadcrumbs %}
                     {% if not loop.last %}
 
-                        {% set blogCategoryUrl = blogCategoryUrl ~ "/" ~ category.details[0].nameUrl %}
+                        {% set blogCategoryUrl = blogCategoryUrl ~ "/" ~ category.details[0].nameUrl ~ urls.trailingSlashSuffix %}
                         <li class="breadcrumb-item">
                             <a href="{{ blogCategoryUrl }}">{{ category.details[0].name }}</a>
                         </li>

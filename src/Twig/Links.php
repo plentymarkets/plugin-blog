@@ -4,6 +4,7 @@ namespace Blog\Twig;
 use Blog\Services\BlogService;
 use IO\Services\CategoryService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
+use Plenty\Modules\Webshop\Helpers\UrlQuery;
 use Plenty\Plugin\Templates\Extensions\Twig_Extension;
 use Plenty\Plugin\Templates\Factories\TwigFactory;
 use Plenty\Plugin\Templates\Twig;
@@ -66,7 +67,7 @@ class Links extends Twig_Extension
         if($link === '/') $link = '';
 
         foreach($hierarchy as $key => $category) {
-            $link .= '/'.$category['details'][0]['nameUrl'];
+            $link .= '/'.$category['details'][0]['nameUrl'] . (UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
         }
 
         return $link;

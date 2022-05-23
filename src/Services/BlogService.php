@@ -11,13 +11,13 @@ namespace Blog\Services;
 use IO\Helper\Utils;
 use IO\Services\CategoryService;
 use IO\Services\SessionStorageService;
-use IO\Services\UrlBuilder\UrlQuery;
 use IO\Services\UrlService;
 use IO\Services\WebstoreConfigurationService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
 use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
 use Plenty\Modules\PluginMultilingualism\Contracts\PluginTranslationRepositoryContract;
+use Plenty\Modules\Webshop\Helpers\UrlQuery;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Translation\Translator;
@@ -209,7 +209,7 @@ class BlogService
     public function buildPostUrl(string $urlName)
     {
         // TODO this should include the category names in the url, sometime in the future
-        return $this->buildLandingUrl()."/$urlName";
+        return $this->buildLandingUrl() . "/$urlName" . (UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
     }
 
     /**
@@ -232,12 +232,16 @@ class BlogService
                 }
                 // prefix it with the landing url
                 $categoryUrl = $landingUrl . $categoryUrl;
+                $categoryUrl = str_replace('//','/', $categoryUrl);
             }else{
                 $categoryUrl = $landingUrl;
             }
 
+            $postUrl = $categoryUrl . '/' . $post['data']['post']['urlName'] . (UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
+            $postUrl = str_replace('//','/', $postUrl);
+            
             return [
-                'postUrl' => $categoryUrl . '/' . $post['data']['post']['urlName'],
+                'postUrl' => $postUrl,
                 'landingUrl' => $landingUrl,
                 'categoryUrl' => $categoryUrl
             ];

@@ -1,5 +1,11 @@
 # Release notes for Blog plugin
 
+## v.2.0.3 (2022-05-23)
+
+### Fixed
+
+- The setting for trailing slashes is now correctly taken into account in all places.
+
 ## v.2.0.2 (2022-05-05)
 
 ### Fixed

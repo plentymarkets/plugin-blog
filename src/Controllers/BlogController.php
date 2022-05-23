@@ -19,6 +19,7 @@ use IO\Services\UrlService;
 use Plenty\Modules\Blog\Contracts\BlogPostRepositoryContract;
 use Plenty\Modules\Blog\Services\BlogPluginService;
 use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
+use Plenty\Modules\Webshop\Helpers\UrlQuery;
 use Plenty\Plugin\Application;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request;
@@ -150,6 +151,7 @@ class BlogController extends LayoutController
                 }
                 // prefix it with the landing url
                 $categoryUrl = $landingUrl . $categoryUrl;
+                $categoryUrl = str_replace('//','/', $categoryUrl);
             }else{
                 $categoryUrl = $landingUrl;
             }
@@ -162,8 +164,11 @@ class BlogController extends LayoutController
                 $post->data = $temporaryData;
             }
 
+            $postUrl = $categoryUrl . '/' . $post['data']['post']['urlName'] . (UrlQuery::shouldAppendTrailingSlash() ? '/' : '');
+            $postUrl = str_replace('//','/', $postUrl);
+
             $post->urls = [
-                'postUrl' => $categoryUrl . '/' . $post['data']['post']['urlName'],
+                'postUrl' => $postUrl,
                 'landingUrl' => $landingUrl,
                 'categoryUrl' => $categoryUrl
             ];
