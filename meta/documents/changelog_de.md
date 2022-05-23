@@ -1,5 +1,11 @@
 # Release notes für das Blog plugin
 
+## v.2.0.3 (2022-05-23)
+
+### Behoben:
+
+- Die Einstellung für Slashes am Ende von URLs wird nun an allen Stellen korrekt berücksichtigt.
+
 ## v.2.0.2 (2022-05-05)
 
 ### Behoben:
