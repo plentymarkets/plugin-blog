@@ -4,7 +4,11 @@
 <ul>
 {% endif %}
     {% for blogCategory in blogCategoryTree %}
-        {% set blogCategoryURL = blogUrlTree ~ (blogUrlTree != '/' ? '/' : '') ~ blogCategory.details[0].nameUrl ~ urls.trailingSlashSuffix %}
+        {% if not (blogUrlTree ends with '/') %}
+            {% set blogCategoryURL = blogUrlTree ~ '/' ~ blogCategory.details[0].nameUrl ~ urls.trailingSlashSuffix %}
+        {% else %}
+            {% set blogCategoryURL = blogUrlTree ~ blogCategory.details[0].nameUrl ~ urls.trailingSlashSuffix %}
+        {% endif %}
         {% set blogCategoryIsActive = false %}
 
         {% for blogSingleCategory in blogCategoryHierarchy if blogCategory.id == blogSingleCategory.id %}
