@@ -1,5 +1,11 @@
 # Release notes für das Blog plugin
 
+## v.2.0.4 (2022-10-26)
+
+### Behoben:
+
+- Die Einstellung für Slashes am Ende hat zu doppelten Slashes innerhalb der Breadcrumbs und des Kategoriebaums geführt. Das wurde behoben.
+
 ## v.2.0.3 (2022-05-23)
 
 ### Behoben:
