@@ -1,5 +1,12 @@
 # Release notes for Blog plugin
 
+## v.2.0.4 (2022-10-26)
+
+### Fixed
+
+- The setting for trailing slashes led to double slashes within the breadcrumbs and side navigation. This has been fixed.
+
+
 ## v.2.0.3 (2022-05-23)
 
 ### Fixed
