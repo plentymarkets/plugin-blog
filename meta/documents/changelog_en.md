@@ -1,11 +1,16 @@
 # Release notes for Blog plugin
 
+## v.2.0.5 (2022-12-27)
+
+### Fixed
+
+- For the landing page, the values stored in the multilingualism for description and title are now used correctly in the metadata.
+
 ## v.2.0.4 (2022-10-26)
 
 ### Fixed
 
 - The setting for trailing slashes led to double slashes within the breadcrumbs and side navigation. This has been fixed.
-
 
 ## v.2.0.3 (2022-05-23)
 

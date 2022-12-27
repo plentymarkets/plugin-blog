@@ -11,9 +11,9 @@
 {% block PartialHead %}
     <title>{{ trans("Blog::Landing.landingMetaTitle") }} | {{ ceresConfig.header.companyName }}</title>
 
-    <meta name="description" content="{{ trans("Blog::Landing.landingMetaTitle") }}">
+    <meta name="title" content="{{ trans("Blog::Landing.landingMetaTitle") }}">
+    <meta name="description" content="{{ trans("Blog::Landing.landingMetaDescription") }}">
     <meta name="keywords" content="{{ trans("Blog::Landing.landingMetaKeywords") }}">
-
     <meta name="robots" content="{% if trans("Blog::Landing.landingRobots") is not empty %}{{ trans("Blog::Landing.landingRobots") }}{% else %}INDEX, FOLLOW{% endif %}">
 
 {% endblock %}

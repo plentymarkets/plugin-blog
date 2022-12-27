@@ -1,5 +1,11 @@
 # Release notes für das Blog plugin
 
+## v.2.0.5 (2022-12-27)
+
+### Behoben:
+
+- Für die Landingpage werden jetzt die in der Mehrsprachigkeit hinterlegten Werte für Beschreibung und Titel korrekt in den Metadaten verwendet.
+
 ## v.2.0.4 (2022-10-26)
 
 ### Behoben:
