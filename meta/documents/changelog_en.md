@@ -1,5 +1,11 @@
 # Release notes for Blog plugin
 
+## v.2.0.6 (2023-01-27)
+
+### Fixed
+
+- Adjustments to the user guide
+
 ## v.2.0.5 (2022-12-27)
 
 ### Fixed
