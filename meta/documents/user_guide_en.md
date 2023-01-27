@@ -44,4 +44,4 @@ One featured post (left sidebar) | The latest blog post will be featured in full
 Four featured posts | The four latest blog posts will be featured at the top. The list of further blog posts will be displayed as cards rather than a simple list. Available only for the blog landingpage.
 
 ## Setting up the blog landing page in the assistant
-Go to **System » Assistants » Omni-Channel** and complete the Blog Assistant to make some basic settings for your blog. Here you decide the URL that should link to your blog in general, what the link between shop and blog looks like and a few important SEO settings for the blog landingpage such as title, meta data and robots.
+Go to **System » Assistants » Plugins » Choose plugin set** and complete the Blog Assistant to make some basic settings for your blog. Here you decide the URL that should link to your blog in general, what the link between shop and blog looks like and a few important SEO settings for the blog landingpage such as title, meta data and robots.
