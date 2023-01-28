@@ -33,6 +33,9 @@
   "dataProviders": [
     { "key":"Blog\\Containers\\BlogEntrypoint", "name":"Blog entrypoint", "description": "Blog entrypoint" }
   ],
+  "platform": {
+    "php": ">=7.3 <8.1"
+  },
   "dependencies":{},
   "javaScriptFiles": []
 }
