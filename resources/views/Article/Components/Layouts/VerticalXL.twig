@@ -2,7 +2,7 @@
 
     <div class="blog-post-vertical-XL">
         <a v-if="article.data.images.preview" :href="article.urls.postUrl">
-            <img v-if="article.data.images.preview.path" class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path">
+            <img v-if="article.data.images.preview.path" class="blog-post-image blog-post-image-fullwidth" :src="article.data.images.preview.path" :alt="article.data.post.title">
         </a>
 
         <div class="blog-post-content">
