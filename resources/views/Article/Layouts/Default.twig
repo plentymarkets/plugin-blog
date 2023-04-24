@@ -49,7 +49,7 @@
 
                         {% if blogPost.data.images.title is not empty %}
                             {% if blogPost.data.images.title.path is not empty %}
-                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
+                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}" alt="{{ blogPost.data.post.title }}">
                             {% endif %}
                         {% endif %}
 
