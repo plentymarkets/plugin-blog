@@ -5,9 +5,9 @@
         <a class="blog-post" :href="article.urls.postUrl">
 
             <div class="blog-post-image">
-                <img v-if="article.data.images.preview.path" :src="article.data.images.preview.path" alt="">
+                <img v-if="article.data.images.preview.path" :src="article.data.images.preview.path" :alt="article.data.post.title">
                 {% if latestPostsDefaultImage is not empty %}
-                    <img v-else src="{{ latestPostsDefaultImage }}" alt="">
+                    <img v-else src="{{ latestPostsDefaultImage }}" alt="{{ article.data.post.title }}">
                 {% endif %}
             </div>
 
