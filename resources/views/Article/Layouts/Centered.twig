@@ -7,9 +7,9 @@
         <div class="container-max">
             {% include "Blog::Other.Breadcrumbs" with { 'blogCategoryId': category.id, 'extra': truncatedBlogTitle } %}
 
-            <h2 class="h5 blog-category-name text-center">
+            <h1 class="h5 blog-category-name text-center">
                 {{ category.details[0].name }}
-            </h2>
+            </h1>
         </div>
     </section>
 
