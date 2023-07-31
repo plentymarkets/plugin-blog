@@ -2,10 +2,9 @@
 
 namespace Blog\Extensions;
 
-use Blog\Controllers\BlogController;
 use Plenty\Modules\Plugin\Events\LoadSitemapPattern;
 use Plenty\Modules\Plugin\Services\PluginSeoSitemapService;
-use Plenty\DataBase\DynamoDB\BlogPost;
+use Blog\AssistantServices\AssistantsService;
 
 class BlogSitemapPattern
 {
@@ -17,8 +16,8 @@ class BlogSitemapPattern
         /** @var PluginSeoSitemapService $seoSitemapService */
         $seoSitemapService = pluginApp(PluginSeoSitemapService::class);
 
-        $dynamoPosts = BlogPost::getAll()->sortByDesc('data.post.publishedAt')->toArray();
-
+        $assistantsService = pluginApp(AssistantsService::class);
+        $dynamoPosts = $assistantsService->getDynamoDbPosts();
 
         $seoSitemapService->setBlogContent($dynamoPosts);
     }
