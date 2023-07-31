@@ -31,10 +31,10 @@ class BlogSitemapPattern
                 'url' => $url['postUrl'],
                 'title' => $post['data']['post']['title'],
                 'lang' => $post['data']['post']['lang'],
-                'keywords' => $post['data']['keywords'],
+                'keywords' => $post['data']['metaData']['keywords'],
             ];
         }
 
-        $seoSitemapService->setBlogContent($dynamoPosts);
+        $seoSitemapService->setBlogContent($result);
     }
 }
