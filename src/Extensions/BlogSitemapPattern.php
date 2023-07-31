@@ -26,7 +26,7 @@ class BlogSitemapPattern
             $url = $service->buildFullPostUrl($post);
 
             $result[] = [
-                'publish_date' => date('Y-m-d', $post['data']['post']['publishedAt']),
+                'publish_date' => date('Y-m-d', strtotime($post['data']['post']['publishedAt'])),
                 'url' => $url,
                 'title' => $post['data']['post']['title'],
                 'lang' => $post['data']['post']['lang'],
