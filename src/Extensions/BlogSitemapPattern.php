@@ -15,17 +15,18 @@ class BlogSitemapPattern
      */
     public function handle(LoadSitemapPattern $sitemapPattern)
     {
-        $service = pluginApp(BlogService::class);
+        /** @var BlogService $blogService */
+        $blogService = pluginApp(BlogService::class);
 
         /** @var PluginSeoSitemapService $seoSitemapService */
         $seoSitemapService = pluginApp(PluginSeoSitemapService::class);
 
+        /** @var AssistantsService $assistantsService */
         $assistantsService = pluginApp(AssistantsService::class);
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
         $result = [];
         foreach($dynamoPosts as $post) {
-            $url = $service->buildFullPostUrl($post);
-
+            $url = $blogService->buildFullPostUrl($post);
             $result[] = [
                 'publish_date' => date('Y-m-d', strtotime($post['data']['post']['publishedAt'])),
                 'url' => $url['postUrl'],
@@ -34,7 +35,6 @@ class BlogSitemapPattern
                 'keywords' => $post['data']['metaData']['keywords'],
             ];
         }
-
         $seoSitemapService->setBlogContent($result);
     }
 }
