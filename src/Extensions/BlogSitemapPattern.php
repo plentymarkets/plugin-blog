@@ -6,6 +6,7 @@ use Blog\Services\BlogService;
 use Plenty\Modules\Plugin\Events\LoadSitemapPattern;
 use Plenty\Modules\Plugin\Services\PluginSeoSitemapService;
 use Blog\AssistantServices\AssistantsService;
+use IO\Services\UrlService;
 
 
 class BlogSitemapPattern
@@ -16,6 +17,11 @@ class BlogSitemapPattern
     public function handle(LoadSitemapPattern $sitemapPattern)
     {
         $service = pluginApp(BlogService::class);
+
+        /** @var UrlService $urlService */
+        $urlService = pluginApp(UrlService::class);
+        $homepageUrl = $urlService->getHomepageURL();
+
         /** @var PluginSeoSitemapService $seoSitemapService */
         $seoSitemapService = pluginApp(PluginSeoSitemapService::class);
 
@@ -23,14 +29,14 @@ class BlogSitemapPattern
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
         $result = [];
         foreach($dynamoPosts as $post) {
-            $url = $service->buildFullPostUrl($post);
+            $url = $homepageUrl . $service->buildFullPostUrl($post);
 
             $result[] = [
                 'publish_date' => date('Y-m-d', strtotime($post['data']['post']['publishedAt'])),
-                'url' => $url,
+                'url' => $url['postUrl'],
                 'title' => $post['data']['post']['title'],
                 'lang' => $post['data']['post']['lang'],
-                'keywords' => $post['data']['data']['keywords'],
+                'keywords' => $post['data']['keywords'],
             ];
         }
 
