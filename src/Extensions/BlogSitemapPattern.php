@@ -15,7 +15,7 @@ class BlogSitemapPattern
      */
     public function handle(LoadSitemapPattern $sitemapPattern)
     {
-        $service = new BlogService;
+        $service = pluginApp(BlogService::class);
         /** @var PluginSeoSitemapService $seoSitemapService */
         $seoSitemapService = pluginApp(PluginSeoSitemapService::class);
 
