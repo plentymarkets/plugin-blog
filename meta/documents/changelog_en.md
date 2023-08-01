@@ -1,5 +1,11 @@
 # Release notes for Blog plugin
 
+## v.2.1.0 (2023-08-02)
+
+### Feature:
+
+- The plugin now populates the blog sitemap if it is enabled.
+
 ## v.2.0.5 (2022-12-27)
 
 ### Fixed
