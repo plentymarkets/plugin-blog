@@ -7,9 +7,9 @@
         <div class="container-max">
             {% include "Blog::Other.Breadcrumbs" with { 'blogCategoryId': category.id, 'extra': truncatedBlogTitle } %}
 
-            <h2 class="h5 blog-category-name text-center">
+            <h1 class="h5 blog-category-name text-center">
                 {{ category.details[0].name }}
-            </h2>
+            </h1>
         </div>
     </section>
 
@@ -43,7 +43,7 @@
 
                         {% if blogPost.data.images.title is not empty %}
                             {% if blogPost.data.images.title.path is not empty %}
-                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}">
+                                <img class="blog-post-image blog-post-image-fullwidth" src="{{ blogPost.data.images.title.path }}" alt="{{ blogPost.data.post.title }}">
                             {% endif %}
                         {% endif %}
 

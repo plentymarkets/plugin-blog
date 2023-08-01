@@ -6,6 +6,11 @@
 
 - Das Plugin befüllt jetzt die Blog Sitemap, wenn diese aktiviert ist.
 
+## v.2.0.6 (2023-01-27)
+
+### Behoben:
+
+- Anpassungen am Benutzerhandbuch
 
 ## v.2.0.5 (2022-12-27)
 
