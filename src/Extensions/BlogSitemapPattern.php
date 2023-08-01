@@ -30,19 +30,19 @@ class BlogSitemapPattern
         $assistantsService = pluginApp(AssistantsService::class);
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
         $result = [];
-//        foreach($dynamoPosts as $post) {
-//            if ($post['data']['post']['active'] === "true" && !is_null($post['data']['post']['publishedAtHour'])) {
-//                $url = $blogService->buildFullPostUrl($post);
-//                $result[] = [
-//                    'publish_date' => date('Y-m-d', strtotime($post['data']['post']['publishedAt'])),
-//                    'url' => $domain . $url['postUrl'],
-//                    'title' => $post['data']['post']['title'],
-//                    'lang' => $post['data']['post']['lang'],
-//                    'keywords' => $post['data']['metaData']['keywords'],
-//                ];
-//            }
-//
-//        }
-        $seoSitemapService->setBlogContent($dynamoPosts);
+        foreach($dynamoPosts as $post) {
+            if ($post['data']['post']['active'] === "true" && !is_null($post['data']['post']['publishedAtHour'])) {
+                $url = $blogService->buildFullPostUrl($post);
+                $result[] = [
+                    'publish_date' => date('Y-m-d', strtotime($post['data']['post']['publishedAt'])),
+                    'url' => $domain . $url['postUrl'],
+                    'title' => $post['data']['post']['title'],
+                    'lang' => $post['data']['post']['lang'],
+                    'keywords' => $post['data']['metaData']['keywords'],
+                ];
+            }
+
+        }
+        $seoSitemapService->setBlogContent($result);
     }
 }
