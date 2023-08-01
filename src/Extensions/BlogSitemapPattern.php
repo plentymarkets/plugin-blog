@@ -31,7 +31,7 @@ class BlogSitemapPattern
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
         $result = [];
         foreach($dynamoPosts as $post) {
-            if ($post['data']['post']['active'] && $post['data']['post']['publishedAtHour']) {
+            if ($post['data']['post']['active'] === true && $post['data']['post']['publishedAtHour']) {
                 $url = $blogService->buildFullPostUrl($post);
                 $result[] = [
                     'publish_date' => date('Y-m-d', strtotime($post['data']['post']['publishedAt'])),
