@@ -1,5 +1,12 @@
 # Release notes für das Blog plugin
 
+## v.2.1.0 (2023-08-02)
+
+### Feature:
+
+- Das Plugin befüllt jetzt die Blog Sitemap, wenn diese aktiviert ist.
+
+
 ## v.2.0.5 (2022-12-27)
 
 ### Behoben:
