@@ -2,6 +2,11 @@
 
 ## v.2.1.0 (2023-08-02)
 
+### Behoben:
+
+- Für die Vorschaubilder wurden keine Alt-Attribute befüllt, das wurde behoben. Wir möchten uns bei @MaxBentz für seinen Beitrag bedanken.
+- In der VerticalXL Komponente wurde kein Standard Vorschaubild angezeigt, das wurde behoben. Wir möchten uns bei @MaxBentz für seinen Beitrag bedanken.
+
 ### Feature:
 
 - Das Plugin befüllt jetzt die Blog Sitemap, wenn diese aktiviert ist.
