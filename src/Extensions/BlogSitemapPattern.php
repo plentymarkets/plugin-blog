@@ -34,12 +34,11 @@ class BlogSitemapPattern
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
         $result = [];
         $now = time();
-        $dynamoPosts[] = $clientStoreId;
         foreach($dynamoPosts as $post) {
             if ($post['data']['post']['active'] === "true" 
                 && !is_null($post['data']['post']['publishedAtHour'])
                 && strtotime($post['data']['post']['publishedAt']) <= $now
-                && $clientStoreId === $post['data']['clientStore']['id']
+                && $clientStoreId == $post['data']['clientStore']['id']
             ) {
                 $url = $blogService->buildFullPostUrl($post);
                 $result[] = [
@@ -52,6 +51,6 @@ class BlogSitemapPattern
             }
 
         }
-        $seoSitemapService->setBlogContent($dynamoPosts);
+        $seoSitemapService->setBlogContent($result);
     }
 }
