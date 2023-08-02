@@ -2,6 +2,11 @@
 
 ## v.2.1.0 (2023-08-02)
 
+### Fixed:
+
+- Alt attributes were not populated for the thumbnails, this has been fixed. We would like to thank @MaxBentz for his contribution.
+- There was no default thumbnail displayed in VerticalXL component, this has been fixed. We would like to thank @MaxBentz for his contribution.
+
 ### Feature:
 
 - The plugin now populates the blog sitemap if it is enabled.
