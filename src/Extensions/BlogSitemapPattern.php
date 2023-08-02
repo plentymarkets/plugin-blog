@@ -47,6 +47,6 @@ class BlogSitemapPattern
             }
 
         }
-        $seoSitemapService->setBlogContent($result);
+        $seoSitemapService->setBlogContent($dynamoPosts);
     }
 }
