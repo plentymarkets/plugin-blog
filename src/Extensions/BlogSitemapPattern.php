@@ -30,8 +30,12 @@ class BlogSitemapPattern
         $assistantsService = pluginApp(AssistantsService::class);
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
         $result = [];
+        $now = time();
         foreach($dynamoPosts as $post) {
-            if ($post['data']['post']['active'] === "true" && !is_null($post['data']['post']['publishedAtHour'])) {
+            if ($post['data']['post']['active'] === "true" 
+                && !is_null($post['data']['post']['publishedAtHour'])
+                && strtotime($post['data']['post']['publishedAtHour']) <= $now
+            ) {
                 $url = $blogService->buildFullPostUrl($post);
                 $result[] = [
                     'publish_date' => date('Y-m-d', strtotime($post['data']['post']['publishedAt'])),
