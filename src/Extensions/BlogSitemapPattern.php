@@ -34,6 +34,7 @@ class BlogSitemapPattern
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
         $result = [];
         $now = time();
+        $dynamoPosts[] = $clientStoreId;
         foreach($dynamoPosts as $post) {
             if ($post['data']['post']['active'] === "true" 
                 && !is_null($post['data']['post']['publishedAtHour'])
@@ -51,6 +52,6 @@ class BlogSitemapPattern
             }
 
         }
-        $seoSitemapService->setBlogContent($result);
+        $seoSitemapService->setBlogContent($dynamoPosts);
     }
 }
