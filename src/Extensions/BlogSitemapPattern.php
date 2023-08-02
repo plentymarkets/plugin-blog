@@ -7,6 +7,7 @@ use Plenty\Modules\Plugin\Events\LoadSitemapPattern;
 use Plenty\Modules\Plugin\Services\PluginSeoSitemapService;
 use Blog\AssistantServices\AssistantsService;
 use Plenty\Modules\Webshop\Contracts\WebstoreConfigurationRepositoryContract;
+use Plenty\Plugin\Application;
 
 
 class BlogSitemapPattern
@@ -26,6 +27,8 @@ class BlogSitemapPattern
         $webstoreConfigurationRepository = pluginApp(WebstoreConfigurationRepositoryContract::class);
         $domain = $webstoreConfigurationRepository->getWebstoreConfiguration()->domainSsl;
 
+        $clientStoreId = pluginApp(Application::class)->getWebstoreId();
+
         /** @var AssistantsService $assistantsService */
         $assistantsService = pluginApp(AssistantsService::class);
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
@@ -35,6 +38,7 @@ class BlogSitemapPattern
             if ($post['data']['post']['active'] === "true" 
                 && !is_null($post['data']['post']['publishedAtHour'])
                 && strtotime($post['data']['post']['publishedAt']) <= $now
+                && $clientStoreId === $post['data']['clientStore']['id']
             ) {
                 $url = $blogService->buildFullPostUrl($post);
                 $result[] = [
