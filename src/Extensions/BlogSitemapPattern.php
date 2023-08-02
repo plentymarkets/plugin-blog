@@ -51,6 +51,6 @@ class BlogSitemapPattern
             }
 
         }
-        $seoSitemapService->setBlogContent($dynamoPosts);
+        $seoSitemapService->setBlogContent($result);
     }
 }
