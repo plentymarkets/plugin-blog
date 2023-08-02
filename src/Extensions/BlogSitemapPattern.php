@@ -34,7 +34,7 @@ class BlogSitemapPattern
         foreach($dynamoPosts as $post) {
             if ($post['data']['post']['active'] === "true" 
                 && !is_null($post['data']['post']['publishedAtHour'])
-                && strtotime($post['data']['post']['publishedAtHour']) <= $now
+                && strtotime($post['data']['post']['publishedAt']) <= $now
             ) {
                 $url = $blogService->buildFullPostUrl($post);
                 $result[] = [
@@ -47,6 +47,6 @@ class BlogSitemapPattern
             }
 
         }
-        $seoSitemapService->setBlogContent($dynamoPosts);
+        $seoSitemapService->setBlogContent($result);
     }
 }
