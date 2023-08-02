@@ -12,6 +12,7 @@ use Blog\Assistants\ReindexPosts\ReindexPostsAssistant;
 use Blog\AssistantServices\AssistantsService;
 use Blog\Contexts\BlogCategoryContext;
 use Blog\Contexts\BlogContext;
+use Blog\Extensions\BlogSitemapPattern;
 use Blog\Services\BlogService;
 use Blog\Twig\CategoryTree;
 use Blog\Twig\Links;
@@ -24,6 +25,7 @@ use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Http\Request;
 use Plenty\Modules\Wizard\Contracts\WizardContainerContract;
+use Plenty\Modules\Plugin\Events\LoadSitemapPattern;
 
 
 /**
@@ -61,6 +63,8 @@ class BlogServiceProvider extends ServiceProvider
 
         $twig->addExtension(Links::class);
         $twig->addExtension(CategoryTree::class);
+
+        $eventDispatcher->listen(LoadSitemapPattern::class, BlogSitemapPattern::class);
 
         // Custom components
         $eventDispatcher->listen('IO.Resources.Import',
