@@ -34,6 +34,7 @@ class BlogSitemapPattern
         $dynamoPosts = $assistantsService->getDynamoDbPosts();
         $result = [];
         $now = time();
+        $blogLandingPage = [];
         foreach($dynamoPosts as $post) {
             if ($post['data']['post']['active'] === "true" 
                 && !is_null($post['data']['post']['publishedAtHour'])
@@ -48,9 +49,13 @@ class BlogSitemapPattern
                     'lang' => $post['data']['post']['lang'],
                     'keywords' => $post['data']['metaData']['keywords'],
                 ];
+                if (count($blogLandingPage) === 0) {
+                    $blogLandingPage[] = $blogLandingPage->buildLandingUrl();
+                }
             }
 
         }
+        $seoSitemapService->setBlogPattern($blogLandingPage);
         $seoSitemapService->setBlogContent($result);
     }
 }
