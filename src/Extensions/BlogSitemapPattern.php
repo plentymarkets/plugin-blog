@@ -39,6 +39,7 @@ class BlogSitemapPattern
                 && !is_null($post['data']['post']['publishedAtHour'])
                 && strtotime($post['data']['post']['publishedAt']) <= $now
                 && $clientStoreId == $post['data']['clientStore']['id']
+                && !is_null($post['data']['category']['id'])
             ) {
                 $url = $blogService->buildFullPostUrl($post);
                 $result[] = [
