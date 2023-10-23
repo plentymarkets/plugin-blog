@@ -52,6 +52,7 @@ class BlogSitemapPattern
             }
 
         }
+        $seoSitemapService->setBlogPattern($blogService->getLandingUrlName());
         $seoSitemapService->setBlogContent($result);
     }
 }
