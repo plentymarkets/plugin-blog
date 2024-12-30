@@ -1,5 +1,11 @@
 # Release notes for Blog plugin
 
+## v.2.1.1 (2024-12-30)
+
+### Fixed:
+
+- The CSS no longer blocks the rendering process. This leads to better PageSpeed Insights values.
+
 ## v.2.1.0 (2023-08-02)
 
 ### Fixed:
